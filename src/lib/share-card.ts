@@ -110,10 +110,14 @@ export async function renderShareCard({
   let y = bandH + 640;
   const list = matches.slice(0, 5);
 
-  // Limites de largura: do x=360 até tagX=824 → 464px máximo pra nomes
-  // Trunca pra caber sem invadir o badge GRÁTIS/PAGO
+  // Hierarquia: TIMES são o protagonista (fonte grande), horário secundário.
   const TAG_X = W - 96 - 160; // 824
-  const TEAM_AREA_MAX = TAG_X - 360 - 20; // 444px de folga
+  const TIME_X = 96;
+  const TIME_FONT = '400 48px "Anton", sans-serif';
+  const TEAMS_X = 232; // mais à esquerda agora que o horário é menor
+  const TEAMS_FONT = '900 58px "Archivo Black", "Archivo", sans-serif';
+  const SUB_FONT = '700 22px "Space Mono", monospace';
+  const TEAMS_MAX = TAG_X - TEAMS_X - 20; // 572px
 
   function fitText(
     c: CanvasRenderingContext2D,
@@ -128,6 +132,36 @@ export async function renderShareCard({
       cut = cut.slice(0, -1);
     }
     return cut + "…";
+  }
+
+  // Estratégia anti-corte: se nome completo não couber, tenta abreviar SÓ
+  // o nome mais longo. Se ainda não couber, faz ellipsis.
+  function teamsLabel(c: CanvasRenderingContext2D, home: string, away: string): string {
+    const full = `${home} × ${away}`;
+    c.font = TEAMS_FONT;
+    if (c.measureText(full).width <= TEAMS_MAX) return full;
+
+    // Abrevia o nome mais longo pra forma curta
+    const abbreviate = (name: string) => {
+      // "República Tcheca" → "R. Tcheca"
+      // "Bósnia e Herzegovina" → "Bósnia"
+      // "Países Baixos" → "P. Baixos"
+      // "Coreia do Sul" → "Coreia"
+      if (name.includes(" e ")) return name.split(" e ")[0];
+      if (name.includes(" do ")) return name.split(" do ")[0];
+      if (name.includes(" da ")) return name.split(" da ")[0];
+      const parts = name.split(" ");
+      if (parts.length >= 2) return `${parts[0][0]}. ${parts.slice(1).join(" ")}`;
+      return name;
+    };
+
+    const homeAbbr = home.length > away.length ? abbreviate(home) : home;
+    const awayAbbr = away.length >= home.length ? abbreviate(away) : away;
+    const tried = `${homeAbbr} × ${awayAbbr}`;
+    if (c.measureText(tried).width <= TEAMS_MAX) return tried;
+
+    // Fallback: ellipsis
+    return fitText(c, full, TEAMS_MAX, TEAMS_FONT);
   }
 
   for (const g of list) {
@@ -148,28 +182,28 @@ export async function renderShareCard({
       ctx.strokeRect(76, y - 78, W - 152, 150);
     }
 
+    // TIME (secundário, à esquerda)
     ctx.fillStyle = isBr ? "#0b1e57" : "#0d0d0d";
-    ctx.font = '400 92px "Anton", sans-serif';
+    ctx.font = TIME_FONT;
     ctx.textBaseline = "alphabetic";
-    ctx.fillText(time, 96, y);
+    ctx.fillText(time, TIME_X, y - 6);
 
+    // TEAMS (protagonista, fonte maior)
     ctx.fillStyle = "#0d0d0d";
-    const teamsText = fitText(
-      ctx,
-      `${g.mandante} × ${g.visitante}`,
-      TEAM_AREA_MAX,
-      '900 42px "Archivo Black", "Archivo", sans-serif',
-    );
-    ctx.fillText(teamsText, 360, y - 26);
+    const teamsText = teamsLabel(ctx, g.mandante, g.visitante);
+    ctx.font = TEAMS_FONT;
+    ctx.fillText(teamsText, TEAMS_X, y - 6);
 
+    // Sub (dia + canais) — embaixo do bloco
     ctx.fillStyle = "#6b5a3e";
+    ctx.font = SUB_FONT;
     const subText = fitText(
       ctx,
       `${day} · ${chsLabel || "—"}`,
-      TEAM_AREA_MAX,
-      '700 22px "Space Mono", monospace',
+      TAG_X - TIME_X - 20,
+      SUB_FONT,
     );
-    ctx.fillText(subText, 360, y + 12);
+    ctx.fillText(subText, TIME_X, y + 26);
 
     // tag direita
     ctx.save();
