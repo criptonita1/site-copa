@@ -5,7 +5,7 @@
 export const APP = {
   // App que este site divulga (rodapé + assinatura do card viral)
   PROMO_NAME: "Onchain Cup",
-  PROMO_URL: "https://onchaincup.com",
+  PROMO_URL: "https://onchaincup.io",
   PROMO_TAGLINE: "Aposte na Copa com seus amigos — onchain.",
 
   // Identidade do site
