@@ -3,10 +3,14 @@
  * Tudo que for marca deve ler daqui. Trocar de app = mudar este arquivo.
  */
 export const APP = {
-  // App que este site divulga (rodapé + assinatura do card viral)
+  // App que este site divulga (PromoSlots — é o CTA, não o autor)
   PROMO_NAME: "Onchain Cup",
   PROMO_URL: "https://onchaincup.io",
   PROMO_TAGLINE: "Aposte na Copa com seus amigos — onchain.",
+
+  // Quem ASSINA o site (autoria — diferente do PROMO)
+  AUTHOR_NAME: "Modular",
+  AUTHOR_URL: "https://modular.tech",
 
   // Identidade do site
   SITE_NAME: "Onde Ver a Copa",

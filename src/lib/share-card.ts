@@ -87,25 +87,48 @@ export async function renderShareCard({
   ctx.fillText("OS JOGOS", 96, bandH + 340);
   ctx.fillText("QUE ", 96, bandH + 470);
   const wQue = ctx.measureText("QUE ").width;
+  // "vou ver" — italic bold (Caveat foi removida do projeto)
   ctx.save();
   ctx.translate(96 + wQue + 30, bandH + 470);
   ctx.rotate(-0.06);
   ctx.fillStyle = "#1D3FA1";
-  ctx.font = '700 130px "Caveat", cursive';
+  ctx.font = 'italic 900 110px "Archivo Black", "Archivo", sans-serif';
   ctx.fillText("vou ver", 0, 0);
   ctx.restore();
 
-  // underline amarelo
+  // underline amarelo (com lineCap round pra ponta limpa)
   ctx.strokeStyle = "#FFDB2A";
   ctx.lineWidth = 14;
+  ctx.lineCap = "round";
   ctx.beginPath();
-  ctx.moveTo(96 + wQue + 20, bandH + 490);
-  ctx.lineTo(96 + wQue + 580, bandH + 482);
+  ctx.moveTo(96 + wQue + 20, bandH + 495);
+  ctx.lineTo(96 + wQue + 480, bandH + 488);
   ctx.stroke();
+  ctx.lineCap = "butt"; // reset
 
   // ---- Lista
   let y = bandH + 640;
   const list = matches.slice(0, 5);
+
+  // Limites de largura: do x=360 até tagX=824 → 464px máximo pra nomes
+  // Trunca pra caber sem invadir o badge GRÁTIS/PAGO
+  const TAG_X = W - 96 - 160; // 824
+  const TEAM_AREA_MAX = TAG_X - 360 - 20; // 444px de folga
+
+  function fitText(
+    c: CanvasRenderingContext2D,
+    text: string,
+    maxWidth: number,
+    font: string,
+  ): string {
+    c.font = font;
+    if (c.measureText(text).width <= maxWidth) return text;
+    let cut = text;
+    while (cut.length > 4 && c.measureText(cut + "…").width > maxWidth) {
+      cut = cut.slice(0, -1);
+    }
+    return cut + "…";
+  }
 
   for (const g of list) {
     const time = fmtTime(g.kickoffUTC, tzOffset);
@@ -131,29 +154,38 @@ export async function renderShareCard({
     ctx.fillText(time, 96, y);
 
     ctx.fillStyle = "#0d0d0d";
-    ctx.font = '900 42px "Archivo Black", "Archivo", sans-serif';
-    ctx.fillText(`${g.mandante} × ${g.visitante}`, 360, y - 26);
+    const teamsText = fitText(
+      ctx,
+      `${g.mandante} × ${g.visitante}`,
+      TEAM_AREA_MAX,
+      '900 42px "Archivo Black", "Archivo", sans-serif',
+    );
+    ctx.fillText(teamsText, 360, y - 26);
 
     ctx.fillStyle = "#6b5a3e";
-    ctx.font = '700 22px "Space Mono", monospace';
-    ctx.fillText(`${day} · ${chsLabel || "—"}`, 360, y + 12);
+    const subText = fitText(
+      ctx,
+      `${day} · ${chsLabel || "—"}`,
+      TEAM_AREA_MAX,
+      '700 22px "Space Mono", monospace',
+    );
+    ctx.fillText(subText, 360, y + 12);
 
     // tag direita
     ctx.save();
-    const tagX = W - 96 - 160;
     const tagY = y - 50;
     const tagW = 160;
     const tagH = 46;
     ctx.fillStyle = isFree ? "#00A045" : "#1D3FA1";
-    ctx.fillRect(tagX, tagY, tagW, tagH);
+    ctx.fillRect(TAG_X, tagY, tagW, tagH);
     ctx.strokeStyle = "#0d0d0d";
     ctx.lineWidth = 3;
-    ctx.strokeRect(tagX, tagY, tagW, tagH);
+    ctx.strokeRect(TAG_X, tagY, tagW, tagH);
     ctx.fillStyle = isFree ? "#f4e9d4" : "#FFDB2A";
     ctx.font = '400 26px "Bungee", sans-serif';
     ctx.textBaseline = "middle";
     ctx.textAlign = "center";
-    ctx.fillText(isFree ? "GRÁTIS" : "PAGO", tagX + tagW / 2, tagY + tagH / 2);
+    ctx.fillText(isFree ? "GRÁTIS" : "PAGO", TAG_X + tagW / 2, tagY + tagH / 2);
     ctx.restore();
     ctx.textAlign = "left";
     ctx.textBaseline = "alphabetic";
@@ -178,10 +210,10 @@ export async function renderShareCard({
   ctx.fillStyle = "#FFDB2A";
   ctx.font = '400 30px "Space Mono", monospace';
   ctx.fillText(APP.SITE_URL.replace(/^https?:\/\//, ""), 96, H - 72);
-  // assinatura discreta do Onchain Cup
+  // assinatura de autoria (não é o promo)
   ctx.font = '400 18px "Space Mono", monospace';
   ctx.fillStyle = "#b8a780";
-  ctx.fillText(`feito por ${APP.PROMO_NAME}`, 96, H - 40);
+  ctx.fillText(`feito por ${APP.AUTHOR_NAME}`, 96, H - 40);
   ctx.fillStyle = "#00A045";
   ctx.font = '400 54px "Bungee", sans-serif';
   ctx.textAlign = "right";

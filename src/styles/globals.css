@@ -583,11 +583,13 @@ main {
   font-family: var(--font-archivo), Archivo, sans-serif;
   font-style: italic;
   color: var(--verde-dark);
-  font-weight: 700;
-  font-size: 0.8em;
+  font-weight: 900;
+  font-size: 0.55em;
   letter-spacing: 0;
+  line-height: 1;
   display: inline-block;
-  transform: rotate(-2deg);
+  transform: rotate(-2deg) translateY(-0.05em);
+  vertical-align: baseline;
 }
 .filters-sub {
   color: var(--ink-soft);
@@ -1627,11 +1629,13 @@ main {
 .share-copy h2 em {
   font-family: var(--font-archivo), Archivo, sans-serif;
   font-style: italic;
-  font-weight: 700;
+  font-weight: 900;
   color: var(--amarelo);
-  font-size: 0.78em;
+  font-size: 0.55em;
+  line-height: 1;
   display: inline-block;
-  transform: rotate(-2deg);
+  transform: rotate(-2deg) translateY(-0.05em);
+  vertical-align: baseline;
 }
 .share-copy p {
   font-size: 15.5px;
@@ -1766,10 +1770,12 @@ main {
   font-family: var(--font-archivo), Archivo, sans-serif;
   font-style: italic;
   color: var(--azul);
-  font-size: 0.7em;
+  font-size: 0.55em;
+  line-height: 1;
   display: inline-block;
-  transform: rotate(-3deg);
-  font-weight: 700;
+  transform: rotate(-3deg) translateY(-0.05em);
+  font-weight: 900;
+  vertical-align: baseline;
 }
 .sp-list {
   margin-top: 12px;
@@ -1897,10 +1903,12 @@ main {
   font-family: var(--font-archivo), Archivo, sans-serif;
   font-style: italic;
   color: var(--verde-dark);
-  font-weight: 700;
-  font-size: 0.7em;
+  font-weight: 900;
+  font-size: 0.5em;
+  line-height: 1;
   display: inline-block;
-  transform: rotate(-2deg);
+  transform: rotate(-2deg) translateY(-0.05em);
+  vertical-align: baseline;
 }
 .email-copy p {
   color: var(--ink-soft);
@@ -2005,10 +2013,12 @@ main {
   font-family: var(--font-archivo), Archivo, sans-serif;
   font-style: italic;
   color: var(--verde);
-  font-size: 0.7em;
-  font-weight: 700;
+  font-size: 0.55em;
+  line-height: 1;
+  font-weight: 900;
   display: inline-block;
-  transform: rotate(-3deg);
+  transform: rotate(-3deg) translateY(-0.05em);
+  vertical-align: baseline;
 }
 .foot-meta {
   font-family: var(--font-mono), "Space Mono", monospace;

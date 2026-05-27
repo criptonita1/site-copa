@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "SporTV",
     "Calendário Copa 2026",
   ],
-  authors: [{ name: APP.PROMO_NAME, url: APP.PROMO_URL }],
+  authors: [{ name: APP.AUTHOR_NAME, url: APP.AUTHOR_URL }],
   openGraph: {
     type: "website",
     locale: "pt_BR",

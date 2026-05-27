@@ -1,5 +1,4 @@
 import { APP } from "@/config";
-import { withUtm } from "@/lib/utm";
 import { StarSvg } from "@/components/icons";
 
 export function Footer() {
@@ -21,11 +20,11 @@ export function Footer() {
           <div className="foot-meta">
             FEITO POR{" "}
             <a
-              href={withUtm(APP.PROMO_URL, "footer")}
+              href={APP.AUTHOR_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <b>{APP.PROMO_NAME.toUpperCase()}</b>
+              <b>{APP.AUTHOR_NAME.toUpperCase()}</b>
             </a>
             <br />
             DADOS DA TABELA FIFA OFICIAL
