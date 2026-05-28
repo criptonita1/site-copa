@@ -64,10 +64,11 @@ export function Hero({ nowMs, tzOffset }: HeroProps) {
 
         <div className="hero-cover">
           <div className="hero-headline">
-            <div className="hero-row1">
+            {/* h1 semântico — Google adora h1 com keyword principal */}
+            <h1 className="hero-row1" style={{ margin: 0 }}>
               BRASIL <span className="joga">joga</span>
-            </div>
-            <div className="hero-row2">
+            </h1>
+            <div className="hero-row2" aria-label={`Faltam ${daysUntil ?? "—"} dias`}>
               EM{" "}
               <span className="em-num">
                 {daysUntil != null ? pad2(daysUntil) : "—"}

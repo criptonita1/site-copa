@@ -68,11 +68,18 @@ export async function POST(req: Request) {
 
   const apiKey = process.env.RESEND_API_KEY;
   const audienceId = process.env.RESEND_AUDIENCE_ID;
+  const from = process.env.RESEND_FROM;
 
   // Sem API key configurada — UX já mostrou ok, log SEM email (LGPD)
   if (!apiKey) {
     console.warn("[lembrete] RESEND_API_KEY ausente — lead não persistido");
     return NextResponse.json({ ok: true });
+  }
+
+  // Sanity check do FROM (precisa ter pelo menos um @ válido)
+  // Não bloqueia a operação — Resend pode usar default — mas loga warning
+  if (from && !/^.+<.+@.+\..+>$|^.+@.+\..+$/.test(from)) {
+    console.warn("[lembrete] RESEND_FROM mal formatado — verifique env var");
   }
 
   try {

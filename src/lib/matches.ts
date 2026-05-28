@@ -7,8 +7,6 @@ const file = matchesFile as unknown as MatchesFile;
 /** Os 104 jogos em ordem cronológica (ordem do JSON é cronológica). */
 export const MATCHES: Match[] = file.matches;
 
-export const MATCHES_META = file._meta;
-
 export function getById(id: string): Match | undefined {
   return MATCHES.find((m) => m.id === id);
 }

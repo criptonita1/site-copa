@@ -24,6 +24,11 @@ export function Jersey({ team, size = 54, className }: JerseyProps) {
   const idSafe = team.replace(/[^a-zA-Z0-9]/g, "");
   const patternId = `ch-${idSafe}`;
 
+  const ariaLabel =
+    team === "A definir"
+      ? "Camisa de seleção a definir"
+      : `Camisa da seleção do ${team}`;
+
   return (
     <svg
       viewBox="0 0 64 64"
@@ -31,7 +36,8 @@ export function Jersey({ team, size = 54, className }: JerseyProps) {
       height={size}
       xmlns="http://www.w3.org/2000/svg"
       className={className}
-      aria-label={`Camisa ${team}`}
+      role="img"
+      aria-label={ariaLabel}
     >
       {j.checker && (
         <defs>

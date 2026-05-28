@@ -75,19 +75,20 @@ function MatchCardImpl({
   const rot = match.brasil ? 0 : rotation ?? deterministicRotation(match.id);
 
   // Foil interativo só pra cards do Brasil
+  // Funciona com mouse (desktop) E touch (mobile) — usar pointer events cobre os 2
   useEffect(() => {
     if (!match.brasil) return;
     const el = cardRef.current;
     if (!el) return;
     const foil = el.querySelector<HTMLElement>(".foil");
     if (!foil) return;
-    function move(e: MouseEvent) {
+    function move(e: PointerEvent) {
       const r = el!.getBoundingClientRect();
       foil!.style.setProperty("--mx", ((e.clientX - r.left) / r.width) * 100 + "%");
       foil!.style.setProperty("--my", ((e.clientY - r.top) / r.height) * 100 + "%");
     }
-    el.addEventListener("mousemove", move);
-    return () => el.removeEventListener("mousemove", move);
+    el.addEventListener("pointermove", move);
+    return () => el.removeEventListener("pointermove", move);
   }, [match.brasil]);
 
   const time = fmtTime(match.kickoffUTC, tzOffset);

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Anton, Archivo, Bungee, Space_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { APP } from "@/config";
+import { CHANNELS } from "@/data/channels";
 import { MATCHES } from "@/lib/matches";
 import "@/styles/globals.css";
 
@@ -72,7 +73,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-// JSON-LD Schema.org SportsEvent (top-level array com todos os 104)
+// JSON-LD Schema.org SportsEvent + BroadcastEvent (rich result "onde assistir")
 function buildJsonLd() {
   return MATCHES.map((m) => ({
     "@context": "https://schema.org",
@@ -94,6 +95,25 @@ function buildJsonLd() {
       "@type": "SportsEvent",
       name: "Copa do Mundo FIFA 2026",
     },
+    // BroadcastEvent por canal — alimenta o rich result do Google "Onde assistir"
+    subEvent: m.canais
+      .map((c) => CHANNELS[c])
+      .filter(Boolean)
+      .map((ch) => ({
+        "@type": "BroadcastEvent",
+        name: `${m.mandante} vs ${m.visitante} — ${ch.nome}`,
+        isLiveBroadcast: true,
+        publisher: {
+          "@type": "Organization",
+          name: ch.nome,
+        },
+        broadcastOfEvent: {
+          "@type": "SportsEvent",
+          name: `${m.mandante} vs ${m.visitante}`,
+        },
+        startDate: m.kickoffUTC,
+        videoFormat: ch.delivery === "youtube" ? "HD" : "HD",
+      })),
   }));
 }
 
