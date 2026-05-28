@@ -65,17 +65,18 @@ export function Jersey({ team, size = 54, className }: JerseyProps) {
         stroke="#0d0d0d"
         strokeWidth="1.6"
       />
-      {/* number */}
+      {/* abbr da seleção (substituindo o número da camisa que confundia com placar) */}
       <text
         x="32"
-        y="44"
+        y="42"
         textAnchor="middle"
-        fontFamily="var(--font-anton), Anton, sans-serif"
-        fontSize="18"
+        fontFamily="var(--font-mono), 'Space Mono', monospace"
+        fontSize="10"
         fill="#0d0d0d"
-        fontWeight={900}
+        fontWeight={700}
+        letterSpacing="0.5"
       >
-        {j.num}
+        {j.abbr ?? ""}
       </text>
     </svg>
   );

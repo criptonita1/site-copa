@@ -34,7 +34,7 @@ export function Footer() {
         </div>
         <div className="foot-bottom">
           <span>NÃO AFILIADO À FIFA · NEM ÀS EMISSORAS · NEM ÀS SELEÇÕES</span>
-          <span>v0.1 · {APP.HASHTAG}</span>
+          <span>v1.0 · {APP.HASHTAG}</span>
         </div>
       </div>
     </footer>

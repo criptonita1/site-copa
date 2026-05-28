@@ -89,8 +89,11 @@ export function MatchGrid({
           {games.length === 0 ? (
             <div className="games-empty">
               <p>
-                Nenhum jogo nessa fase com os canais que você marcou. Tente outra aba
-                ou ative mais canais.
+                {onlyBrazil
+                  ? "Brasil não joga nessa fase ainda — confere as outras abas ou desativa o filtro 'só Brasil'."
+                  : channels.size === 0
+                    ? "Marque pelo menos um canal acima pra ver onde passa cada jogo."
+                    : "Nenhum jogo nessa fase passa nos canais que você tem. Tente outra aba ou ative mais canais."}
               </p>
             </div>
           ) : (

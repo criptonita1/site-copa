@@ -55,6 +55,7 @@ export function FilterPanel({
                     data-channel={id}
                     data-kind="free"
                     aria-pressed={active}
+                    aria-label={`${ch.nome} — canal grátis. ${active ? "marcado" : "não marcado"}`}
                     onClick={() => onToggle(id)}
                   >
                     <span className="dot" />
@@ -75,6 +76,7 @@ export function FilterPanel({
                     data-channel={id}
                     data-kind="paid"
                     aria-pressed={active}
+                    aria-label={`${ch.nome} — canal pago. ${active ? "marcado" : "não marcado"}`}
                     onClick={() => onToggle(id)}
                   >
                     <span className="dot" />
@@ -99,12 +101,20 @@ export function FilterPanel({
           </div>
           <div className="filter-summary">
             <div className="count">
-              você vai ver
-              <b>{visibleCount}</b>
-              jogos ·{" "}
-              <span className="free">
-                <b>{freeCount}</b> de graça
-              </span>
+              {channels.size === 0 ? (
+                <span style={{ fontFamily: "var(--font-archivo)", fontStyle: "italic" }}>
+                  Marque pelo menos um canal pra ver onde passa.
+                </span>
+              ) : (
+                <>
+                  você vai ver
+                  <b>{visibleCount}</b>
+                  jogos ·{" "}
+                  <span className="free">
+                    <b>{freeCount}</b> de graça
+                  </span>
+                </>
+              )}
             </div>
             <button className="clear" onClick={onClear}>
               limpar tudo
