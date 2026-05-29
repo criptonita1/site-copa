@@ -108,7 +108,11 @@ export async function renderShareCard({
 
   // ---- Lista
   let y = bandH + 640;
-  const list = matches.slice(0, 5);
+  // Filtra jogos com times "A definir" — não dá pra "planejar ver" um jogo
+  // com slot vazio. O placeholder existe pros jogos de mata-mata pré-grupos.
+  const list = matches
+    .filter((m) => m.mandante !== "A definir" && m.visitante !== "A definir")
+    .slice(0, 5);
 
   // Hierarquia: TIMES são o protagonista (fonte grande), horário secundário.
   const TAG_X = W - 96 - 160; // 824
@@ -141,15 +145,23 @@ export async function renderShareCard({
     c.font = TEAMS_FONT;
     if (c.measureText(full).width <= TEAMS_MAX) return full;
 
-    // Abrevia o nome mais longo pra forma curta
+    // Abrevia o nome mais longo pra forma curta.
+    // IMPORTANTE: "África do Sul" NÃO pode virar "África" (país errado).
+    // "Coreia do Sul" NÃO pode virar "Coreia". Manter a parte distintiva.
     const abbreviate = (name: string) => {
-      // "República Tcheca" → "R. Tcheca"
-      // "Bósnia e Herzegovina" → "Bósnia"
+      // "República Tcheca" → "R. Tcheca" (parts.length === 2, sem conectivos)
+      // "Bósnia e Herzegovina" → "Bósnia" (primeira parte é o país)
+      // "África do Sul" → "Á. Sul" (manter os dois pedaços, só compactar)
+      // "Coreia do Sul" → "C. Sul"
+      // "Costa do Marfim" → "C. Marfim"
       // "Países Baixos" → "P. Baixos"
-      // "Coreia do Sul" → "Coreia"
       if (name.includes(" e ")) return name.split(" e ")[0];
-      if (name.includes(" do ")) return name.split(" do ")[0];
-      if (name.includes(" da ")) return name.split(" da ")[0];
+      for (const conn of [" do ", " da ", " de "]) {
+        if (name.includes(conn)) {
+          const [a, b] = name.split(conn);
+          return `${a[0]}. ${b}`;
+        }
+      }
       const parts = name.split(" ");
       if (parts.length >= 2) return `${parts[0][0]}. ${parts.slice(1).join(" ")}`;
       return name;
@@ -166,7 +178,9 @@ export async function renderShareCard({
 
   for (const g of list) {
     const time = fmtTime(g.kickoffUTC, tzOffset);
-    const day = fmtDay(g.kickoffUTC, tzOffset).split(" ").slice(0, 2).join(" ");
+    // Mantém o mês — "DOM 19 JUL" em vez de "DOM 19" ambíguo
+    // (dois dias 19 na Copa: 19/jun e 19/jul → mesma label sem o mês).
+    const day = fmtDay(g.kickoffUTC, tzOffset);
     const userVisibleChannels = g.canais.filter((c) => userChannels.has(c));
     const chsLabel = userVisibleChannels
       .map((c) => CHANNELS[c]?.nome ?? c)
