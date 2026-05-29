@@ -47,6 +47,31 @@ totalmente separados. Nada de Supabase, OpenAI, Stripe aqui.
 2. **Email de confirmação ao cadastrar** — usuário recebe "tá anotado" instantâneo (~30min)
 3. **Página `/jogo/[id]`** — SEO de cauda longa, 1 página por jogo
 
+## Branches
+
+- `main` — produção (auto-deploy ativo)
+- `feat/chaveamento` — bracket mobile-first da Copa pronto, AGUARDANDO validação. Não fundir até decisão.
+
+## Security review (2026-05-29) — pendências
+
+Auditoria sênior identificou riscos. **Fixes já aplicados:**
+
+- ✅ Trace ID em todos os logs do `/api/lembrete` pra correlação
+- ✅ IP source com fallback robusto (`NextRequest.ip` → `x-real-ip` → `x-forwarded-for` validado por regex)
+- ✅ Notas de segurança inline no `route.ts` documentando trade-offs
+
+**Pendente (ação do usuário no Resend dashboard):**
+
+- ⚠️ **CRÍTICO antes de escala viral:** Migrar rate-limit pra Upstash Redis. Hoje o `Map` em-memory de edge isolate só funciona em volume baixo — multi-region não compartilha. Setup: Vercel marketplace → Upstash Redis → conectar projeto → trocar 3 linhas do `route.ts`. Esforço: 30min.
+- ⚠️ **ALTO:** Trocar `RESEND_API_KEY` por uma com escopo mínimo. Hoje é Full Access (pode tudo). Criar nova Custom Key com apenas `contacts.write`, atualizar env var, deletar antiga. Esforço: 5min.
+
+**Verificados e OK:**
+- LGPD: emails nunca chegam em log
+- CSRF: same-origin POST, sem cookies
+- XSS no canvas (share-card): dados validados por Zod, canvas não executa script
+- Security headers: CSP completo em prod via `next.config.mjs`
+- Dependências sem CVE crítico (Next 14.2.18, Resend 4.0.1, Zod 3.23.8)
+
 ## Comandos úteis
 
 ```bash
