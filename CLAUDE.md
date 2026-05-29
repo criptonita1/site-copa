@@ -24,18 +24,28 @@ totalmente separados. Nada de Supabase, OpenAI, Stripe aqui.
 
 ## Estado atual (atualize quando mudar)
 
-- ✅ Build verde, 7 commits em `main`, working tree clean
-- ✅ Site no ar: https://siteondevercopa.vercel.app
+- ✅ Build verde, working tree clean
+- ✅ **Site no ar:** https://www.ondeveracopa.com.br (domínio próprio .com.br, registrado em CNPJ MC Soluções via Registro.br)
 - ✅ GitHub: https://github.com/criptonita1/site-copa (privado)
-- ❌ **Resend não configurado** — env vars zeradas na Vercel, leads de email são logados e descartados
-- ❌ Sem domínio próprio — está em `*.vercel.app`
-- ❌ Vercel ↔ GitHub não conectados — deploys são manuais via `npx vercel --prod`
+- ✅ **Vercel ↔ GitHub conectados** — `git push main` faz auto-deploy
+- ✅ **Resend configurado e funcionando** — domínio verificado (DKIM/SPF/MX), captura cria contato na audience real (testado 2026-05-29)
+- ✅ Página `/privacidade` LGPD-compliant (Modular como operador, contato info@modularcrypto.xyz)
+- ✅ Links clicáveis nos canais (CazéTV → YouTube, Globoplay, SporTV etc) via `ChannelBadge`
+- ❌ **Sem lembrete automático ainda** — captura emails mas nenhum cron envia. Promessa do site "manda 2h antes" não é cumprida tecnicamente. Precisa Vercel Cron + Resend Broadcasts.
+- ❌ **Sem email de confirmação ao cadastrar** — silent success (LGPD bom, UX ruim — usuário não sabe se deu certo)
+
+## Env vars production (Vercel)
+
+- `RESEND_API_KEY` — **Full Access** (Sending-only não cria contato, dá `restricted_api_key`)
+- `RESEND_AUDIENCE_ID=661ffade-63a7-488e-a5af-75debb88e724`
+- `RESEND_FROM=Onde Ver a Copa <lembrete@ondeveracopa.com.br>`
+- `NEXT_PUBLIC_SITE_URL=https://www.ondeveracopa.com.br`
 
 ## Próximas 3 ações pendentes
 
-1. Conta Resend → verificar domínio → audience → API key
-2. Comprar domínio + adicionar no Vercel
-3. Conectar Vercel → GitHub no painel (auto-deploy em `git push`)
+1. **Cron de lembrete** — Vercel Cron diário/horário que lê próximo jogo do Brasil de `matches.json`, dispara broadcast via Resend 2h antes (~2-3h código). Precisa: lock anti-reenvio (Vercel KV ou Upstash Redis).
+2. **Email de confirmação ao cadastrar** — usuário recebe "tá anotado" instantâneo (~30min)
+3. **Página `/jogo/[id]`** — SEO de cauda longa, 1 página por jogo
 
 ## Comandos úteis
 
