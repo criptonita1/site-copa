@@ -33,7 +33,15 @@ export function Footer() {
           </div>
         </div>
         <div className="foot-bottom">
-          <span>NÃO AFILIADO À FIFA · NEM ÀS EMISSORAS · NEM ÀS SELEÇÕES</span>
+          <span>
+            NÃO AFILIADO À FIFA · NEM ÀS EMISSORAS · NEM ÀS SELEÇÕES ·{" "}
+            <a
+              href="/privacidade"
+              style={{ color: "inherit", textDecoration: "underline" }}
+            >
+              PRIVACIDADE
+            </a>
+          </span>
           <span>v1.0 · {APP.HASHTAG}</span>
         </div>
       </div>

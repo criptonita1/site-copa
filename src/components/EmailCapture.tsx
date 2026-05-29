@@ -36,6 +36,23 @@ export function EmailCapture() {
               Manda 2 horas antes, com canal e horário no seu fuso. Sem spam, só
               lembrete antes do jogo. Pinky promise.
             </p>
+            <p
+              style={{
+                fontSize: 12,
+                opacity: 0.7,
+                marginTop: 8,
+                lineHeight: 1.4,
+              }}
+            >
+              Ao se inscrever, você concorda com a nossa{" "}
+              <a
+                href="/privacidade"
+                style={{ textDecoration: "underline", color: "inherit" }}
+              >
+                política de privacidade
+              </a>
+              . Cancela quando quiser.
+            </p>
           </div>
           <form
             className={`email-form${state === "ok" ? " ok" : ""}`}
