@@ -31,17 +31,6 @@ const StageSchema = z.enum([
 
 const PaisSchema = z.enum(["EUA", "México", "Canadá"]);
 
-const MatchResultSchema = z.object({
-  golsMandante: z.number().int().min(0).max(99),
-  golsVisitante: z.number().int().min(0).max(99),
-  penaltis: z
-    .object({
-      mandante: z.number().int().min(0).max(99),
-      visitante: z.number().int().min(0).max(99),
-    })
-    .optional(),
-});
-
 const MatchSchema = z.object({
   id: z.string().regex(/^M\d{3}$/, "id deve ser MNNN"),
   kickoffUTC: z
@@ -58,7 +47,6 @@ const MatchSchema = z.object({
   canais: z.array(ChannelIdSchema).min(1),
   canaisConfirmados: z.boolean(),
   brasil: z.boolean(),
-  resultado: MatchResultSchema.optional(),
 });
 
 const FileSchema = z.object({
