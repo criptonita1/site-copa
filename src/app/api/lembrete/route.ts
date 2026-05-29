@@ -85,11 +85,22 @@ export async function POST(req: Request) {
   try {
     const resend = new Resend(apiKey);
     if (audienceId) {
-      await resend.contacts.create({
+      const result = await resend.contacts.create({
         email: parsed.data.email,
         audienceId,
         unsubscribed: false,
       });
+      if (result.error) {
+        // Resend retornou erro mas não threw — captura
+        console.error(
+          "[lembrete] resend error:",
+          result.error.name,
+          result.error.message,
+        );
+      } else {
+        // sucesso — log SEM email (LGPD), só ID do contato criado
+        console.log("[lembrete] contato criado id=", result.data?.id ?? "?");
+      }
     } else {
       // Sem audience em prod: criar uma no Resend dashboard ou salvar em KV/DB.
       // Log sem email (LGPD).
@@ -98,7 +109,7 @@ export async function POST(req: Request) {
   } catch (err) {
     // Log do erro SEM o email (LGPD)
     const msg = err instanceof Error ? err.message : "unknown";
-    console.error("[lembrete] resend falhou:", msg);
+    console.error("[lembrete] resend falhou (throw):", msg);
     // Não derruba UX
   }
 
