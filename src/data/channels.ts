@@ -8,6 +8,7 @@ export const CHANNELS: Record<ChannelId, Channel> = {
     delivery: "aberta",
     kind: "free",
     comoAssistir: "Antena ou Globoplay grátis",
+    url: "https://globoplay.globo.com/agora-na-tv/",
   },
   sbt: {
     id: "sbt",
@@ -16,6 +17,7 @@ export const CHANNELS: Record<ChannelId, Channel> = {
     delivery: "aberta",
     kind: "free",
     comoAssistir: "Antena — narração Galvão + Leifert",
+    url: "https://www.sbt.com.br/ao-vivo",
   },
   cazetv: {
     id: "cazetv",
@@ -24,6 +26,7 @@ export const CHANNELS: Record<ChannelId, Channel> = {
     delivery: "youtube",
     kind: "free",
     comoAssistir: "YouTube — todos os 104 jogos",
+    url: "https://www.youtube.com/@CazeTV",
   },
   sportv: {
     id: "sportv",
@@ -32,6 +35,7 @@ export const CHANNELS: Record<ChannelId, Channel> = {
     delivery: "fechada",
     kind: "paid",
     comoAssistir: "TV por assinatura (sinal 4K)",
+    url: "https://sportv.globo.com/",
   },
   nsports: {
     id: "nsports",
@@ -40,6 +44,7 @@ export const CHANNELS: Record<ChannelId, Channel> = {
     delivery: "fechada",
     kind: "paid",
     comoAssistir: "TV por assinatura (Sky/Claro/Vivo)",
+    url: "https://www.youtube.com/@NSports",
   },
   globoplay: {
     id: "globoplay",
@@ -48,6 +53,7 @@ export const CHANNELS: Record<ChannelId, Channel> = {
     delivery: "streaming",
     kind: "paid", // hub paid no geral; jogos da Globo são livres com plano básico
     comoAssistir: "Streaming Globo",
+    url: "https://globoplay.globo.com/",
   },
   getv: {
     id: "getv",
@@ -56,6 +62,7 @@ export const CHANNELS: Record<ChannelId, Channel> = {
     delivery: "streaming",
     kind: "paid",
     comoAssistir: "Via Globoplay",
+    url: "https://ge.globo.com/",
   },
 };
 

@@ -22,6 +22,8 @@ export interface Channel {
   delivery: ChannelDelivery;
   kind: ChannelKind; // free = grátis, paid = pago
   comoAssistir: string;
+  /** Link direto pro canal — quando disponível (YouTube, streaming). */
+  url?: string;
 }
 
 export type Stage =
