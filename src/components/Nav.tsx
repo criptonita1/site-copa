@@ -22,13 +22,6 @@ export function Nav({ tzOffset, onTzChange }: NavProps) {
         <FlagBrSvg className="flag-pin" />
       </a>
       <div className="nav-right">
-        <a
-          href="/chaveamento"
-          className="nav-bracket-link"
-          aria-label="Ver chaveamento da Copa"
-        >
-          ★ CHAVE
-        </a>
         <select
           className="tz-select"
           aria-label="Fuso horário"

@@ -45,34 +45,7 @@ totalmente separados. Nada de Supabase, OpenAI, Stripe aqui.
 
 1. **Cron de lembrete** — Vercel Cron diário/horário que lê próximo jogo do Brasil de `matches.json`, dispara broadcast via Resend 2h antes (~2-3h código). Precisa: lock anti-reenvio (Vercel KV ou Upstash Redis).
 2. **Email de confirmação ao cadastrar** — usuário recebe "tá anotado" instantâneo (~30min)
-3. **Auto-update do chaveamento via API externa** — ver seção abaixo.
-
-## Página `/chaveamento` (lançada 2026-05-29)
-
-Bracket mobile-first das 32 seleções no mata-mata. Snap-scroll horizontal entre fases. Trilha do Brasil em destaque (toggle). Banner de campeão sticky.
-
-- **Componentes:** `Bracket.tsx` (orquestra), `BracketRound.tsx` (1 fase = 1 coluna), `BracketMatch.tsx` (1 jogo). Lib: `lib/bracket.ts`.
-- **Fonte de dados:** os 32 jogos de mata-mata em `src/data/matches.json` (stages: `32avos`, `oitavas`, `quartas`, `semi`, `terceiro`, `final`).
-- **Resultados:** opcional. Adicione campo `resultado: { golsMandante, golsVisitante, penaltis? }` em qualquer jogo pra ele aparecer como decidido e o vencedor avançar (visualmente).
-- **Progressão FIFA:** ainda usa ordem cronológica. Quando FIFA publicar tabela oficial, adicionar mapa explícito em `lib/bracket.ts`.
-
-### Plano: auto-update via API externa
-
-Pra o bracket se atualizar sozinho conforme os jogos rolam, opções (do mais simples ao mais robusto):
-
-1. **football-data.org** (free tier 10 req/min) — tem competition `WC` mas precisa confirmar cobertura 2026. Cron Vercel a cada 30min puxa fixtures concluídas, mapeia ID FIFA → ID nosso (`M0XX`), grava resultado.
-2. **API-Football (RapidAPI)** — pago mas confiável. Plano basic ~$10/mês cobre.
-3. **Scraping ge.globo / sofascore** — frágil. Não recomendado.
-
-**Implementação esperada (próxima sessão):**
-- `vercel.json` cron: `{ path: '/api/sync-resultados', schedule: '*/30 * * * *' }`
-- `app/api/sync-resultados/route.ts` — protegido por `CRON_SECRET`
-- Lê fixtures externas, gera diff vs `matches.json`, commita via GitHub API ou grava em Vercel KV/Edge Config pra leitura no build
-- Pra MVP, manual: editar JSON, push, deploy automático.
-
-### Sobre a tabela de progressão (qual vencedor vai pra qual jogo)
-
-A FIFA define no sorteio dos grupos. Hoje o `bracket.ts` não mapeia "vencedor de M073 → M089" porque ainda não há campo `proximoJogo` em cada match. Quando atualizar com tabela oficial, criar `PROGRESSION: Record<MatchId, NextMatchId>` em `lib/bracket.ts` e propagar vencedores automaticamente (substituir "A definir" nos slots de oitavas/quartas/etc).
+3. **Página `/jogo/[id]`** — SEO de cauda longa, 1 página por jogo
 
 ## Comandos úteis
 
