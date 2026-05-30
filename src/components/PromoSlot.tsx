@@ -22,7 +22,7 @@ const COPY: Record<Variant, { headline: string; body: string; cta: string; utm: 
   },
   "post-email": {
     headline: "TÁ AMARRADO COM A COPA?",
-    body: `Bora apostar com a galera no ${APP.PROMO_NAME}. Sem casa de apostas, sem maluquice.`,
+    body: `Junta a galera pra viver a Copa no ${APP.PROMO_NAME}. Tudo onchain, sem complicação.`,
     cta: "ABRIR O APP",
     utm: "promo-post-email",
   },

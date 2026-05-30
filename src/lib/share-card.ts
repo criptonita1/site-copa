@@ -185,7 +185,6 @@ export async function renderShareCard({
     const chsLabel = userVisibleChannels
       .map((c) => CHANNELS[c]?.nome ?? c)
       .join(" · ");
-    const isFree = userVisibleChannels.some((c) => CHANNELS[c]?.kind === "free");
     const isBr = g.brasil;
 
     if (isBr) {
@@ -219,21 +218,33 @@ export async function renderShareCard({
     );
     ctx.fillText(subText, TIME_X, y + 26);
 
-    // tag direita
+    // Tag direita — antes era "GRÁTIS/PAGO", mas como a CazéTV cobre todos
+    // os 104 jogos, a distinção tem pouco valor. Usamos "▶ ASSISTIR" como
+    // chamada universal, mais engajadora pro share.
+    // Cor verde pra jogo do Brasil (continuidade visual), preta nos demais.
     ctx.save();
     const tagY = y - 50;
-    const tagW = 160;
+    const tagW = 200;
     const tagH = 46;
-    ctx.fillStyle = isFree ? "#00A045" : "#1D3FA1";
-    ctx.fillRect(TAG_X, tagY, tagW, tagH);
+    ctx.fillStyle = isBr ? "#00A045" : "#0d0d0d";
+    ctx.fillRect(TAG_X - 40, tagY, tagW, tagH);
     ctx.strokeStyle = "#0d0d0d";
     ctx.lineWidth = 3;
-    ctx.strokeRect(TAG_X, tagY, tagW, tagH);
-    ctx.fillStyle = isFree ? "#f4e9d4" : "#FFDB2A";
-    ctx.font = '400 26px "Bungee", sans-serif';
+    ctx.strokeRect(TAG_X - 40, tagY, tagW, tagH);
+    // play triangle
+    ctx.fillStyle = isBr ? "#FFDB2A" : "#00A045";
+    ctx.beginPath();
+    ctx.moveTo(TAG_X - 22, tagY + 13);
+    ctx.lineTo(TAG_X - 22, tagY + tagH - 13);
+    ctx.lineTo(TAG_X - 6, tagY + tagH / 2);
+    ctx.closePath();
+    ctx.fill();
+    // texto
+    ctx.fillStyle = isBr ? "#0d0d0d" : "#f4e9d4";
+    ctx.font = '400 24px "Bungee", sans-serif';
     ctx.textBaseline = "middle";
-    ctx.textAlign = "center";
-    ctx.fillText(isFree ? "GRÁTIS" : "PAGO", TAG_X + tagW / 2, tagY + tagH / 2);
+    ctx.textAlign = "left";
+    ctx.fillText("ASSISTIR", TAG_X + 4, tagY + tagH / 2);
     ctx.restore();
     ctx.textAlign = "left";
     ctx.textBaseline = "alphabetic";
