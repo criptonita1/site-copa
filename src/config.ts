@@ -6,7 +6,7 @@ export const APP = {
   // App que este site divulga (PromoSlots — é o CTA, não o autor)
   PROMO_NAME: "Onchain Cup",
   PROMO_URL: "https://onchaincup.io",
-  PROMO_TAGLINE: "Aposte na Copa com seus amigos — onchain.",
+  PROMO_TAGLINE: "Viva a Copa com seus amigos — onchain.",
 
   // Quem ASSINA o site (autoria — diferente do PROMO)
   AUTHOR_NAME: "Modular",

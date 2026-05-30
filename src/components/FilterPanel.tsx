@@ -29,7 +29,7 @@ export function FilterPanel({
           <h2 className="filters-title">
             <span className="uw">Bora ver</span>
             <br />
-            onde <em>passa.</em>
+            onde passa a <em>copa.</em>
           </h2>
           <p className="filters-sub">
             Marca os canais que você tem. A grade reage — o que dá pra ver fica nítido, o

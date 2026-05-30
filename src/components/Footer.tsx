@@ -7,11 +7,11 @@ export function Footer() {
       <div className="wrap">
         <div className="foot-grid">
           <div>
-            <div className="stars-5" aria-label="Pentacampeão">
+            <div className="stars-5" aria-label="Brasil pentacampeão">
               {Array.from({ length: 5 }).map((_, i) => (
                 <StarSvg key={i} />
               ))}
-              <span className="label">PENTACAMPEÃO · RUMO AO HEXA</span>
+              <span className="label">BRASIL PENTACAMPEÃO · RUMO AO HEXA</span>
             </div>
             <div className="foot-mark">
               ONDE VER A <em>COPA!</em>
@@ -27,14 +27,13 @@ export function Footer() {
               <b>{APP.AUTHOR_NAME.toUpperCase()}</b>
             </a>
             <br />
-            DADOS DA TABELA FIFA OFICIAL
-            <br />
             <b>2026</b> · BRASIL HEXA (se Deus quiser)
           </div>
         </div>
         <div className="foot-bottom">
           <span>
-            NÃO AFILIADO À FIFA · NEM ÀS EMISSORAS · NEM ÀS SELEÇÕES ·{" "}
+            SITE INFORMATIVO INDEPENDENTE · SEM AFILIAÇÃO COM EMISSORAS OU
+            SELEÇÕES ·{" "}
             <a
               href="/privacidade"
               style={{ color: "inherit", textDecoration: "underline" }}
@@ -42,7 +41,7 @@ export function Footer() {
               PRIVACIDADE
             </a>
           </span>
-          <span>v1.0 · {APP.HASHTAG}</span>
+          <span>{APP.HASHTAG}</span>
         </div>
       </div>
     </footer>

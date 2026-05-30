@@ -34,7 +34,7 @@ export function EmailCapture() {
             </h3>
             <p>
               Manda 2 horas antes, com canal e horário no seu fuso. Sem spam, só
-              lembrete antes do jogo. Pinky promise.
+              lembrete antes do jogo. Sem firula.
             </p>
             <p
               style={{
