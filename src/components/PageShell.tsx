@@ -101,7 +101,12 @@ export function PageShell() {
           tab={effectiveTab}
         />
         <RollingDivider />
-        <ShareSection tzOffset={offset} channels={filters.channels} nowMs={now} />
+        <ShareSection
+          tzOffset={offset}
+          channels={filters.channels}
+          onlyBrazil={filters.onlyBrazil}
+          nowMs={now}
+        />
         <EmailCapture />
         <PromoSlot variant="post-email" />
         <Footer />

@@ -13,10 +13,16 @@ import { DownloadSvg, LinkSvg, WhatsappSvg } from "@/components/icons";
 interface ShareSectionProps {
   tzOffset: TimezoneOffset;
   channels: Set<ChannelId>;
+  onlyBrazil: boolean;
   nowMs: number;
 }
 
-export function ShareSection({ tzOffset, channels, nowMs }: ShareSectionProps) {
+export function ShareSection({
+  tzOffset,
+  channels,
+  onlyBrazil,
+  nowMs,
+}: ShareSectionProps) {
   const [copyState, setCopyState] = useState<"idle" | "ok">("idle");
   const [downloading, setDownloading] = useState(false);
 
@@ -28,11 +34,12 @@ export function ShareSection({ tzOffset, channels, nowMs }: ShareSectionProps) {
       const t = minuteKey * 60_000;
       return MATCHES.filter(
         (m) =>
+          (!onlyBrazil || m.brasil) &&
           m.canais.some((c) => channels.has(c)) &&
           new Date(m.kickoffUTC).getTime() > t,
       );
     },
-    [channels, minuteKey],
+    [channels, onlyBrazil, minuteKey],
   );
 
   async function onDownload() {
