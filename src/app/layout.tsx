@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Anton, Archivo, Bungee, Space_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from "@vercel/analytics/next";
 import { APP } from "@/config";
 import { CHANNELS } from "@/data/channels";
 import { MATCHES } from "@/lib/matches";
