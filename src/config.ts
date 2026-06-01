@@ -10,7 +10,7 @@ export const APP = {
 
   // Quem ASSINA o site (autoria — diferente do PROMO)
   AUTHOR_NAME: "Modular",
-  AUTHOR_URL: "https://modular.tech",
+  AUTHOR_URL: "https://x.com/modularcrypto",
 
   // Identidade do site
   SITE_NAME: "Onde Ver a Copa",
