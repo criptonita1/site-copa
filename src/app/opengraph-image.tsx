@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { APP } from "@/config";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const alt = `${APP.SITE_NAME} — ${APP.SITE_TAGLINE}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -30,6 +30,7 @@ export default function OG() {
 
         <div
           style={{
+            display: "flex",
             fontSize: 22,
             letterSpacing: 4,
             color: "#6b5a3e",
@@ -37,11 +38,13 @@ export default function OG() {
             marginTop: 40,
           }}
         >
-          ★ COPA DO MUNDO · 2026
+          COPA DO MUNDO · 2026
         </div>
 
         <div
           style={{
+            display: "flex",
+            flexDirection: "column",
             fontSize: 140,
             color: "#054a23",
             lineHeight: 0.9,
@@ -50,12 +53,16 @@ export default function OG() {
             marginTop: 16,
           }}
         >
-          ONDE VER<br />
-          A <span style={{ color: "#1D3FA1" }}>COPA!</span>
+          <div style={{ display: "flex" }}>ONDE VER</div>
+          <div style={{ display: "flex" }}>
+            <span>A&nbsp;</span>
+            <span style={{ color: "#1D3FA1" }}>COPA!</span>
+          </div>
         </div>
 
         <div
           style={{
+            display: "flex",
             fontSize: 28,
             color: "#2a2a2a",
             marginTop: 24,
@@ -63,7 +70,7 @@ export default function OG() {
             lineHeight: 1.3,
           }}
         >
-          {APP.SITE_TAGLINE}. Marca os canais que você tem, o site mostra onde passa cada jogo.
+          {`${APP.SITE_TAGLINE}. Marca os canais que você tem, o site mostra onde passa cada jogo.`}
         </div>
 
         {/* Rodapé */}
