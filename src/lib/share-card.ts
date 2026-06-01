@@ -138,16 +138,22 @@ export async function renderShareCard({
     return cut + "…";
   }
 
-  // Estratégia anti-corte: se nome completo não couber, tenta abreviar SÓ
-  // o nome mais longo. Se ainda não couber, faz ellipsis.
+  // Estratégia anti-corte (escala progressiva):
+  //  1) tenta nome completo
+  //  2) abrevia só o mais longo
+  //  3) abrevia AMBOS
+  //  4) abrevia ambos + ellipsis no mais longo (último recurso)
+  //
+  // Por que tantos passos: ex. "Coreia do Sul × República Tcheca" é longo
+  // demais mesmo abreviando só a República — precisa virar "C. Sul × R. Tcheca".
   function teamsLabel(c: CanvasRenderingContext2D, home: string, away: string): string {
     const full = `${home} × ${away}`;
     c.font = TEAMS_FONT;
     if (c.measureText(full).width <= TEAMS_MAX) return full;
 
-    // Abrevia o nome mais longo pra forma curta.
+    // Abrevia o nome mantendo a parte distintiva.
     // IMPORTANTE: "África do Sul" NÃO pode virar "África" (país errado).
-    // "Coreia do Sul" NÃO pode virar "Coreia". Manter a parte distintiva.
+    // "Coreia do Sul" NÃO pode virar "Coreia". Manter os dois pedaços.
     const abbreviate = (name: string) => {
       // "República Tcheca" → "R. Tcheca" (parts.length === 2, sem conectivos)
       // "Bósnia e Herzegovina" → "Bósnia" (primeira parte é o país)
@@ -167,13 +173,21 @@ export async function renderShareCard({
       return name;
     };
 
-    const homeAbbr = home.length > away.length ? abbreviate(home) : home;
-    const awayAbbr = away.length >= home.length ? abbreviate(away) : away;
-    const tried = `${homeAbbr} × ${awayAbbr}`;
-    if (c.measureText(tried).width <= TEAMS_MAX) return tried;
+    // Passo 2: abrevia só o mais longo
+    const homeAbbrLong = home.length > away.length ? abbreviate(home) : home;
+    const awayAbbrLong = away.length >= home.length ? abbreviate(away) : away;
+    const tryLong = `${homeAbbrLong} × ${awayAbbrLong}`;
+    if (c.measureText(tryLong).width <= TEAMS_MAX) return tryLong;
 
-    // Fallback: ellipsis
-    return fitText(c, full, TEAMS_MAX, TEAMS_FONT);
+    // Passo 3: abrevia ambos
+    const homeAbbr = abbreviate(home);
+    const awayAbbr = abbreviate(away);
+    const tryBoth = `${homeAbbr} × ${awayAbbr}`;
+    if (c.measureText(tryBoth).width <= TEAMS_MAX) return tryBoth;
+
+    // Passo 4: último recurso — ellipsis no formulário JÁ ABREVIADO
+    // (não no original, pra preservar o nome curto + ellipsis no longo).
+    return fitText(c, tryBoth, TEAMS_MAX, TEAMS_FONT);
   }
 
   for (const g of list) {

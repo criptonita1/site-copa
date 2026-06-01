@@ -22,6 +22,9 @@ export function StoryPreview({
   const list = matches
     .filter((m) => m.canais.some((c) => userChannels.has(c)))
     .filter((m) => new Date(m.kickoffUTC).getTime() > nowMs)
+    // Não dá pra "planejar ver" jogo de mata-mata sem times definidos —
+    // mesmo critério aplicado no share-card.ts pra preview bater com o PNG.
+    .filter((m) => m.mandante !== "A definir" && m.visitante !== "A definir")
     .slice(0, 5);
 
   return (
