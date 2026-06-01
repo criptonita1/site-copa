@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 
 export function EmailCapture() {
   const [state, setState] = useState<"idle" | "loading" | "ok">("idle");
@@ -11,6 +12,8 @@ export function EmailCapture() {
     e.preventDefault();
     if (!email || state !== "idle") return;
     setState("loading");
+    // Track sem o email (LGPD — só contar evento, sem identificar)
+    track("email_submit_attempt");
     try {
       await fetch("/api/lembrete", {
         method: "POST",

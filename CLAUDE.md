@@ -41,6 +41,29 @@ totalmente separados. Nada de Supabase, OpenAI, Stripe aqui.
 - `RESEND_FROM=Onde Ver a Copa <lembrete@ondeveracopa.com.br>`
 - `NEXT_PUBLIC_SITE_URL=https://www.ondeveracopa.com.br`
 
+## Analytics — onde ver as estatísticas
+
+Vercel Web Analytics (já instalado em `layout.tsx`). Dashboard com page views, séries temporais, países, devices:
+
+→ **https://vercel.com/joao-kury/siteondevercopa/analytics**
+
+### Eventos customizados rastreados
+
+| Evento | Disparado em | Properties |
+|---|---|---|
+| `filter_channel_toggle` | usuário clica em chip de canal | `channel`, `on`, `kind` (free/paid) |
+| `filter_only_brazil_toggle` | toggle "Só Brasil" | `on` |
+| `share_download_png` | baixar figurinha | `matchCount`, `onlyBrazil`, `channelCount` |
+| `share_native` | botão "compartilhar" (Web Share API) | `matchCount`, `onlyBrazil` |
+| `share_copy_link` | botão "copiar link" | — |
+| `share_ics_download` | adicionar ao calendário | `matchCount`, `onlyBrazil` |
+| `share_whatsapp_generic` | "manda no zap" do header | — |
+| `email_submit_attempt` | usuário envia email (SEM o email — LGPD) | — |
+
+Page views são automáticos.
+
+Pra ver eventos custom: dashboard Vercel → Custom Events tab.
+
 ## Próximas 3 ações pendentes
 
 1. **Cron de lembrete** — Vercel Cron diário/horário que lê próximo jogo do Brasil de `matches.json`, dispara broadcast via Resend 2h antes (~2-3h código). Precisa: lock anti-reenvio (Vercel KV ou Upstash Redis).

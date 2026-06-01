@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { track } from "@vercel/analytics";
 import { APP } from "@/config";
 import type { TimezoneOffset } from "@/config";
 import { MATCHES } from "@/lib/matches";
@@ -44,6 +45,11 @@ export function ShareSection({
 
   async function onDownload() {
     setDownloading(true);
+    track("share_download_png", {
+      matchCount: watchableUpcoming.length,
+      onlyBrazil,
+      channelCount: channels.size,
+    });
     try {
       // Dynamic import — share-card só entra no bundle quando o usuário clica
       const { downloadShareCard } = await import("@/lib/share-card");
@@ -58,6 +64,10 @@ export function ShareSection({
   }
 
   async function onShare() {
+    track("share_native", {
+      matchCount: watchableUpcoming.length,
+      onlyBrazil,
+    });
     try {
       const { shareCard } = await import("@/lib/share-card");
       await shareCard({
@@ -71,6 +81,7 @@ export function ShareSection({
   }
 
   async function onCopyLink() {
+    track("share_copy_link");
     try {
       await navigator.clipboard.writeText(APP.SITE_URL);
       setCopyState("ok");
@@ -117,13 +128,20 @@ export function ShareSection({
                 href={whatsappLinkGeneric()}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => track("share_whatsapp_generic")}
               >
                 MANDA NO ZAP
                 <WhatsappSvg />
               </a>
               <button
                 className="btn-ghost"
-                onClick={() => downloadIcs(watchableUpcoming, "copa-2026.ics")}
+                onClick={() => {
+                  track("share_ics_download", {
+                    matchCount: watchableUpcoming.length,
+                    onlyBrazil,
+                  });
+                  downloadIcs(watchableUpcoming, "copa-2026.ics");
+                }}
                 title="Baixa um .ics com seus jogos pra Google Agenda / Apple Calendário"
               >
                 ADICIONAR AO CALENDÁRIO
