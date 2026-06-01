@@ -8,6 +8,7 @@ import { APP } from "@/config";
 import { CHANNELS } from "@/data/channels";
 import type { Match, ChannelId } from "@/types";
 import { fmtTime, fmtDay, tzLabel } from "@/lib/time";
+import { selfUrlWithUtm } from "@/lib/utm";
 import type { TimezoneOffset } from "@/config";
 
 export interface RenderShareCardOptions {
@@ -326,10 +327,15 @@ export async function shareCard(opts: RenderShareCardOptions): Promise<void> {
     share?: (data: ShareData & { files?: File[] }) => Promise<void>;
     canShare?: (data: ShareData & { files?: File[] }) => boolean;
   };
+  // URL com UTM no texto compartilhado — quando o destinatário clica no link
+  // no WhatsApp/Instagram/Telegram/etc, a visita aparece no Vercel Analytics
+  // como "vinda de figurinha" (utm_medium=png). A URL visual desenhada no PNG
+  // continua limpa, então quem TYPAR vai pro site normalmente sem UTM.
+  const shareUrl = selfUrlWithUtm("png", "figurinha");
   const data = {
     files: [file],
     title: "Minha agenda da Copa 2026",
-    text: `Os jogos que eu vou ver na Copa 2026 — ${APP.SITE_URL}`,
+    text: `Os jogos que eu vou ver na Copa 2026 — ${shareUrl}`,
   };
   if (nav.share && (!nav.canShare || nav.canShare(data))) {
     try {
