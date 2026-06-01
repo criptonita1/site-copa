@@ -124,10 +124,15 @@ function MatchCardImpl({
       )}
 
       <div className="strip">
-        <span className="phase">
-          <b>{match.grupo ?? "•"}</b>
-          {phaseLabel}
-        </span>
+        {/* No card do Brasil, a estampa "BRASIL EM CAMPO!" cobre o lado
+            esquerdo da strip; o GRUPO C aqui seria redundante (sempre C).
+            Em cards normais, mostra fase + grupo no lado esquerdo. */}
+        {!match.brasil && (
+          <span className="phase">
+            <b>{match.grupo ?? "•"}</b>
+            {phaseLabel}
+          </span>
+        )}
         <span className="date">{day}</span>
       </div>
 

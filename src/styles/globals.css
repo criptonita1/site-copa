@@ -1432,7 +1432,7 @@ main {
 .card.brazil .stamp-bra {
   position: absolute;
   top: -22px;
-  right: 18px;
+  left: 18px;
   z-index: 3;
   background: var(--azul);
   color: var(--amarelo);
@@ -1441,7 +1441,7 @@ main {
   letter-spacing: 0.08em;
   padding: 7px 14px;
   border: 2.5px solid var(--ink);
-  transform: rotate(6deg);
+  transform: rotate(-6deg);
   box-shadow: 3px 3px 0 var(--ink);
 }
 .card.brazil .stamp-bra .stamp-flag {
@@ -1474,7 +1474,7 @@ main {
   transition: background-position 0.1s;
 }
 .card.brazil:hover .stamp-bra {
-  transform: rotate(-4deg) scale(1.04);
+  transform: rotate(4deg) scale(1.04);
 }
 
 /* LIVE CARD */

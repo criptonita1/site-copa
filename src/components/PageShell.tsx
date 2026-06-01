@@ -54,10 +54,16 @@ export function PageShell() {
 
   const effectiveTab: TabKey = tab;
 
+  // Contador "você vai ver X jogos" — DEVE refletir o que está na tela.
+  // Sem o filtro da aba ativa o contador era global, gerando UX confusa:
+  // "você vai ver 3 jogos" mas o álbum mostrava só 1 (porque a aba 'esta
+  // semana' filtra a janela temporal).
   const { visibleCount, freeCount } = useMemo(() => {
+    const nowSnap = hourKey * 60 * 60 * 1000;
+    const tabFiltered = filterByTab(effectiveTab, nowSnap);
     let v = 0;
     let f = 0;
-    for (const m of MATCHES) {
+    for (const m of tabFiltered) {
       if (filters.onlyBrazil && !m.brasil) continue;
       const watchable = m.canais.some((c) => filters.channels.has(c));
       if (!watchable) continue;
@@ -70,7 +76,7 @@ export function PageShell() {
       if (hasFree) f++;
     }
     return { visibleCount: v, freeCount: f };
-  }, [filters.channels, filters.onlyBrazil]);
+  }, [filters.channels, filters.onlyBrazil, effectiveTab, hourKey]);
 
   return (
     <>
