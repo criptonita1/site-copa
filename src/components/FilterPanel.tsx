@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@vercel/analytics";
 import { CHANNELS, FREE_CHANNELS, PAID_CHANNELS } from "@/data/channels";
 import type { ChannelId } from "@/types";
 
@@ -56,7 +57,14 @@ export function FilterPanel({
                     data-kind="free"
                     aria-pressed={active}
                     aria-label={`${ch.nome} — canal grátis. ${active ? "marcado" : "não marcado"}`}
-                    onClick={() => onToggle(id)}
+                    onClick={() => {
+                      track("filter_channel_toggle", {
+                        channel: id,
+                        on: !active,
+                        kind: "free",
+                      });
+                      onToggle(id);
+                    }}
                   >
                     <span className="dot" />
                     {ch.nome}
@@ -77,7 +85,14 @@ export function FilterPanel({
                     data-kind="paid"
                     aria-pressed={active}
                     aria-label={`${ch.nome} — canal pago. ${active ? "marcado" : "não marcado"}`}
-                    onClick={() => onToggle(id)}
+                    onClick={() => {
+                      track("filter_channel_toggle", {
+                        channel: id,
+                        on: !active,
+                        kind: "paid",
+                      });
+                      onToggle(id);
+                    }}
                   >
                     <span className="dot" />
                     {ch.nome}
@@ -90,7 +105,10 @@ export function FilterPanel({
               <button
                 className={`toggle-bra ${onlyBrazil ? "on" : ""}`}
                 aria-pressed={onlyBrazil}
-                onClick={() => onOnlyBrazil(!onlyBrazil)}
+                onClick={() => {
+                  track("filter_only_brazil_toggle", { on: !onlyBrazil });
+                  onOnlyBrazil(!onlyBrazil);
+                }}
               >
                 <span className="sw" />
                 <span className="lbl">
