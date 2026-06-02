@@ -10,109 +10,1803 @@
     "total": 104
   },
   "matches": [
-    { "id": "M001", "kickoffUTC": "2026-06-11T21:00:00Z", "horarioBrasilia": "11/06 18:00", "stage": "abertura", "grupo": "A", "mandante": "México", "visitante": "África do Sul", "cidade": "Cidade do México", "pais": "México", "estadio": "Estádio Azteca", "canais": ["globo","sbt","sportv","nsports","globoplay","getv","cazetv"], "canaisConfirmados": true, "brasil": false },
-    { "id": "M002", "kickoffUTC": "2026-06-12T04:00:00Z", "horarioBrasilia": "12/06 01:00", "stage": "grupos", "grupo": "A", "mandante": "Coreia do Sul", "visitante": "República Tcheca", "cidade": "Guadalajara (Zapopan)", "pais": "México", "estadio": "Estádio Akron", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M003", "kickoffUTC": "2026-06-12T19:00:00Z", "horarioBrasilia": "12/06 16:00", "stage": "grupos", "grupo": "B", "mandante": "Canadá", "visitante": "Bósnia e Herzegovina", "cidade": "Toronto", "pais": "Canadá", "estadio": "BMO Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M004", "kickoffUTC": "2026-06-13T04:00:00Z", "horarioBrasilia": "13/06 01:00", "stage": "grupos", "grupo": "D", "mandante": "EUA", "visitante": "Paraguai", "cidade": "Los Angeles", "pais": "EUA", "estadio": "SoFi Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M005", "kickoffUTC": "2026-06-13T22:00:00Z", "horarioBrasilia": "13/06 19:00", "stage": "grupos", "grupo": "B", "mandante": "Catar", "visitante": "Suíça", "cidade": "San Francisco (Santa Clara)", "pais": "EUA", "estadio": "Levi's Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M006", "kickoffUTC": "2026-06-13T22:00:00Z", "horarioBrasilia": "13/06 19:00", "stage": "grupos", "grupo": "C", "mandante": "Brasil", "visitante": "Marrocos", "cidade": "Nova York/Nova Jersey", "pais": "EUA", "estadio": "MetLife Stadium", "canais": ["globo","sbt","sportv","nsports","globoplay","getv","cazetv"], "canaisConfirmados": true, "brasil": true },
-    { "id": "M007", "kickoffUTC": "2026-06-14T01:00:00Z", "horarioBrasilia": "13/06 22:00", "stage": "grupos", "grupo": "C", "mandante": "Haiti", "visitante": "Escócia", "cidade": "Boston (Foxborough)", "pais": "EUA", "estadio": "Gillette Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M008", "kickoffUTC": "2026-06-14T07:00:00Z", "horarioBrasilia": "14/06 04:00", "stage": "grupos", "grupo": "D", "mandante": "Austrália", "visitante": "Turquia", "cidade": "Vancouver", "pais": "Canadá", "estadio": "BC Place", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M009", "kickoffUTC": "2026-06-14T18:00:00Z", "horarioBrasilia": "14/06 15:00", "stage": "grupos", "grupo": "E", "mandante": "Alemanha", "visitante": "Curaçao", "cidade": "Houston", "pais": "EUA", "estadio": "NRG Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M010", "kickoffUTC": "2026-06-14T21:00:00Z", "horarioBrasilia": "14/06 18:00", "stage": "grupos", "grupo": "F", "mandante": "Países Baixos", "visitante": "Japão", "cidade": "Dallas (Arlington)", "pais": "EUA", "estadio": "AT&T Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M011", "kickoffUTC": "2026-06-14T23:00:00Z", "horarioBrasilia": "14/06 20:00", "stage": "grupos", "grupo": "E", "mandante": "Costa do Marfim", "visitante": "Equador", "cidade": "Filadélfia", "pais": "EUA", "estadio": "Lincoln Financial Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M012", "kickoffUTC": "2026-06-15T04:00:00Z", "horarioBrasilia": "15/06 01:00", "stage": "grupos", "grupo": "F", "mandante": "Suécia", "visitante": "Tunísia", "cidade": "Monterrey (Guadalupe)", "pais": "México", "estadio": "Estádio BBVA", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M013", "kickoffUTC": "2026-06-15T16:00:00Z", "horarioBrasilia": "15/06 13:00", "stage": "grupos", "grupo": "H", "mandante": "Espanha", "visitante": "Cabo Verde", "cidade": "Atlanta", "pais": "EUA", "estadio": "Mercedes-Benz Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M014", "kickoffUTC": "2026-06-15T22:00:00Z", "horarioBrasilia": "15/06 19:00", "stage": "grupos", "grupo": "G", "mandante": "Bélgica", "visitante": "Egito", "cidade": "Vancouver", "pais": "Canadá", "estadio": "BC Place", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M015", "kickoffUTC": "2026-06-15T22:00:00Z", "horarioBrasilia": "15/06 19:00", "stage": "grupos", "grupo": "H", "mandante": "Arábia Saudita", "visitante": "Uruguai", "cidade": "Miami", "pais": "EUA", "estadio": "Hard Rock Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M016", "kickoffUTC": "2026-06-16T04:00:00Z", "horarioBrasilia": "16/06 01:00", "stage": "grupos", "grupo": "G", "mandante": "Irã", "visitante": "Nova Zelândia", "cidade": "Los Angeles", "pais": "EUA", "estadio": "SoFi Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M017", "kickoffUTC": "2026-06-16T19:00:00Z", "horarioBrasilia": "16/06 16:00", "stage": "grupos", "grupo": "I", "mandante": "França", "visitante": "Senegal", "cidade": "Nova York/Nova Jersey", "pais": "EUA", "estadio": "MetLife Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M018", "kickoffUTC": "2026-06-16T22:00:00Z", "horarioBrasilia": "16/06 19:00", "stage": "grupos", "grupo": "I", "mandante": "Iraque", "visitante": "Noruega", "cidade": "Boston (Foxborough)", "pais": "EUA", "estadio": "Gillette Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M019", "kickoffUTC": "2026-06-17T02:00:00Z", "horarioBrasilia": "16/06 23:00", "stage": "grupos", "grupo": "J", "mandante": "Argentina", "visitante": "Argélia", "cidade": "Kansas City", "pais": "EUA", "estadio": "Arrowhead Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M020", "kickoffUTC": "2026-06-17T07:00:00Z", "horarioBrasilia": "17/06 04:00", "stage": "grupos", "grupo": "J", "mandante": "Áustria", "visitante": "Jordânia", "cidade": "San Francisco (Santa Clara)", "pais": "EUA", "estadio": "Levi's Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M021", "kickoffUTC": "2026-06-17T18:00:00Z", "horarioBrasilia": "17/06 15:00", "stage": "grupos", "grupo": "K", "mandante": "Portugal", "visitante": "RD Congo", "cidade": "Houston", "pais": "EUA", "estadio": "NRG Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M022", "kickoffUTC": "2026-06-17T21:00:00Z", "horarioBrasilia": "17/06 18:00", "stage": "grupos", "grupo": "L", "mandante": "Inglaterra", "visitante": "Croácia", "cidade": "Dallas (Arlington)", "pais": "EUA", "estadio": "AT&T Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M023", "kickoffUTC": "2026-06-17T23:00:00Z", "horarioBrasilia": "17/06 20:00", "stage": "grupos", "grupo": "L", "mandante": "Gana", "visitante": "Panamá", "cidade": "Toronto", "pais": "Canadá", "estadio": "BMO Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M024", "kickoffUTC": "2026-06-18T04:00:00Z", "horarioBrasilia": "18/06 01:00", "stage": "grupos", "grupo": "K", "mandante": "Uzbequistão", "visitante": "Colômbia", "cidade": "Cidade do México", "pais": "México", "estadio": "Estádio Azteca", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M025", "kickoffUTC": "2026-06-18T16:00:00Z", "horarioBrasilia": "18/06 13:00", "stage": "grupos", "grupo": "A", "mandante": "República Tcheca", "visitante": "África do Sul", "cidade": "Atlanta", "pais": "EUA", "estadio": "Mercedes-Benz Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M026", "kickoffUTC": "2026-06-18T22:00:00Z", "horarioBrasilia": "18/06 19:00", "stage": "grupos", "grupo": "B", "mandante": "Suíça", "visitante": "Bósnia e Herzegovina", "cidade": "Los Angeles", "pais": "EUA", "estadio": "SoFi Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M027", "kickoffUTC": "2026-06-19T01:00:00Z", "horarioBrasilia": "18/06 22:00", "stage": "grupos", "grupo": "B", "mandante": "Canadá", "visitante": "Catar", "cidade": "Vancouver", "pais": "Canadá", "estadio": "BC Place", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M028", "kickoffUTC": "2026-06-19T03:00:00Z", "horarioBrasilia": "19/06 00:00", "stage": "grupos", "grupo": "A", "mandante": "México", "visitante": "Coreia do Sul", "cidade": "Guadalajara (Zapopan)", "pais": "México", "estadio": "Estádio Akron", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M029", "kickoffUTC": "2026-06-19T22:00:00Z", "horarioBrasilia": "19/06 19:00", "stage": "grupos", "grupo": "D", "mandante": "EUA", "visitante": "Austrália", "cidade": "Seattle", "pais": "EUA", "estadio": "Lumen Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M030", "kickoffUTC": "2026-06-19T22:00:00Z", "horarioBrasilia": "19/06 19:00", "stage": "grupos", "grupo": "C", "mandante": "Escócia", "visitante": "Marrocos", "cidade": "Boston (Foxborough)", "pais": "EUA", "estadio": "Gillette Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M031", "kickoffUTC": "2026-06-20T01:00:00Z", "horarioBrasilia": "19/06 22:00", "stage": "grupos", "grupo": "C", "mandante": "Brasil", "visitante": "Haiti", "cidade": "Filadélfia", "pais": "EUA", "estadio": "Lincoln Financial Field", "canais": ["globo","sbt","sportv","nsports","globoplay","getv","cazetv"], "canaisConfirmados": true, "brasil": true },
-    { "id": "M032", "kickoffUTC": "2026-06-20T07:00:00Z", "horarioBrasilia": "20/06 04:00", "stage": "grupos", "grupo": "D", "mandante": "Turquia", "visitante": "Paraguai", "cidade": "San Francisco (Santa Clara)", "pais": "EUA", "estadio": "Levi's Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M033", "kickoffUTC": "2026-06-20T18:00:00Z", "horarioBrasilia": "20/06 15:00", "stage": "grupos", "grupo": "F", "mandante": "Países Baixos", "visitante": "Suécia", "cidade": "Houston", "pais": "EUA", "estadio": "NRG Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M034", "kickoffUTC": "2026-06-20T20:00:00Z", "horarioBrasilia": "20/06 17:00", "stage": "grupos", "grupo": "E", "mandante": "Alemanha", "visitante": "Costa do Marfim", "cidade": "Toronto", "pais": "Canadá", "estadio": "BMO Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M035", "kickoffUTC": "2026-06-21T01:00:00Z", "horarioBrasilia": "20/06 22:00", "stage": "grupos", "grupo": "E", "mandante": "Equador", "visitante": "Curaçao", "cidade": "Kansas City", "pais": "EUA", "estadio": "Arrowhead Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M036", "kickoffUTC": "2026-06-21T06:00:00Z", "horarioBrasilia": "21/06 03:00", "stage": "grupos", "grupo": "F", "mandante": "Tunísia", "visitante": "Japão", "cidade": "Monterrey (Guadalupe)", "pais": "México", "estadio": "Estádio BBVA", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M037", "kickoffUTC": "2026-06-21T16:00:00Z", "horarioBrasilia": "21/06 13:00", "stage": "grupos", "grupo": "H", "mandante": "Espanha", "visitante": "Arábia Saudita", "cidade": "Atlanta", "pais": "EUA", "estadio": "Mercedes-Benz Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M038", "kickoffUTC": "2026-06-21T22:00:00Z", "horarioBrasilia": "21/06 19:00", "stage": "grupos", "grupo": "G", "mandante": "Bélgica", "visitante": "Irã", "cidade": "Los Angeles", "pais": "EUA", "estadio": "SoFi Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M039", "kickoffUTC": "2026-06-21T22:00:00Z", "horarioBrasilia": "21/06 19:00", "stage": "grupos", "grupo": "H", "mandante": "Uruguai", "visitante": "Cabo Verde", "cidade": "Miami", "pais": "EUA", "estadio": "Hard Rock Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M040", "kickoffUTC": "2026-06-22T04:00:00Z", "horarioBrasilia": "22/06 01:00", "stage": "grupos", "grupo": "G", "mandante": "Nova Zelândia", "visitante": "Egito", "cidade": "Vancouver", "pais": "Canadá", "estadio": "BC Place", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M041", "kickoffUTC": "2026-06-22T18:00:00Z", "horarioBrasilia": "22/06 15:00", "stage": "grupos", "grupo": "J", "mandante": "Argentina", "visitante": "Áustria", "cidade": "Dallas (Arlington)", "pais": "EUA", "estadio": "AT&T Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M042", "kickoffUTC": "2026-06-22T21:00:00Z", "horarioBrasilia": "22/06 18:00", "stage": "grupos", "grupo": "I", "mandante": "França", "visitante": "Iraque", "cidade": "Filadélfia", "pais": "EUA", "estadio": "Lincoln Financial Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M043", "kickoffUTC": "2026-06-23T00:00:00Z", "horarioBrasilia": "22/06 21:00", "stage": "grupos", "grupo": "I", "mandante": "Noruega", "visitante": "Senegal", "cidade": "Nova York/Nova Jersey", "pais": "EUA", "estadio": "MetLife Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M044", "kickoffUTC": "2026-06-23T06:00:00Z", "horarioBrasilia": "23/06 03:00", "stage": "grupos", "grupo": "J", "mandante": "Jordânia", "visitante": "Argélia", "cidade": "San Francisco (Santa Clara)", "pais": "EUA", "estadio": "Levi's Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M045", "kickoffUTC": "2026-06-23T18:00:00Z", "horarioBrasilia": "23/06 15:00", "stage": "grupos", "grupo": "K", "mandante": "Portugal", "visitante": "Uzbequistão", "cidade": "Houston", "pais": "EUA", "estadio": "NRG Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M046", "kickoffUTC": "2026-06-23T20:00:00Z", "horarioBrasilia": "23/06 17:00", "stage": "grupos", "grupo": "L", "mandante": "Inglaterra", "visitante": "Gana", "cidade": "Boston (Foxborough)", "pais": "EUA", "estadio": "Gillette Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M047", "kickoffUTC": "2026-06-23T23:00:00Z", "horarioBrasilia": "23/06 20:00", "stage": "grupos", "grupo": "L", "mandante": "Panamá", "visitante": "Croácia", "cidade": "Toronto", "pais": "Canadá", "estadio": "BMO Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M048", "kickoffUTC": "2026-06-24T04:00:00Z", "horarioBrasilia": "24/06 01:00", "stage": "grupos", "grupo": "K", "mandante": "Colômbia", "visitante": "RD Congo", "cidade": "Guadalajara (Zapopan)", "pais": "México", "estadio": "Estádio Akron", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M049", "kickoffUTC": "2026-06-24T22:00:00Z", "horarioBrasilia": "24/06 19:00", "stage": "grupos", "grupo": "B", "mandante": "Suíça", "visitante": "Canadá", "cidade": "Vancouver", "pais": "Canadá", "estadio": "BC Place", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M050", "kickoffUTC": "2026-06-24T22:00:00Z", "horarioBrasilia": "24/06 19:00", "stage": "grupos", "grupo": "B", "mandante": "Bósnia e Herzegovina", "visitante": "Catar", "cidade": "Seattle", "pais": "EUA", "estadio": "Lumen Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M051", "kickoffUTC": "2026-06-24T22:00:00Z", "horarioBrasilia": "24/06 19:00", "stage": "grupos", "grupo": "C", "mandante": "Escócia", "visitante": "Brasil", "cidade": "Miami", "pais": "EUA", "estadio": "Hard Rock Stadium", "canais": ["globo","sbt","sportv","nsports","globoplay","getv","cazetv"], "canaisConfirmados": true, "brasil": true },
-    { "id": "M052", "kickoffUTC": "2026-06-24T22:00:00Z", "horarioBrasilia": "24/06 19:00", "stage": "grupos", "grupo": "C", "mandante": "Marrocos", "visitante": "Haiti", "cidade": "Atlanta", "pais": "EUA", "estadio": "Mercedes-Benz Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M053", "kickoffUTC": "2026-06-25T03:00:00Z", "horarioBrasilia": "25/06 00:00", "stage": "grupos", "grupo": "A", "mandante": "República Tcheca", "visitante": "México", "cidade": "Cidade do México", "pais": "México", "estadio": "Estádio Azteca", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M054", "kickoffUTC": "2026-06-25T03:00:00Z", "horarioBrasilia": "25/06 00:00", "stage": "grupos", "grupo": "A", "mandante": "África do Sul", "visitante": "Coreia do Sul", "cidade": "Monterrey (Guadalupe)", "pais": "México", "estadio": "Estádio BBVA", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M055", "kickoffUTC": "2026-06-25T20:00:00Z", "horarioBrasilia": "25/06 17:00", "stage": "grupos", "grupo": "E", "mandante": "Equador", "visitante": "Alemanha", "cidade": "Nova York/Nova Jersey", "pais": "EUA", "estadio": "MetLife Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M056", "kickoffUTC": "2026-06-25T20:00:00Z", "horarioBrasilia": "25/06 17:00", "stage": "grupos", "grupo": "E", "mandante": "Curaçao", "visitante": "Costa do Marfim", "cidade": "Filadélfia", "pais": "EUA", "estadio": "Lincoln Financial Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M057", "kickoffUTC": "2026-06-26T00:00:00Z", "horarioBrasilia": "25/06 21:00", "stage": "grupos", "grupo": "F", "mandante": "Japão", "visitante": "Suécia", "cidade": "Dallas (Arlington)", "pais": "EUA", "estadio": "AT&T Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M058", "kickoffUTC": "2026-06-26T00:00:00Z", "horarioBrasilia": "25/06 21:00", "stage": "grupos", "grupo": "F", "mandante": "Tunísia", "visitante": "Países Baixos", "cidade": "Kansas City", "pais": "EUA", "estadio": "Arrowhead Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M059", "kickoffUTC": "2026-06-26T05:00:00Z", "horarioBrasilia": "26/06 02:00", "stage": "grupos", "grupo": "D", "mandante": "Turquia", "visitante": "EUA", "cidade": "Los Angeles", "pais": "EUA", "estadio": "SoFi Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M060", "kickoffUTC": "2026-06-26T05:00:00Z", "horarioBrasilia": "26/06 02:00", "stage": "grupos", "grupo": "D", "mandante": "Paraguai", "visitante": "Austrália", "cidade": "San Francisco (Santa Clara)", "pais": "EUA", "estadio": "Levi's Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M061", "kickoffUTC": "2026-06-26T19:00:00Z", "horarioBrasilia": "26/06 16:00", "stage": "grupos", "grupo": "I", "mandante": "Noruega", "visitante": "França", "cidade": "Boston (Foxborough)", "pais": "EUA", "estadio": "Gillette Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M062", "kickoffUTC": "2026-06-26T19:00:00Z", "horarioBrasilia": "26/06 16:00", "stage": "grupos", "grupo": "I", "mandante": "Senegal", "visitante": "Iraque", "cidade": "Toronto", "pais": "Canadá", "estadio": "BMO Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M063", "kickoffUTC": "2026-06-27T01:00:00Z", "horarioBrasilia": "26/06 22:00", "stage": "grupos", "grupo": "H", "mandante": "Cabo Verde", "visitante": "Arábia Saudita", "cidade": "Houston", "pais": "EUA", "estadio": "NRG Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M064", "kickoffUTC": "2026-06-27T02:00:00Z", "horarioBrasilia": "26/06 23:00", "stage": "grupos", "grupo": "H", "mandante": "Uruguai", "visitante": "Espanha", "cidade": "Guadalajara (Zapopan)", "pais": "México", "estadio": "Estádio Akron", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M065", "kickoffUTC": "2026-06-27T06:00:00Z", "horarioBrasilia": "27/06 03:00", "stage": "grupos", "grupo": "G", "mandante": "Egito", "visitante": "Irã", "cidade": "Seattle", "pais": "EUA", "estadio": "Lumen Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M066", "kickoffUTC": "2026-06-27T06:00:00Z", "horarioBrasilia": "27/06 03:00", "stage": "grupos", "grupo": "G", "mandante": "Nova Zelândia", "visitante": "Bélgica", "cidade": "Vancouver", "pais": "Canadá", "estadio": "BC Place", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M067", "kickoffUTC": "2026-06-27T21:00:00Z", "horarioBrasilia": "27/06 18:00", "stage": "grupos", "grupo": "L", "mandante": "Panamá", "visitante": "Inglaterra", "cidade": "Nova York/Nova Jersey", "pais": "EUA", "estadio": "MetLife Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M068", "kickoffUTC": "2026-06-27T21:00:00Z", "horarioBrasilia": "27/06 18:00", "stage": "grupos", "grupo": "L", "mandante": "Croácia", "visitante": "Gana", "cidade": "Filadélfia", "pais": "EUA", "estadio": "Lincoln Financial Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M069", "kickoffUTC": "2026-06-27T23:30:00Z", "horarioBrasilia": "27/06 20:30", "stage": "grupos", "grupo": "K", "mandante": "Colômbia", "visitante": "Portugal", "cidade": "Miami", "pais": "EUA", "estadio": "Hard Rock Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M070", "kickoffUTC": "2026-06-27T23:30:00Z", "horarioBrasilia": "27/06 20:30", "stage": "grupos", "grupo": "K", "mandante": "RD Congo", "visitante": "Uzbequistão", "cidade": "Atlanta", "pais": "EUA", "estadio": "Mercedes-Benz Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M071", "kickoffUTC": "2026-06-28T03:00:00Z", "horarioBrasilia": "28/06 00:00", "stage": "grupos", "grupo": "J", "mandante": "Argélia", "visitante": "Áustria", "cidade": "Kansas City", "pais": "EUA", "estadio": "Arrowhead Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M072", "kickoffUTC": "2026-06-28T03:00:00Z", "horarioBrasilia": "28/06 00:00", "stage": "grupos", "grupo": "J", "mandante": "Jordânia", "visitante": "Argentina", "cidade": "Dallas (Arlington)", "pais": "EUA", "estadio": "AT&T Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M073", "kickoffUTC": "2026-06-28T22:00:00Z", "horarioBrasilia": "28/06 19:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Los Angeles", "pais": "EUA", "estadio": "SoFi Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M074", "kickoffUTC": "2026-06-29T18:00:00Z", "horarioBrasilia": "29/06 15:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Houston", "pais": "EUA", "estadio": "NRG Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M075", "kickoffUTC": "2026-06-29T20:30:00Z", "horarioBrasilia": "29/06 17:30", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Boston (Foxborough)", "pais": "EUA", "estadio": "Gillette Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M076", "kickoffUTC": "2026-06-30T03:00:00Z", "horarioBrasilia": "30/06 00:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Monterrey (Guadalupe)", "pais": "México", "estadio": "Estádio BBVA", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M077", "kickoffUTC": "2026-06-30T18:00:00Z", "horarioBrasilia": "30/06 15:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Dallas (Arlington)", "pais": "EUA", "estadio": "AT&T Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M078", "kickoffUTC": "2026-06-30T21:00:00Z", "horarioBrasilia": "30/06 18:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Nova York/Nova Jersey", "pais": "EUA", "estadio": "MetLife Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M079", "kickoffUTC": "2026-07-01T03:00:00Z", "horarioBrasilia": "01/07 00:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Cidade do México", "pais": "México", "estadio": "Estádio Azteca", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M080", "kickoffUTC": "2026-07-01T16:00:00Z", "horarioBrasilia": "01/07 13:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Atlanta", "pais": "EUA", "estadio": "Mercedes-Benz Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M081", "kickoffUTC": "2026-07-01T23:00:00Z", "horarioBrasilia": "01/07 20:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Seattle", "pais": "EUA", "estadio": "Lumen Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M082", "kickoffUTC": "2026-07-02T03:00:00Z", "horarioBrasilia": "02/07 00:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "San Francisco (Santa Clara)", "pais": "EUA", "estadio": "Levi's Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M083", "kickoffUTC": "2026-07-02T22:00:00Z", "horarioBrasilia": "02/07 19:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Los Angeles", "pais": "EUA", "estadio": "SoFi Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M084", "kickoffUTC": "2026-07-02T23:00:00Z", "horarioBrasilia": "02/07 20:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Toronto", "pais": "Canadá", "estadio": "BMO Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M085", "kickoffUTC": "2026-07-03T06:00:00Z", "horarioBrasilia": "03/07 03:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Vancouver", "pais": "Canadá", "estadio": "BC Place", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M086", "kickoffUTC": "2026-07-03T19:00:00Z", "horarioBrasilia": "03/07 16:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Dallas (Arlington)", "pais": "EUA", "estadio": "AT&T Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M087", "kickoffUTC": "2026-07-03T22:00:00Z", "horarioBrasilia": "03/07 19:00", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Miami", "pais": "EUA", "estadio": "Hard Rock Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M088", "kickoffUTC": "2026-07-04T02:30:00Z", "horarioBrasilia": "03/07 23:30", "stage": "32avos", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Kansas City", "pais": "EUA", "estadio": "Arrowhead Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M089", "kickoffUTC": "2026-07-04T18:00:00Z", "horarioBrasilia": "04/07 15:00", "stage": "oitavas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Houston", "pais": "EUA", "estadio": "NRG Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M090", "kickoffUTC": "2026-07-04T21:00:00Z", "horarioBrasilia": "04/07 18:00", "stage": "oitavas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Filadélfia", "pais": "EUA", "estadio": "Lincoln Financial Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M091", "kickoffUTC": "2026-07-05T20:00:00Z", "horarioBrasilia": "05/07 17:00", "stage": "oitavas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Nova York/Nova Jersey", "pais": "EUA", "estadio": "MetLife Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M092", "kickoffUTC": "2026-07-06T02:00:00Z", "horarioBrasilia": "05/07 23:00", "stage": "oitavas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Cidade do México", "pais": "México", "estadio": "Estádio Azteca", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M093", "kickoffUTC": "2026-07-06T20:00:00Z", "horarioBrasilia": "06/07 17:00", "stage": "oitavas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Dallas (Arlington)", "pais": "EUA", "estadio": "AT&T Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M094", "kickoffUTC": "2026-07-07T03:00:00Z", "horarioBrasilia": "07/07 00:00", "stage": "oitavas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Seattle", "pais": "EUA", "estadio": "Lumen Field", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M095", "kickoffUTC": "2026-07-07T16:00:00Z", "horarioBrasilia": "07/07 13:00", "stage": "oitavas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Atlanta", "pais": "EUA", "estadio": "Mercedes-Benz Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M096", "kickoffUTC": "2026-07-07T23:00:00Z", "horarioBrasilia": "07/07 20:00", "stage": "oitavas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Vancouver", "pais": "Canadá", "estadio": "BC Place", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M097", "kickoffUTC": "2026-07-09T20:00:00Z", "horarioBrasilia": "09/07 17:00", "stage": "quartas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Boston (Foxborough)", "pais": "EUA", "estadio": "Gillette Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M098", "kickoffUTC": "2026-07-10T22:00:00Z", "horarioBrasilia": "10/07 19:00", "stage": "quartas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Los Angeles", "pais": "EUA", "estadio": "SoFi Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M099", "kickoffUTC": "2026-07-11T21:00:00Z", "horarioBrasilia": "11/07 18:00", "stage": "quartas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Miami", "pais": "EUA", "estadio": "Hard Rock Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M100", "kickoffUTC": "2026-07-12T02:00:00Z", "horarioBrasilia": "11/07 23:00", "stage": "quartas", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Kansas City", "pais": "EUA", "estadio": "Arrowhead Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M101", "kickoffUTC": "2026-07-14T20:00:00Z", "horarioBrasilia": "14/07 17:00", "stage": "semi", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Dallas (Arlington)", "pais": "EUA", "estadio": "AT&T Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M102", "kickoffUTC": "2026-07-15T19:00:00Z", "horarioBrasilia": "15/07 16:00", "stage": "semi", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Atlanta", "pais": "EUA", "estadio": "Mercedes-Benz Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M103", "kickoffUTC": "2026-07-18T21:00:00Z", "horarioBrasilia": "18/07 18:00", "stage": "terceiro", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Miami", "pais": "EUA", "estadio": "Hard Rock Stadium", "canais": ["cazetv"], "canaisConfirmados": false, "brasil": false },
-    { "id": "M104", "kickoffUTC": "2026-07-19T19:00:00Z", "horarioBrasilia": "19/07 16:00", "stage": "final", "grupo": null, "mandante": "A definir", "visitante": "A definir", "cidade": "Nova York/Nova Jersey", "pais": "EUA", "estadio": "MetLife Stadium", "canais": ["globo","sbt","sportv","nsports","globoplay","getv","cazetv"], "canaisConfirmados": true, "brasil": false }
+    {
+      "id": "M001",
+      "kickoffUTC": "2026-06-11T19:00:00Z",
+      "horarioBrasilia": "11/06 16:00",
+      "stage": "abertura",
+      "grupo": "A",
+      "mandante": "México",
+      "visitante": "África do Sul",
+      "cidade": "Cidade do México",
+      "pais": "México",
+      "estadio": "Estádio Azteca",
+      "canais": [
+        "globo",
+        "sbt",
+        "sportv",
+        "nsports",
+        "globoplay",
+        "getv",
+        "cazetv"
+      ],
+      "canaisConfirmados": true,
+      "brasil": false
+    },
+    {
+      "id": "M002",
+      "kickoffUTC": "2026-06-12T02:00:00Z",
+      "horarioBrasilia": "11/06 23:00",
+      "stage": "grupos",
+      "grupo": "A",
+      "mandante": "Coreia do Sul",
+      "visitante": "República Tcheca",
+      "cidade": "Guadalajara (Zapopan)",
+      "pais": "México",
+      "estadio": "Estádio Akron",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M003",
+      "kickoffUTC": "2026-06-12T17:00:00Z",
+      "horarioBrasilia": "12/06 14:00",
+      "stage": "grupos",
+      "grupo": "B",
+      "mandante": "Canadá",
+      "visitante": "Bósnia e Herzegovina",
+      "cidade": "Toronto",
+      "pais": "Canadá",
+      "estadio": "BMO Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M004",
+      "kickoffUTC": "2026-06-13T02:00:00Z",
+      "horarioBrasilia": "12/06 23:00",
+      "stage": "grupos",
+      "grupo": "D",
+      "mandante": "EUA",
+      "visitante": "Paraguai",
+      "cidade": "Los Angeles",
+      "pais": "EUA",
+      "estadio": "SoFi Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M005",
+      "kickoffUTC": "2026-06-13T20:00:00Z",
+      "horarioBrasilia": "13/06 17:00",
+      "stage": "grupos",
+      "grupo": "B",
+      "mandante": "Catar",
+      "visitante": "Suíça",
+      "cidade": "San Francisco (Santa Clara)",
+      "pais": "EUA",
+      "estadio": "Levi's Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M006",
+      "kickoffUTC": "2026-06-13T22:00:00Z",
+      "horarioBrasilia": "13/06 19:00",
+      "stage": "grupos",
+      "grupo": "C",
+      "mandante": "Brasil",
+      "visitante": "Marrocos",
+      "cidade": "Nova York/Nova Jersey",
+      "pais": "EUA",
+      "estadio": "MetLife Stadium",
+      "canais": [
+        "globo",
+        "sbt",
+        "sportv",
+        "nsports",
+        "globoplay",
+        "getv",
+        "cazetv"
+      ],
+      "canaisConfirmados": true,
+      "brasil": true
+    },
+    {
+      "id": "M007",
+      "kickoffUTC": "2026-06-13T23:00:00Z",
+      "horarioBrasilia": "13/06 20:00",
+      "stage": "grupos",
+      "grupo": "C",
+      "mandante": "Haiti",
+      "visitante": "Escócia",
+      "cidade": "Boston (Foxborough)",
+      "pais": "EUA",
+      "estadio": "Gillette Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M008",
+      "kickoffUTC": "2026-06-14T05:00:00Z",
+      "horarioBrasilia": "14/06 02:00",
+      "stage": "grupos",
+      "grupo": "D",
+      "mandante": "Austrália",
+      "visitante": "Turquia",
+      "cidade": "Vancouver",
+      "pais": "Canadá",
+      "estadio": "BC Place",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M009",
+      "kickoffUTC": "2026-06-14T16:00:00Z",
+      "horarioBrasilia": "14/06 13:00",
+      "stage": "grupos",
+      "grupo": "E",
+      "mandante": "Alemanha",
+      "visitante": "Curaçao",
+      "cidade": "Houston",
+      "pais": "EUA",
+      "estadio": "NRG Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M010",
+      "kickoffUTC": "2026-06-14T19:00:00Z",
+      "horarioBrasilia": "14/06 16:00",
+      "stage": "grupos",
+      "grupo": "F",
+      "mandante": "Países Baixos",
+      "visitante": "Japão",
+      "cidade": "Dallas (Arlington)",
+      "pais": "EUA",
+      "estadio": "AT&T Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M011",
+      "kickoffUTC": "2026-06-14T21:00:00Z",
+      "horarioBrasilia": "14/06 18:00",
+      "stage": "grupos",
+      "grupo": "E",
+      "mandante": "Costa do Marfim",
+      "visitante": "Equador",
+      "cidade": "Filadélfia",
+      "pais": "EUA",
+      "estadio": "Lincoln Financial Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M012",
+      "kickoffUTC": "2026-06-15T02:00:00Z",
+      "horarioBrasilia": "14/06 23:00",
+      "stage": "grupos",
+      "grupo": "F",
+      "mandante": "Suécia",
+      "visitante": "Tunísia",
+      "cidade": "Monterrey (Guadalupe)",
+      "pais": "México",
+      "estadio": "Estádio BBVA",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M013",
+      "kickoffUTC": "2026-06-15T14:00:00Z",
+      "horarioBrasilia": "15/06 11:00",
+      "stage": "grupos",
+      "grupo": "H",
+      "mandante": "Espanha",
+      "visitante": "Cabo Verde",
+      "cidade": "Atlanta",
+      "pais": "EUA",
+      "estadio": "Mercedes-Benz Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M014",
+      "kickoffUTC": "2026-06-15T20:00:00Z",
+      "horarioBrasilia": "15/06 17:00",
+      "stage": "grupos",
+      "grupo": "G",
+      "mandante": "Bélgica",
+      "visitante": "Egito",
+      "cidade": "Vancouver",
+      "pais": "Canadá",
+      "estadio": "BC Place",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M015",
+      "kickoffUTC": "2026-06-15T20:00:00Z",
+      "horarioBrasilia": "15/06 17:00",
+      "stage": "grupos",
+      "grupo": "H",
+      "mandante": "Arábia Saudita",
+      "visitante": "Uruguai",
+      "cidade": "Miami",
+      "pais": "EUA",
+      "estadio": "Hard Rock Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M016",
+      "kickoffUTC": "2026-06-16T02:00:00Z",
+      "horarioBrasilia": "15/06 23:00",
+      "stage": "grupos",
+      "grupo": "G",
+      "mandante": "Irã",
+      "visitante": "Nova Zelândia",
+      "cidade": "Los Angeles",
+      "pais": "EUA",
+      "estadio": "SoFi Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M017",
+      "kickoffUTC": "2026-06-16T17:00:00Z",
+      "horarioBrasilia": "16/06 14:00",
+      "stage": "grupos",
+      "grupo": "I",
+      "mandante": "França",
+      "visitante": "Senegal",
+      "cidade": "Nova York/Nova Jersey",
+      "pais": "EUA",
+      "estadio": "MetLife Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M018",
+      "kickoffUTC": "2026-06-16T20:00:00Z",
+      "horarioBrasilia": "16/06 17:00",
+      "stage": "grupos",
+      "grupo": "I",
+      "mandante": "Iraque",
+      "visitante": "Noruega",
+      "cidade": "Boston (Foxborough)",
+      "pais": "EUA",
+      "estadio": "Gillette Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M019",
+      "kickoffUTC": "2026-06-17T00:00:00Z",
+      "horarioBrasilia": "16/06 21:00",
+      "stage": "grupos",
+      "grupo": "J",
+      "mandante": "Argentina",
+      "visitante": "Argélia",
+      "cidade": "Kansas City",
+      "pais": "EUA",
+      "estadio": "Arrowhead Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M020",
+      "kickoffUTC": "2026-06-17T05:00:00Z",
+      "horarioBrasilia": "17/06 02:00",
+      "stage": "grupos",
+      "grupo": "J",
+      "mandante": "Áustria",
+      "visitante": "Jordânia",
+      "cidade": "San Francisco (Santa Clara)",
+      "pais": "EUA",
+      "estadio": "Levi's Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M021",
+      "kickoffUTC": "2026-06-17T16:00:00Z",
+      "horarioBrasilia": "17/06 13:00",
+      "stage": "grupos",
+      "grupo": "K",
+      "mandante": "Portugal",
+      "visitante": "RD Congo",
+      "cidade": "Houston",
+      "pais": "EUA",
+      "estadio": "NRG Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M022",
+      "kickoffUTC": "2026-06-17T19:00:00Z",
+      "horarioBrasilia": "17/06 16:00",
+      "stage": "grupos",
+      "grupo": "L",
+      "mandante": "Inglaterra",
+      "visitante": "Croácia",
+      "cidade": "Dallas (Arlington)",
+      "pais": "EUA",
+      "estadio": "AT&T Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M023",
+      "kickoffUTC": "2026-06-17T21:00:00Z",
+      "horarioBrasilia": "17/06 18:00",
+      "stage": "grupos",
+      "grupo": "L",
+      "mandante": "Gana",
+      "visitante": "Panamá",
+      "cidade": "Toronto",
+      "pais": "Canadá",
+      "estadio": "BMO Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M024",
+      "kickoffUTC": "2026-06-18T02:00:00Z",
+      "horarioBrasilia": "17/06 23:00",
+      "stage": "grupos",
+      "grupo": "K",
+      "mandante": "Uzbequistão",
+      "visitante": "Colômbia",
+      "cidade": "Cidade do México",
+      "pais": "México",
+      "estadio": "Estádio Azteca",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M025",
+      "kickoffUTC": "2026-06-18T14:00:00Z",
+      "horarioBrasilia": "18/06 11:00",
+      "stage": "grupos",
+      "grupo": "A",
+      "mandante": "República Tcheca",
+      "visitante": "África do Sul",
+      "cidade": "Atlanta",
+      "pais": "EUA",
+      "estadio": "Mercedes-Benz Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M026",
+      "kickoffUTC": "2026-06-18T20:00:00Z",
+      "horarioBrasilia": "18/06 17:00",
+      "stage": "grupos",
+      "grupo": "B",
+      "mandante": "Suíça",
+      "visitante": "Bósnia e Herzegovina",
+      "cidade": "Los Angeles",
+      "pais": "EUA",
+      "estadio": "SoFi Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M027",
+      "kickoffUTC": "2026-06-18T23:00:00Z",
+      "horarioBrasilia": "18/06 20:00",
+      "stage": "grupos",
+      "grupo": "B",
+      "mandante": "Canadá",
+      "visitante": "Catar",
+      "cidade": "Vancouver",
+      "pais": "Canadá",
+      "estadio": "BC Place",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M028",
+      "kickoffUTC": "2026-06-19T01:00:00Z",
+      "horarioBrasilia": "18/06 22:00",
+      "stage": "grupos",
+      "grupo": "A",
+      "mandante": "México",
+      "visitante": "Coreia do Sul",
+      "cidade": "Guadalajara (Zapopan)",
+      "pais": "México",
+      "estadio": "Estádio Akron",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M029",
+      "kickoffUTC": "2026-06-19T20:00:00Z",
+      "horarioBrasilia": "19/06 17:00",
+      "stage": "grupos",
+      "grupo": "D",
+      "mandante": "EUA",
+      "visitante": "Austrália",
+      "cidade": "Seattle",
+      "pais": "EUA",
+      "estadio": "Lumen Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M030",
+      "kickoffUTC": "2026-06-19T20:00:00Z",
+      "horarioBrasilia": "19/06 17:00",
+      "stage": "grupos",
+      "grupo": "C",
+      "mandante": "Escócia",
+      "visitante": "Marrocos",
+      "cidade": "Boston (Foxborough)",
+      "pais": "EUA",
+      "estadio": "Gillette Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M031",
+      "kickoffUTC": "2026-06-20T01:00:00Z",
+      "horarioBrasilia": "19/06 22:00",
+      "stage": "grupos",
+      "grupo": "C",
+      "mandante": "Brasil",
+      "visitante": "Haiti",
+      "cidade": "Filadélfia",
+      "pais": "EUA",
+      "estadio": "Lincoln Financial Field",
+      "canais": [
+        "globo",
+        "sbt",
+        "sportv",
+        "nsports",
+        "globoplay",
+        "getv",
+        "cazetv"
+      ],
+      "canaisConfirmados": true,
+      "brasil": true
+    },
+    {
+      "id": "M032",
+      "kickoffUTC": "2026-06-20T05:00:00Z",
+      "horarioBrasilia": "20/06 02:00",
+      "stage": "grupos",
+      "grupo": "D",
+      "mandante": "Turquia",
+      "visitante": "Paraguai",
+      "cidade": "San Francisco (Santa Clara)",
+      "pais": "EUA",
+      "estadio": "Levi's Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M033",
+      "kickoffUTC": "2026-06-20T16:00:00Z",
+      "horarioBrasilia": "20/06 13:00",
+      "stage": "grupos",
+      "grupo": "F",
+      "mandante": "Países Baixos",
+      "visitante": "Suécia",
+      "cidade": "Houston",
+      "pais": "EUA",
+      "estadio": "NRG Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M034",
+      "kickoffUTC": "2026-06-20T18:00:00Z",
+      "horarioBrasilia": "20/06 15:00",
+      "stage": "grupos",
+      "grupo": "E",
+      "mandante": "Alemanha",
+      "visitante": "Costa do Marfim",
+      "cidade": "Toronto",
+      "pais": "Canadá",
+      "estadio": "BMO Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M035",
+      "kickoffUTC": "2026-06-20T23:00:00Z",
+      "horarioBrasilia": "20/06 20:00",
+      "stage": "grupos",
+      "grupo": "E",
+      "mandante": "Equador",
+      "visitante": "Curaçao",
+      "cidade": "Kansas City",
+      "pais": "EUA",
+      "estadio": "Arrowhead Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M036",
+      "kickoffUTC": "2026-06-21T04:00:00Z",
+      "horarioBrasilia": "21/06 01:00",
+      "stage": "grupos",
+      "grupo": "F",
+      "mandante": "Tunísia",
+      "visitante": "Japão",
+      "cidade": "Monterrey (Guadalupe)",
+      "pais": "México",
+      "estadio": "Estádio BBVA",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M037",
+      "kickoffUTC": "2026-06-21T14:00:00Z",
+      "horarioBrasilia": "21/06 11:00",
+      "stage": "grupos",
+      "grupo": "H",
+      "mandante": "Espanha",
+      "visitante": "Arábia Saudita",
+      "cidade": "Atlanta",
+      "pais": "EUA",
+      "estadio": "Mercedes-Benz Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M038",
+      "kickoffUTC": "2026-06-21T20:00:00Z",
+      "horarioBrasilia": "21/06 17:00",
+      "stage": "grupos",
+      "grupo": "G",
+      "mandante": "Bélgica",
+      "visitante": "Irã",
+      "cidade": "Los Angeles",
+      "pais": "EUA",
+      "estadio": "SoFi Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M039",
+      "kickoffUTC": "2026-06-21T20:00:00Z",
+      "horarioBrasilia": "21/06 17:00",
+      "stage": "grupos",
+      "grupo": "H",
+      "mandante": "Uruguai",
+      "visitante": "Cabo Verde",
+      "cidade": "Miami",
+      "pais": "EUA",
+      "estadio": "Hard Rock Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M040",
+      "kickoffUTC": "2026-06-22T02:00:00Z",
+      "horarioBrasilia": "21/06 23:00",
+      "stage": "grupos",
+      "grupo": "G",
+      "mandante": "Nova Zelândia",
+      "visitante": "Egito",
+      "cidade": "Vancouver",
+      "pais": "Canadá",
+      "estadio": "BC Place",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M041",
+      "kickoffUTC": "2026-06-22T16:00:00Z",
+      "horarioBrasilia": "22/06 13:00",
+      "stage": "grupos",
+      "grupo": "J",
+      "mandante": "Argentina",
+      "visitante": "Áustria",
+      "cidade": "Dallas (Arlington)",
+      "pais": "EUA",
+      "estadio": "AT&T Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M042",
+      "kickoffUTC": "2026-06-22T19:00:00Z",
+      "horarioBrasilia": "22/06 16:00",
+      "stage": "grupos",
+      "grupo": "I",
+      "mandante": "França",
+      "visitante": "Iraque",
+      "cidade": "Filadélfia",
+      "pais": "EUA",
+      "estadio": "Lincoln Financial Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M043",
+      "kickoffUTC": "2026-06-22T22:00:00Z",
+      "horarioBrasilia": "22/06 19:00",
+      "stage": "grupos",
+      "grupo": "I",
+      "mandante": "Noruega",
+      "visitante": "Senegal",
+      "cidade": "Nova York/Nova Jersey",
+      "pais": "EUA",
+      "estadio": "MetLife Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M044",
+      "kickoffUTC": "2026-06-23T04:00:00Z",
+      "horarioBrasilia": "23/06 01:00",
+      "stage": "grupos",
+      "grupo": "J",
+      "mandante": "Jordânia",
+      "visitante": "Argélia",
+      "cidade": "San Francisco (Santa Clara)",
+      "pais": "EUA",
+      "estadio": "Levi's Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M045",
+      "kickoffUTC": "2026-06-23T16:00:00Z",
+      "horarioBrasilia": "23/06 13:00",
+      "stage": "grupos",
+      "grupo": "K",
+      "mandante": "Portugal",
+      "visitante": "Uzbequistão",
+      "cidade": "Houston",
+      "pais": "EUA",
+      "estadio": "NRG Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M046",
+      "kickoffUTC": "2026-06-23T18:00:00Z",
+      "horarioBrasilia": "23/06 15:00",
+      "stage": "grupos",
+      "grupo": "L",
+      "mandante": "Inglaterra",
+      "visitante": "Gana",
+      "cidade": "Boston (Foxborough)",
+      "pais": "EUA",
+      "estadio": "Gillette Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M047",
+      "kickoffUTC": "2026-06-23T21:00:00Z",
+      "horarioBrasilia": "23/06 18:00",
+      "stage": "grupos",
+      "grupo": "L",
+      "mandante": "Panamá",
+      "visitante": "Croácia",
+      "cidade": "Toronto",
+      "pais": "Canadá",
+      "estadio": "BMO Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M048",
+      "kickoffUTC": "2026-06-24T02:00:00Z",
+      "horarioBrasilia": "23/06 23:00",
+      "stage": "grupos",
+      "grupo": "K",
+      "mandante": "Colômbia",
+      "visitante": "RD Congo",
+      "cidade": "Guadalajara (Zapopan)",
+      "pais": "México",
+      "estadio": "Estádio Akron",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M049",
+      "kickoffUTC": "2026-06-24T20:00:00Z",
+      "horarioBrasilia": "24/06 17:00",
+      "stage": "grupos",
+      "grupo": "B",
+      "mandante": "Suíça",
+      "visitante": "Canadá",
+      "cidade": "Vancouver",
+      "pais": "Canadá",
+      "estadio": "BC Place",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M050",
+      "kickoffUTC": "2026-06-24T20:00:00Z",
+      "horarioBrasilia": "24/06 17:00",
+      "stage": "grupos",
+      "grupo": "B",
+      "mandante": "Bósnia e Herzegovina",
+      "visitante": "Catar",
+      "cidade": "Seattle",
+      "pais": "EUA",
+      "estadio": "Lumen Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M052",
+      "kickoffUTC": "2026-06-24T20:00:00Z",
+      "horarioBrasilia": "24/06 17:00",
+      "stage": "grupos",
+      "grupo": "C",
+      "mandante": "Marrocos",
+      "visitante": "Haiti",
+      "cidade": "Atlanta",
+      "pais": "EUA",
+      "estadio": "Mercedes-Benz Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M051",
+      "kickoffUTC": "2026-06-24T22:00:00Z",
+      "horarioBrasilia": "24/06 19:00",
+      "stage": "grupos",
+      "grupo": "C",
+      "mandante": "Escócia",
+      "visitante": "Brasil",
+      "cidade": "Miami",
+      "pais": "EUA",
+      "estadio": "Hard Rock Stadium",
+      "canais": [
+        "globo",
+        "sbt",
+        "sportv",
+        "nsports",
+        "globoplay",
+        "getv",
+        "cazetv"
+      ],
+      "canaisConfirmados": true,
+      "brasil": true
+    },
+    {
+      "id": "M053",
+      "kickoffUTC": "2026-06-25T01:00:00Z",
+      "horarioBrasilia": "24/06 22:00",
+      "stage": "grupos",
+      "grupo": "A",
+      "mandante": "República Tcheca",
+      "visitante": "México",
+      "cidade": "Cidade do México",
+      "pais": "México",
+      "estadio": "Estádio Azteca",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M054",
+      "kickoffUTC": "2026-06-25T01:00:00Z",
+      "horarioBrasilia": "24/06 22:00",
+      "stage": "grupos",
+      "grupo": "A",
+      "mandante": "África do Sul",
+      "visitante": "Coreia do Sul",
+      "cidade": "Monterrey (Guadalupe)",
+      "pais": "México",
+      "estadio": "Estádio BBVA",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M055",
+      "kickoffUTC": "2026-06-25T18:00:00Z",
+      "horarioBrasilia": "25/06 15:00",
+      "stage": "grupos",
+      "grupo": "E",
+      "mandante": "Equador",
+      "visitante": "Alemanha",
+      "cidade": "Nova York/Nova Jersey",
+      "pais": "EUA",
+      "estadio": "MetLife Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M056",
+      "kickoffUTC": "2026-06-25T18:00:00Z",
+      "horarioBrasilia": "25/06 15:00",
+      "stage": "grupos",
+      "grupo": "E",
+      "mandante": "Curaçao",
+      "visitante": "Costa do Marfim",
+      "cidade": "Filadélfia",
+      "pais": "EUA",
+      "estadio": "Lincoln Financial Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M057",
+      "kickoffUTC": "2026-06-25T22:00:00Z",
+      "horarioBrasilia": "25/06 19:00",
+      "stage": "grupos",
+      "grupo": "F",
+      "mandante": "Japão",
+      "visitante": "Suécia",
+      "cidade": "Dallas (Arlington)",
+      "pais": "EUA",
+      "estadio": "AT&T Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M058",
+      "kickoffUTC": "2026-06-25T22:00:00Z",
+      "horarioBrasilia": "25/06 19:00",
+      "stage": "grupos",
+      "grupo": "F",
+      "mandante": "Tunísia",
+      "visitante": "Países Baixos",
+      "cidade": "Kansas City",
+      "pais": "EUA",
+      "estadio": "Arrowhead Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M059",
+      "kickoffUTC": "2026-06-26T03:00:00Z",
+      "horarioBrasilia": "26/06 00:00",
+      "stage": "grupos",
+      "grupo": "D",
+      "mandante": "Turquia",
+      "visitante": "EUA",
+      "cidade": "Los Angeles",
+      "pais": "EUA",
+      "estadio": "SoFi Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M060",
+      "kickoffUTC": "2026-06-26T03:00:00Z",
+      "horarioBrasilia": "26/06 00:00",
+      "stage": "grupos",
+      "grupo": "D",
+      "mandante": "Paraguai",
+      "visitante": "Austrália",
+      "cidade": "San Francisco (Santa Clara)",
+      "pais": "EUA",
+      "estadio": "Levi's Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M061",
+      "kickoffUTC": "2026-06-26T17:00:00Z",
+      "horarioBrasilia": "26/06 14:00",
+      "stage": "grupos",
+      "grupo": "I",
+      "mandante": "Noruega",
+      "visitante": "França",
+      "cidade": "Boston (Foxborough)",
+      "pais": "EUA",
+      "estadio": "Gillette Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M062",
+      "kickoffUTC": "2026-06-26T17:00:00Z",
+      "horarioBrasilia": "26/06 14:00",
+      "stage": "grupos",
+      "grupo": "I",
+      "mandante": "Senegal",
+      "visitante": "Iraque",
+      "cidade": "Toronto",
+      "pais": "Canadá",
+      "estadio": "BMO Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M063",
+      "kickoffUTC": "2026-06-26T23:00:00Z",
+      "horarioBrasilia": "26/06 20:00",
+      "stage": "grupos",
+      "grupo": "H",
+      "mandante": "Cabo Verde",
+      "visitante": "Arábia Saudita",
+      "cidade": "Houston",
+      "pais": "EUA",
+      "estadio": "NRG Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M064",
+      "kickoffUTC": "2026-06-27T00:00:00Z",
+      "horarioBrasilia": "26/06 21:00",
+      "stage": "grupos",
+      "grupo": "H",
+      "mandante": "Uruguai",
+      "visitante": "Espanha",
+      "cidade": "Guadalajara (Zapopan)",
+      "pais": "México",
+      "estadio": "Estádio Akron",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M065",
+      "kickoffUTC": "2026-06-27T04:00:00Z",
+      "horarioBrasilia": "27/06 01:00",
+      "stage": "grupos",
+      "grupo": "G",
+      "mandante": "Egito",
+      "visitante": "Irã",
+      "cidade": "Seattle",
+      "pais": "EUA",
+      "estadio": "Lumen Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M066",
+      "kickoffUTC": "2026-06-27T04:00:00Z",
+      "horarioBrasilia": "27/06 01:00",
+      "stage": "grupos",
+      "grupo": "G",
+      "mandante": "Nova Zelândia",
+      "visitante": "Bélgica",
+      "cidade": "Vancouver",
+      "pais": "Canadá",
+      "estadio": "BC Place",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M067",
+      "kickoffUTC": "2026-06-27T19:00:00Z",
+      "horarioBrasilia": "27/06 16:00",
+      "stage": "grupos",
+      "grupo": "L",
+      "mandante": "Panamá",
+      "visitante": "Inglaterra",
+      "cidade": "Nova York/Nova Jersey",
+      "pais": "EUA",
+      "estadio": "MetLife Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M068",
+      "kickoffUTC": "2026-06-27T19:00:00Z",
+      "horarioBrasilia": "27/06 16:00",
+      "stage": "grupos",
+      "grupo": "L",
+      "mandante": "Croácia",
+      "visitante": "Gana",
+      "cidade": "Filadélfia",
+      "pais": "EUA",
+      "estadio": "Lincoln Financial Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M069",
+      "kickoffUTC": "2026-06-27T21:30:00Z",
+      "horarioBrasilia": "27/06 18:30",
+      "stage": "grupos",
+      "grupo": "K",
+      "mandante": "Colômbia",
+      "visitante": "Portugal",
+      "cidade": "Miami",
+      "pais": "EUA",
+      "estadio": "Hard Rock Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M070",
+      "kickoffUTC": "2026-06-27T21:30:00Z",
+      "horarioBrasilia": "27/06 18:30",
+      "stage": "grupos",
+      "grupo": "K",
+      "mandante": "RD Congo",
+      "visitante": "Uzbequistão",
+      "cidade": "Atlanta",
+      "pais": "EUA",
+      "estadio": "Mercedes-Benz Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M071",
+      "kickoffUTC": "2026-06-28T01:00:00Z",
+      "horarioBrasilia": "27/06 22:00",
+      "stage": "grupos",
+      "grupo": "J",
+      "mandante": "Argélia",
+      "visitante": "Áustria",
+      "cidade": "Kansas City",
+      "pais": "EUA",
+      "estadio": "Arrowhead Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M072",
+      "kickoffUTC": "2026-06-28T01:00:00Z",
+      "horarioBrasilia": "27/06 22:00",
+      "stage": "grupos",
+      "grupo": "J",
+      "mandante": "Jordânia",
+      "visitante": "Argentina",
+      "cidade": "Dallas (Arlington)",
+      "pais": "EUA",
+      "estadio": "AT&T Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M073",
+      "kickoffUTC": "2026-06-28T20:00:00Z",
+      "horarioBrasilia": "28/06 17:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Los Angeles",
+      "pais": "EUA",
+      "estadio": "SoFi Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M074",
+      "kickoffUTC": "2026-06-29T16:00:00Z",
+      "horarioBrasilia": "29/06 13:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Houston",
+      "pais": "EUA",
+      "estadio": "NRG Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M075",
+      "kickoffUTC": "2026-06-29T18:30:00Z",
+      "horarioBrasilia": "29/06 15:30",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Boston (Foxborough)",
+      "pais": "EUA",
+      "estadio": "Gillette Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M076",
+      "kickoffUTC": "2026-06-30T01:00:00Z",
+      "horarioBrasilia": "29/06 22:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Monterrey (Guadalupe)",
+      "pais": "México",
+      "estadio": "Estádio BBVA",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M077",
+      "kickoffUTC": "2026-06-30T16:00:00Z",
+      "horarioBrasilia": "30/06 13:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Dallas (Arlington)",
+      "pais": "EUA",
+      "estadio": "AT&T Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M078",
+      "kickoffUTC": "2026-06-30T19:00:00Z",
+      "horarioBrasilia": "30/06 16:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Nova York/Nova Jersey",
+      "pais": "EUA",
+      "estadio": "MetLife Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M079",
+      "kickoffUTC": "2026-07-01T01:00:00Z",
+      "horarioBrasilia": "30/06 22:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Cidade do México",
+      "pais": "México",
+      "estadio": "Estádio Azteca",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M080",
+      "kickoffUTC": "2026-07-01T14:00:00Z",
+      "horarioBrasilia": "01/07 11:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Atlanta",
+      "pais": "EUA",
+      "estadio": "Mercedes-Benz Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M081",
+      "kickoffUTC": "2026-07-01T21:00:00Z",
+      "horarioBrasilia": "01/07 18:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Seattle",
+      "pais": "EUA",
+      "estadio": "Lumen Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M082",
+      "kickoffUTC": "2026-07-02T01:00:00Z",
+      "horarioBrasilia": "01/07 22:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "San Francisco (Santa Clara)",
+      "pais": "EUA",
+      "estadio": "Levi's Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M083",
+      "kickoffUTC": "2026-07-02T20:00:00Z",
+      "horarioBrasilia": "02/07 17:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Los Angeles",
+      "pais": "EUA",
+      "estadio": "SoFi Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M084",
+      "kickoffUTC": "2026-07-02T21:00:00Z",
+      "horarioBrasilia": "02/07 18:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Toronto",
+      "pais": "Canadá",
+      "estadio": "BMO Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M085",
+      "kickoffUTC": "2026-07-03T04:00:00Z",
+      "horarioBrasilia": "03/07 01:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Vancouver",
+      "pais": "Canadá",
+      "estadio": "BC Place",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M086",
+      "kickoffUTC": "2026-07-03T17:00:00Z",
+      "horarioBrasilia": "03/07 14:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Dallas (Arlington)",
+      "pais": "EUA",
+      "estadio": "AT&T Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M087",
+      "kickoffUTC": "2026-07-03T20:00:00Z",
+      "horarioBrasilia": "03/07 17:00",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Miami",
+      "pais": "EUA",
+      "estadio": "Hard Rock Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M088",
+      "kickoffUTC": "2026-07-04T00:30:00Z",
+      "horarioBrasilia": "03/07 21:30",
+      "stage": "32avos",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Kansas City",
+      "pais": "EUA",
+      "estadio": "Arrowhead Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M089",
+      "kickoffUTC": "2026-07-04T16:00:00Z",
+      "horarioBrasilia": "04/07 13:00",
+      "stage": "oitavas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Houston",
+      "pais": "EUA",
+      "estadio": "NRG Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M090",
+      "kickoffUTC": "2026-07-04T19:00:00Z",
+      "horarioBrasilia": "04/07 16:00",
+      "stage": "oitavas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Filadélfia",
+      "pais": "EUA",
+      "estadio": "Lincoln Financial Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M091",
+      "kickoffUTC": "2026-07-05T18:00:00Z",
+      "horarioBrasilia": "05/07 15:00",
+      "stage": "oitavas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Nova York/Nova Jersey",
+      "pais": "EUA",
+      "estadio": "MetLife Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M092",
+      "kickoffUTC": "2026-07-06T00:00:00Z",
+      "horarioBrasilia": "05/07 21:00",
+      "stage": "oitavas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Cidade do México",
+      "pais": "México",
+      "estadio": "Estádio Azteca",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M093",
+      "kickoffUTC": "2026-07-06T18:00:00Z",
+      "horarioBrasilia": "06/07 15:00",
+      "stage": "oitavas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Dallas (Arlington)",
+      "pais": "EUA",
+      "estadio": "AT&T Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M094",
+      "kickoffUTC": "2026-07-07T01:00:00Z",
+      "horarioBrasilia": "06/07 22:00",
+      "stage": "oitavas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Seattle",
+      "pais": "EUA",
+      "estadio": "Lumen Field",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M095",
+      "kickoffUTC": "2026-07-07T14:00:00Z",
+      "horarioBrasilia": "07/07 11:00",
+      "stage": "oitavas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Atlanta",
+      "pais": "EUA",
+      "estadio": "Mercedes-Benz Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M096",
+      "kickoffUTC": "2026-07-07T21:00:00Z",
+      "horarioBrasilia": "07/07 18:00",
+      "stage": "oitavas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Vancouver",
+      "pais": "Canadá",
+      "estadio": "BC Place",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M097",
+      "kickoffUTC": "2026-07-09T18:00:00Z",
+      "horarioBrasilia": "09/07 15:00",
+      "stage": "quartas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Boston (Foxborough)",
+      "pais": "EUA",
+      "estadio": "Gillette Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M098",
+      "kickoffUTC": "2026-07-10T20:00:00Z",
+      "horarioBrasilia": "10/07 17:00",
+      "stage": "quartas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Los Angeles",
+      "pais": "EUA",
+      "estadio": "SoFi Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M099",
+      "kickoffUTC": "2026-07-11T19:00:00Z",
+      "horarioBrasilia": "11/07 16:00",
+      "stage": "quartas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Miami",
+      "pais": "EUA",
+      "estadio": "Hard Rock Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M100",
+      "kickoffUTC": "2026-07-12T00:00:00Z",
+      "horarioBrasilia": "11/07 21:00",
+      "stage": "quartas",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Kansas City",
+      "pais": "EUA",
+      "estadio": "Arrowhead Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M101",
+      "kickoffUTC": "2026-07-14T18:00:00Z",
+      "horarioBrasilia": "14/07 15:00",
+      "stage": "semi",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Dallas (Arlington)",
+      "pais": "EUA",
+      "estadio": "AT&T Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M102",
+      "kickoffUTC": "2026-07-15T17:00:00Z",
+      "horarioBrasilia": "15/07 14:00",
+      "stage": "semi",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Atlanta",
+      "pais": "EUA",
+      "estadio": "Mercedes-Benz Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M103",
+      "kickoffUTC": "2026-07-18T19:00:00Z",
+      "horarioBrasilia": "18/07 16:00",
+      "stage": "terceiro",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Miami",
+      "pais": "EUA",
+      "estadio": "Hard Rock Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
+      "id": "M104",
+      "kickoffUTC": "2026-07-19T17:00:00Z",
+      "horarioBrasilia": "19/07 14:00",
+      "stage": "final",
+      "grupo": null,
+      "mandante": "A definir",
+      "visitante": "A definir",
+      "cidade": "Nova York/Nova Jersey",
+      "pais": "EUA",
+      "estadio": "MetLife Stadium",
+      "canais": [
+        "globo",
+        "sbt",
+        "sportv",
+        "nsports",
+        "globoplay",
+        "getv",
+        "cazetv"
+      ],
+      "canaisConfirmados": true,
+      "brasil": false
+    }
   ]
 }

@@ -6,7 +6,6 @@ import { APP } from "@/config";
 import type { TimezoneOffset } from "@/config";
 import { MATCHES } from "@/lib/matches";
 import { downloadIcs } from "@/lib/ics";
-import { whatsappLinkGeneric } from "@/lib/whatsapp";
 import type { ChannelId } from "@/types";
 import { StoryPreview } from "@/components/StoryPreview";
 import { DownloadSvg, LinkSvg, WhatsappSvg } from "@/components/icons";
@@ -120,19 +119,9 @@ export function ShareSection({
                 <DownloadSvg />
               </button>
               <button className="btn-ghost" onClick={onShare}>
-                COMPARTILHAR
-                <WhatsappSvg />
-              </button>
-              <a
-                className="btn-ghost"
-                href={whatsappLinkGeneric()}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => track("share_whatsapp_generic")}
-              >
                 MANDA NO ZAP
                 <WhatsappSvg />
-              </a>
+              </button>
               <button
                 className="btn-ghost"
                 onClick={() => {
