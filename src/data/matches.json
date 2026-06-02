@@ -415,8 +415,8 @@
     },
     {
       "id": "M024",
-      "kickoffUTC": "2026-06-18T00:00:00Z",
-      "horarioBrasilia": "17/06 21:00",
+      "kickoffUTC": "2026-06-18T02:00:00Z",
+      "horarioBrasilia": "17/06 23:00",
       "stage": "grupos",
       "grupo": "K",
       "mandante": "Uzbequistão",
@@ -499,23 +499,6 @@
       "brasil": false
     },
     {
-      "id": "M032",
-      "kickoffUTC": "2026-06-19T03:00:00Z",
-      "horarioBrasilia": "19/06 00:00",
-      "stage": "grupos",
-      "grupo": "D",
-      "mandante": "Turquia",
-      "visitante": "Paraguai",
-      "cidade": "San Francisco (Santa Clara)",
-      "pais": "EUA",
-      "estadio": "Levi's Stadium",
-      "canais": [
-        "cazetv"
-      ],
-      "canaisConfirmados": false,
-      "brasil": false
-    },
-    {
       "id": "M029",
       "kickoffUTC": "2026-06-19T19:00:00Z",
       "horarioBrasilia": "19/06 16:00",
@@ -573,6 +556,23 @@
       "brasil": true
     },
     {
+      "id": "M032",
+      "kickoffUTC": "2026-06-20T03:00:00Z",
+      "horarioBrasilia": "20/06 00:00",
+      "stage": "grupos",
+      "grupo": "D",
+      "mandante": "Turquia",
+      "visitante": "Paraguai",
+      "cidade": "San Francisco (Santa Clara)",
+      "pais": "EUA",
+      "estadio": "Levi's Stadium",
+      "canais": [
+        "cazetv"
+      ],
+      "canaisConfirmados": false,
+      "brasil": false
+    },
+    {
       "id": "M033",
       "kickoffUTC": "2026-06-20T17:00:00Z",
       "horarioBrasilia": "20/06 14:00",
@@ -625,8 +625,8 @@
     },
     {
       "id": "M036",
-      "kickoffUTC": "2026-06-21T02:00:00Z",
-      "horarioBrasilia": "20/06 23:00",
+      "kickoffUTC": "2026-06-21T04:00:00Z",
+      "horarioBrasilia": "21/06 01:00",
       "stage": "grupos",
       "grupo": "F",
       "mandante": "Tunísia",
@@ -1260,8 +1260,8 @@
     },
     {
       "id": "M073",
-      "kickoffUTC": "2026-06-28T22:00:00Z",
-      "horarioBrasilia": "28/06 19:00",
+      "kickoffUTC": "2026-06-28T19:00:00Z",
+      "horarioBrasilia": "28/06 16:00",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1277,8 +1277,8 @@
     },
     {
       "id": "M074",
-      "kickoffUTC": "2026-06-29T18:00:00Z",
-      "horarioBrasilia": "29/06 15:00",
+      "kickoffUTC": "2026-06-29T17:00:00Z",
+      "horarioBrasilia": "29/06 14:00",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1311,8 +1311,8 @@
     },
     {
       "id": "M076",
-      "kickoffUTC": "2026-06-30T03:00:00Z",
-      "horarioBrasilia": "30/06 00:00",
+      "kickoffUTC": "2026-06-30T01:00:00Z",
+      "horarioBrasilia": "29/06 22:00",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1328,8 +1328,8 @@
     },
     {
       "id": "M077",
-      "kickoffUTC": "2026-06-30T18:00:00Z",
-      "horarioBrasilia": "30/06 15:00",
+      "kickoffUTC": "2026-06-30T17:00:00Z",
+      "horarioBrasilia": "30/06 14:00",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1362,8 +1362,8 @@
     },
     {
       "id": "M079",
-      "kickoffUTC": "2026-07-01T03:00:00Z",
-      "horarioBrasilia": "01/07 00:00",
+      "kickoffUTC": "2026-07-01T01:00:00Z",
+      "horarioBrasilia": "30/06 22:00",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1396,8 +1396,8 @@
     },
     {
       "id": "M081",
-      "kickoffUTC": "2026-07-01T23:00:00Z",
-      "horarioBrasilia": "01/07 20:00",
+      "kickoffUTC": "2026-07-01T20:00:00Z",
+      "horarioBrasilia": "01/07 17:00",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1413,8 +1413,8 @@
     },
     {
       "id": "M082",
-      "kickoffUTC": "2026-07-02T03:00:00Z",
-      "horarioBrasilia": "02/07 00:00",
+      "kickoffUTC": "2026-07-02T00:00:00Z",
+      "horarioBrasilia": "01/07 21:00",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1430,8 +1430,8 @@
     },
     {
       "id": "M083",
-      "kickoffUTC": "2026-07-02T22:00:00Z",
-      "horarioBrasilia": "02/07 19:00",
+      "kickoffUTC": "2026-07-02T19:00:00Z",
+      "horarioBrasilia": "02/07 16:00",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1464,8 +1464,8 @@
     },
     {
       "id": "M085",
-      "kickoffUTC": "2026-07-03T06:00:00Z",
-      "horarioBrasilia": "03/07 03:00",
+      "kickoffUTC": "2026-07-03T03:00:00Z",
+      "horarioBrasilia": "03/07 00:00",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1481,8 +1481,8 @@
     },
     {
       "id": "M086",
-      "kickoffUTC": "2026-07-03T19:00:00Z",
-      "horarioBrasilia": "03/07 16:00",
+      "kickoffUTC": "2026-07-03T18:00:00Z",
+      "horarioBrasilia": "03/07 15:00",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1515,8 +1515,8 @@
     },
     {
       "id": "M088",
-      "kickoffUTC": "2026-07-04T02:30:00Z",
-      "horarioBrasilia": "03/07 23:30",
+      "kickoffUTC": "2026-07-04T01:30:00Z",
+      "horarioBrasilia": "03/07 22:30",
       "stage": "32avos",
       "grupo": null,
       "mandante": "A definir",
@@ -1532,8 +1532,8 @@
     },
     {
       "id": "M089",
-      "kickoffUTC": "2026-07-04T18:00:00Z",
-      "horarioBrasilia": "04/07 15:00",
+      "kickoffUTC": "2026-07-04T17:00:00Z",
+      "horarioBrasilia": "04/07 14:00",
       "stage": "oitavas",
       "grupo": null,
       "mandante": "A definir",
@@ -1583,8 +1583,8 @@
     },
     {
       "id": "M092",
-      "kickoffUTC": "2026-07-06T02:00:00Z",
-      "horarioBrasilia": "05/07 23:00",
+      "kickoffUTC": "2026-07-06T00:00:00Z",
+      "horarioBrasilia": "05/07 21:00",
       "stage": "oitavas",
       "grupo": null,
       "mandante": "A definir",
@@ -1600,8 +1600,8 @@
     },
     {
       "id": "M093",
-      "kickoffUTC": "2026-07-06T20:00:00Z",
-      "horarioBrasilia": "06/07 17:00",
+      "kickoffUTC": "2026-07-06T19:00:00Z",
+      "horarioBrasilia": "06/07 16:00",
       "stage": "oitavas",
       "grupo": null,
       "mandante": "A definir",
@@ -1617,8 +1617,8 @@
     },
     {
       "id": "M094",
-      "kickoffUTC": "2026-07-07T03:00:00Z",
-      "horarioBrasilia": "07/07 00:00",
+      "kickoffUTC": "2026-07-07T00:00:00Z",
+      "horarioBrasilia": "06/07 21:00",
       "stage": "oitavas",
       "grupo": null,
       "mandante": "A definir",
@@ -1651,8 +1651,8 @@
     },
     {
       "id": "M096",
-      "kickoffUTC": "2026-07-07T23:00:00Z",
-      "horarioBrasilia": "07/07 20:00",
+      "kickoffUTC": "2026-07-07T20:00:00Z",
+      "horarioBrasilia": "07/07 17:00",
       "stage": "oitavas",
       "grupo": null,
       "mandante": "A definir",
@@ -1685,8 +1685,8 @@
     },
     {
       "id": "M098",
-      "kickoffUTC": "2026-07-10T22:00:00Z",
-      "horarioBrasilia": "10/07 19:00",
+      "kickoffUTC": "2026-07-10T19:00:00Z",
+      "horarioBrasilia": "10/07 16:00",
       "stage": "quartas",
       "grupo": null,
       "mandante": "A definir",
@@ -1719,8 +1719,8 @@
     },
     {
       "id": "M100",
-      "kickoffUTC": "2026-07-12T02:00:00Z",
-      "horarioBrasilia": "11/07 23:00",
+      "kickoffUTC": "2026-07-12T01:00:00Z",
+      "horarioBrasilia": "11/07 22:00",
       "stage": "quartas",
       "grupo": null,
       "mandante": "A definir",
@@ -1736,8 +1736,8 @@
     },
     {
       "id": "M101",
-      "kickoffUTC": "2026-07-14T20:00:00Z",
-      "horarioBrasilia": "14/07 17:00",
+      "kickoffUTC": "2026-07-14T19:00:00Z",
+      "horarioBrasilia": "14/07 16:00",
       "stage": "semi",
       "grupo": null,
       "mandante": "A definir",
