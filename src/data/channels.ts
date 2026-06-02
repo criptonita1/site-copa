@@ -41,9 +41,9 @@ export const CHANNELS: Record<ChannelId, Channel> = {
     id: "nsports",
     nome: "N Sports",
     abrev: "N SPORTS",
-    delivery: "fechada",
-    kind: "paid",
-    comoAssistir: "TV por assinatura (Sky/Claro/Vivo)",
+    delivery: "youtube",
+    kind: "free",
+    comoAssistir: "YouTube — grátis no canal do Neymar",
     url: "https://www.youtube.com/@NSports",
   },
   globoplay: {
@@ -76,7 +76,12 @@ export const FILTERABLE_CHANNELS: ChannelId[] = [
 ];
 
 /** Default: usuário começa com todos os grátis marcados. */
-export const DEFAULT_USER_CHANNELS: ChannelId[] = ["globo", "sbt", "cazetv"];
+export const DEFAULT_USER_CHANNELS: ChannelId[] = [
+  "globo",
+  "sbt",
+  "cazetv",
+  "nsports",
+];
 
 /** Constantes pré-computadas para evitar `.filter()` a cada render do FilterPanel. */
 export const FREE_CHANNELS: ChannelId[] = FILTERABLE_CHANNELS.filter(
