@@ -25,6 +25,29 @@ export const APP = {
   HASHTAG: "#COPA26",
 } as const;
 
+/**
+ * Bloco de apoio voluntário (footer).
+ * Cripto em destaque; Pix discreto como segunda opção.
+ * Pra gerar QR estático no build: scripts/generate-qr.ts importa daqui.
+ */
+export const SUPPORT = {
+  PIX: {
+    KEY: "1aa7470f-adf7-49ee-bd22-4e31d9daf53d",
+    NAME: "JOAO ONDEVERACOPA", // aparece só na preview inicial; Bacen exibe o nome real cadastrado
+    CITY: "SAO PAULO",
+  },
+  ETH: {
+    ADDRESS: "0x3C6b397CEc1cAe941DFEbB167F4F8c7863313774",
+    NETWORKS: "Ethereum · Base · Arbitrum · Optimism · Polygon",
+    WARNING: "Só EVM. Nada de Solana, BSC ou Bitcoin nesse endereço.",
+  },
+  SOL: {
+    ADDRESS: "2TCFRNttUv1sHPHs9pRpiThd5wXpPf7wHZJEEHXy9ayj",
+    NETWORKS: "Solana mainnet",
+    WARNING: "Só Solana. Não envie de outra rede.",
+  },
+} as const;
+
 export type TimezoneOffset = -2 | -3 | -4 | -5;
 
 export const TIMEZONES: Array<{
