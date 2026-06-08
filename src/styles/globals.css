@@ -2252,3 +2252,110 @@ main {
   outline: 3px solid var(--azul);
   outline-offset: 3px;
 }
+/* ===========================================
+   SUPPORT BLOCK (rodapé — café pro mantenedor)
+   COPIAR é a ação universal. QR é bônus pra mobile com wallet.
+   =========================================== */
+.support {
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1.5px dashed var(--ink-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+.support-msg {
+  font-family: var(--font-archivo), Archivo, sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--paper-2);
+  max-width: 440px;
+}
+.support-msg em {
+  font-style: italic;
+  color: var(--amarelo);
+  font-weight: 600;
+}
+.support-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.support-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 140px;
+}
+.support-item-tag {
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--amarelo);
+}
+.support-qr-wrap {
+  display: block;
+  line-height: 0;
+  text-decoration: none;
+  transition: transform 0.12s ease;
+}
+a.support-qr-wrap:hover {
+  transform: translateY(-2px);
+}
+.support-qr {
+  width: 112px;
+  height: 112px;
+  background: var(--paper);
+  padding: 5px;
+  border-radius: 2px;
+}
+.support-addr {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  color: var(--ink-low);
+  text-transform: lowercase;
+  margin-top: 2px;
+}
+.support-cta {
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  background: var(--amarelo);
+  color: var(--ink);
+  border: 2px solid var(--amarelo);
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.15s ease;
+  text-transform: uppercase;
+  width: 100%;
+  line-height: 1.15;
+}
+.support-cta:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--paper);
+}
+.support-cta:active {
+  transform: translate(1px, 1px);
+  box-shadow: none;
+}
+.support-cta.is-ok {
+  background: var(--verde);
+  color: var(--paper);
+  border-color: var(--verde);
+}
+.support-howto {
+  font-family: var(--font-archivo), Archivo, sans-serif;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-low);
+  max-width: 480px;
+}
+.support-howto em {
+  font-style: normal;
+  color: var(--paper-2);
+}
