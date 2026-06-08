@@ -1,10 +1,12 @@
 import { APP } from "@/config";
 import { StarSvg } from "@/components/icons";
+import { SupportBlock } from "@/components/SupportBlock";
 
 export function Footer() {
   return (
     <footer className="foot">
       <div className="wrap">
+        <SupportBlock />
         <div className="foot-grid">
           <div>
             <div className="stars-5" aria-label="Brasil pentacampeão">
