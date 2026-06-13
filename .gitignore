@@ -8,3 +8,10 @@ out/
 next-env.d.ts
 .turbo/
 tsconfig.tsbuildinfo
+
+# Notas internas / contexto de IA — local only, fora do repo público
+CLAUDE.md
+
+# Scratch de benchmark — não versionar
+scripts/bench-input/
+scripts/bench-output/

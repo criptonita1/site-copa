@@ -12,20 +12,18 @@ const BodySchema = z.object({
 });
 
 /**
- * ⚠️ SECURITY NOTE (audit 2026-05-29):
+ * Defesa em camadas para um endpoint público de captura de lead:
  *
- * 1) Rate-limit em-memory neste isolate só funciona em escala BAIXA. Em prod
- *    multi-region, cada isolate Vercel tem seu próprio Map → atacante distribui
- *    e fura. Migrar pra @upstash/redis assim que tráfego virar real (~100 req/min).
- *    Ver CLAUDE.md → "Próximas ações pendentes".
+ * 1) Rate-limit por IP em janela deslizante. O estado é um Map em-memory por
+ *    isolate — adequado ao volume atual. Para escala multi-region o ideal é
+ *    um store compartilhado (ex.: Redis), já que cada isolate tem o seu Map.
  *
- * 2) RESEND_API_KEY hoje tem "Full Access". Se vazar, atacante pode tudo na
- *    Resend (criar domínios, deletar audiences, spam). Reduzir escopo pra
- *    "Custom: contacts.write" assim que possível (5 min no dashboard Resend).
+ * 2) Credenciais (RESEND_API_KEY) vêm sempre de env var, com o menor escopo
+ *    necessário — nunca versionadas.
  *
- * 3) IP source: preferimos NextRequest.ip (sanitizado pela Vercel) e caímos
- *    pra x-forwarded-for SÓ se ip indefinido (dev/preview). Em outras
- *    plataformas que não sanitizam, forçar fallback é necessário.
+ * 3) IP resolvido com fallback em profundidade: preferimos NextRequest.ip
+ *    (sanitizado pela Vercel) e só caímos pra x-forwarded-for quando indefinido
+ *    (dev/preview). Em plataformas que não sanitizam, validar o fallback.
  */
 const requestsByIp = new Map<string, number[]>();
 const WINDOW_MS = 60_000;
