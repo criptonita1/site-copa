@@ -11,6 +11,7 @@ tsconfig.tsbuildinfo
 
 # Notas internas / contexto de IA — local only, fora do repo público
 CLAUDE.md
+.claude/
 
 # Scratch de benchmark — não versionar
 scripts/bench-input/

@@ -76,6 +76,26 @@ export function tzLabel(offset: TimezoneOffset): string {
 }
 
 /**
+ * Diferença em dias de CALENDÁRIO (no fuso escolhido) entre agora e o kickoff.
+ * 0 = hoje, 1 = amanhã, 2 = depois de amanhã. Diferente de countdownTo().d —
+ * que conta blocos de 24h — aqui o que importa é a virada do dia, pra dizer
+ * "joga HOJE" mesmo faltando 23h e "AMANHÃ" mesmo faltando 25h.
+ */
+export function calendarDaysUntil(
+  iso: string,
+  nowMs: number,
+  offset: TimezoneOffset,
+): number {
+  const target = dayKey(iso, offset);
+  const today = dayKey(new Date(nowMs).toISOString(), offset);
+  const [ty, tm, td] = target.split("-").map(Number);
+  const [ny, nm, nd] = today.split("-").map(Number);
+  return Math.round(
+    (Date.UTC(ty, tm - 1, td) - Date.UTC(ny, nm - 1, nd)) / 86_400_000,
+  );
+}
+
+/**
  * Duração estimada de uma partida: 105 minutos para grupos, 120 para mata-mata
  * (margem pra prorrogação). Depois disso, é "ended".
  */
