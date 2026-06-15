@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useFilters } from "@/hooks/useFilters";
 import { useNow } from "@/hooks/useNow";
+import { useScores } from "@/hooks/useScores";
 import { useTimezone } from "@/hooks/useTimezone";
 import { MATCHES } from "@/lib/matches";
 
@@ -26,6 +27,7 @@ export function PageShell() {
   const now = useNow(1000);
   const { offset, setOffset } = useTimezone();
   const filters = useFilters();
+  const scores = useScores();
   const [tab, setTab] = useState<TabKey>("semana");
 
   // Counts por tab — granularidade de hora pra não recalcular toda hora
@@ -83,7 +85,7 @@ export function PageShell() {
       <div className="br-bg" aria-hidden="true" />
       <main>
         <Nav tzOffset={offset} onTzChange={setOffset} />
-        <Hero nowMs={now} tzOffset={offset} />
+        <Hero nowMs={now} tzOffset={offset} scores={scores} />
         <RollingDivider />
         <Ticker />
         <FilterPanel
@@ -105,6 +107,7 @@ export function PageShell() {
           channels={filters.channels}
           onlyBrazil={filters.onlyBrazil}
           tab={effectiveTab}
+          scores={scores}
         />
         <RollingDivider />
         <ShareSection

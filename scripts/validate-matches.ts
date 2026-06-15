@@ -31,6 +31,27 @@ const StageSchema = z.enum([
 
 const PaisSchema = z.enum(["EUA", "México", "Canadá"]);
 
+const MatchResultSchema = z
+  .object({
+    golsMandante: z.number().int().min(0).max(99),
+    golsVisitante: z.number().int().min(0).max(99),
+    penaltis: z
+      .object({
+        mandante: z.number().int().min(0).max(99),
+        visitante: z.number().int().min(0).max(99),
+      })
+      .optional(),
+  })
+  // Pênaltis só desempata: exigem empate no tempo normal e um vencedor definido.
+  .refine(
+    (r) => !r.penaltis || r.golsMandante === r.golsVisitante,
+    "penaltis só é válido quando golsMandante === golsVisitante (empate)",
+  )
+  .refine(
+    (r) => !r.penaltis || r.penaltis.mandante !== r.penaltis.visitante,
+    "penaltis não pode terminar empatado",
+  );
+
 const MatchSchema = z.object({
   id: z.string().regex(/^M\d{3}$/, "id deve ser MNNN"),
   kickoffUTC: z
@@ -47,6 +68,7 @@ const MatchSchema = z.object({
   canais: z.array(ChannelIdSchema).min(1),
   canaisConfirmados: z.boolean(),
   brasil: z.boolean(),
+  resultado: MatchResultSchema.optional(),
 });
 
 const FileSchema = z.object({

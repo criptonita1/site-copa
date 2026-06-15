@@ -4,8 +4,9 @@ import { memo, useEffect, useRef } from "react";
 import type { TimezoneOffset } from "@/config";
 import { CHANNELS } from "@/data/channels";
 import { Jersey } from "@/lib/jersey";
-import { fmtDay, fmtTime, liveMinute, matchState, tzLabel } from "@/lib/time";
+import { fmtDay, fmtTime, matchState, tzLabel } from "@/lib/time";
 import { whatsappLinkForMatch } from "@/lib/whatsapp";
+import type { MatchScore } from "@/hooks/useScores";
 import type { Match } from "@/types";
 import { ChannelBadge } from "@/components/ChannelBadge";
 import { FlagBrSvg, WhatsappSvg } from "@/components/icons";
@@ -18,6 +19,8 @@ interface MatchCardProps {
   /** rotação aplicada inline pra variar — determinística por ID. */
   rotation?: number;
   compact?: boolean;
+  /** Placar automático (final ou ao vivo). Sobrepõe match.resultado. */
+  score?: MatchScore;
 }
 
 /**
@@ -60,17 +63,25 @@ function MatchCardImpl({
   userChannels,
   rotation,
   compact,
+  score,
 }: MatchCardProps) {
   const state = matchState(match, nowMs);
   const watchable = match.canais.some((c) => userChannels.has(c));
   const cardRef = useRef<HTMLElement | null>(null);
 
+  // Placar da API (final ou ao vivo) tem prioridade; cai pro manual do JSON.
+  const result = score ?? match.resultado;
+  const hasResult = !!result;
+  const live = score ? score.live : state === "live";
+  const isFinal = hasResult && !live;
+
   const classes = ["card"];
   if (match.brasil) classes.push("brazil");
-  if (state === "live") classes.push("live");
-  if (state === "ended") classes.push("ended");
-  if (compact && !match.brasil && state !== "live") classes.push("compact");
-  if (!watchable && state !== "live") classes.push("dim");
+  if (live) classes.push("live");
+  if (state === "ended" && !live) classes.push("ended");
+  if (hasResult) classes.push("has-result");
+  if (compact && !match.brasil && !live) classes.push("compact");
+  if (!watchable && !live && !hasResult) classes.push("dim");
 
   const rot = match.brasil ? 0 : rotation ?? deterministicRotation(match.id);
 
@@ -116,7 +127,7 @@ function MatchCardImpl({
           </div>
         </>
       )}
-      {state === "live" && (
+      {live && (
         <div className="live-stamp">
           <span className="dot" />
           AO VIVO
@@ -144,7 +155,29 @@ function MatchCardImpl({
             </span>
             <span className="name">{match.mandante}</span>
           </div>
-          <span className="x">×</span>
+          {result ? (
+            <div
+              className="score"
+              aria-label={`${match.mandante} ${result.golsMandante}, ${match.visitante} ${result.golsVisitante}${
+                result.penaltis
+                  ? ` (${result.penaltis.mandante} a ${result.penaltis.visitante} nos pênaltis)`
+                  : ""
+              }`}
+            >
+              <span className="line">
+                <span className="g">{result.golsMandante}</span>
+                <span className="sx">×</span>
+                <span className="g">{result.golsVisitante}</span>
+              </span>
+              {result.penaltis && (
+                <span className="pens">
+                  {result.penaltis.mandante}-{result.penaltis.visitante} pen.
+                </span>
+              )}
+            </div>
+          ) : (
+            <span className="x">×</span>
+          )}
           <div className="side">
             <span className="jersey">
               <Jersey team={match.visitante} size={54} />
@@ -153,25 +186,28 @@ function MatchCardImpl({
           </div>
         </div>
 
-        {state === "live" && (
-          <div className="minute">
-            ⚽ {liveMinute(match, nowMs)}&apos; · em campo
+        {result ? (
+          <div className="time-zone result">
+            <div className="venue">
+              <b>{match.estadio}</b>
+              {match.cidade}
+            </div>
+          </div>
+        ) : (
+          <div className="time-zone">
+            <div className="time">
+              {time}
+              <span className="tz">{tz}</span>
+            </div>
+            <div className="venue">
+              <b>{match.estadio}</b>
+              {match.cidade}
+            </div>
           </div>
         )}
 
-        <div className="time-zone">
-          <div className="time">
-            {time}
-            <span className="tz">{tz}</span>
-          </div>
-          <div className="venue">
-            <b>{match.estadio}</b>
-            {match.cidade}
-          </div>
-        </div>
-
         <div className="channels">
-          <span className="ch-lbl">passa em →</span>
+          <span className="ch-lbl">{isFinal ? "passou em →" : "passa em →"}</span>
           {match.canais.map((id) => CHANNELS[id] && <ChannelBadge key={id} id={id} />)}
           <a
             className="badge paid"
@@ -196,12 +232,25 @@ function MatchCardImpl({
  * Pros 99+ cards distantes, ignoramos atualizações de segundo a segundo —
  * isso elimina o re-render em cascata dos 104 cards a cada tick.
  */
+function sameScore(a?: MatchScore, b?: MatchScore): boolean {
+  if (!a && !b) return true;
+  if (!a || !b) return false;
+  return (
+    a.golsMandante === b.golsMandante &&
+    a.golsVisitante === b.golsVisitante &&
+    a.live === b.live &&
+    a.penaltis?.mandante === b.penaltis?.mandante &&
+    a.penaltis?.visitante === b.penaltis?.visitante
+  );
+}
+
 export const MatchCard = memo(MatchCardImpl, (prev, next) => {
   if (prev.match !== next.match) return false;
   if (prev.tzOffset !== next.tzOffset) return false;
   if (prev.userChannels !== next.userChannels) return false;
   if (prev.compact !== next.compact) return false;
   if (prev.rotation !== next.rotation) return false;
+  if (!sameScore(prev.score, next.score)) return false;
   // Compara slices de tempo relevantes — re-render só quando importar
   const prevSlice = relevantTimeSlice(prev.match, prev.nowMs);
   const nextSlice = relevantTimeSlice(next.match, next.nowMs);

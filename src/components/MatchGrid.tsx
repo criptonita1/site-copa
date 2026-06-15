@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import type { TimezoneOffset } from "@/config";
 import { MATCHES } from "@/lib/matches";
+import type { MatchScore } from "@/hooks/useScores";
 import type { ChannelId, Match } from "@/types";
 import { MatchCard } from "@/components/MatchCard";
 import { FieldBg } from "@/components/FieldBg";
@@ -14,6 +15,8 @@ interface MatchGridProps {
   channels: Set<ChannelId>;
   onlyBrazil: boolean;
   tab: TabKey;
+  /** Placares automáticos (final + ao vivo) por match.id. */
+  scores?: Record<string, MatchScore>;
 }
 
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
@@ -53,6 +56,7 @@ export function MatchGrid({
   channels,
   onlyBrazil,
   tab,
+  scores,
 }: MatchGridProps) {
   // Granularidade de hora — evita refiltrar a cada segundo
   const hourKey = Math.floor(nowMs / (60 * 60 * 1000));
@@ -105,6 +109,7 @@ export function MatchGrid({
                 tzOffset={tzOffset}
                 userChannels={channels}
                 compact={i % 4 === 3}
+                score={scores?.[m.id]}
               />
             ))
           )}

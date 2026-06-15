@@ -38,6 +38,17 @@ export type Stage =
 
 export type HostCountry = "EUA" | "México" | "Canadá";
 
+export interface MatchResult {
+  /** Gols no tempo normal + prorrogação, se houve. */
+  golsMandante: number;
+  golsVisitante: number;
+  /** Pênaltis: presente só em mata-mata empatado no tempo normal. */
+  penaltis?: {
+    mandante: number;
+    visitante: number;
+  };
+}
+
 export interface Match {
   id: string;
   kickoffUTC: string;
@@ -53,6 +64,8 @@ export interface Match {
   canais: ChannelId[];
   canaisConfirmados: boolean;
   brasil: boolean;
+  /** Placar final — presente só depois do jogo acabar. Vira registro do resultado. */
+  resultado?: MatchResult;
 }
 
 export interface MatchesFile {

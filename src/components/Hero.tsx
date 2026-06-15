@@ -16,10 +16,12 @@ import { ArrowDownSvg } from "@/components/icons";
 import { GoalNet } from "@/components/GoalNet";
 import { Countdown } from "@/components/Countdown";
 import { ChannelBadge } from "@/components/ChannelBadge";
+import type { MatchScore } from "@/hooks/useScores";
 
 interface HeroProps {
   nowMs: number;
   tzOffset: TimezoneOffset;
+  scores?: Record<string, MatchScore>;
 }
 
 const COUNTDOWN_CELLS: Array<{ key: string; lab: string }> = [
@@ -43,7 +45,7 @@ function CountdownPlaceholder() {
   );
 }
 
-export function Hero({ nowMs, tzOffset }: HeroProps) {
+export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
   // nowMs===0 = ainda não hidratado (SSR e 1º render do client). Tratamos como
   // "carregando" pra não renderizar estado AO VIVO nem contagem com base em 1970.
   const hydrated = nowMs > 0;
@@ -65,6 +67,7 @@ export function Hero({ nowMs, tzOffset }: HeroProps) {
   }, [minuteMs, hydrated]);
 
   const subject = isBrazil ? "BRASIL" : "A COPA";
+  const focusScore = focus ? scores?.[focus.id] : undefined;
   const calDays =
     focus && hydrated
       ? calendarDaysUntil(focus.kickoffUTC, minuteMs, tzOffset)
@@ -211,7 +214,15 @@ export function Hero({ nowMs, tzOffset }: HeroProps) {
                   </span>
                   <span className="country">{focus.mandante.toUpperCase()}</span>
                 </div>
-                <span className="x">×</span>
+                {focusScore ? (
+                  <span className="hero-score">
+                    {focusScore.golsMandante}
+                    <i>×</i>
+                    {focusScore.golsVisitante}
+                  </span>
+                ) : (
+                  <span className="x">×</span>
+                )}
                 <div className="jersey-wrap right">
                   <span className="jersey">
                     <Jersey team={focus.visitante} size={62} />
