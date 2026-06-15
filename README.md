@@ -1,11 +1,13 @@
 # Onde Ver a Copa — 2026
 
-Site estático mobile-first que mostra ao torcedor brasileiro onde assistir cada jogo da Copa do Mundo 2026 (Globo, SBT, CazéTV, SporTV, N Sports). Funil pra divulgar o [Onchain Cup](https://onchaincup.com).
+Site mobile-first que mostra ao torcedor onde assistir cada jogo da Copa do Mundo 2026 (Globo, SBT, CazéTV, SporTV, N Sports), com **placar ao vivo automático** e interface **bilíngue PT/EN**. Funil pra divulgar o [Onchain Cup](https://onchaincup.com).
 
 ## Stack
 
 - **Next.js 14** (App Router) + **TypeScript** + **Tailwind**
-- **Vercel** edge runtime pra `/api/lembrete`
+- **Vercel** edge runtime (`/api/lembrete`, `/api/scores`)
+- **Placar ao vivo + resultado final** automáticos via API pública da ESPN — pull cacheado na borda (60s), sem banco e sem cron
+- **i18n PT/EN** próprio (toggle no topo, default PT; nomes de seleção, cidades e datas localizados) — zero dependência externa
 - **Resend** pra captura de email otimista
 - **Vercel Analytics** built-in
 - **104 jogos** validados via Zod no `prebuild`
@@ -43,33 +45,39 @@ src/
     channels.ts                # 7 canais de TV
     teams.ts                   # 48 seleções + cores das camisas
     matches.json               # 104 jogos (fonte da verdade)
+  i18n/
+    dict.ts                    # STRINGS pt/en + teamName/cityName + datas
+    LangProvider.tsx           # contexto + useT() (default pt, localStorage)
   lib/
-    time.ts                    # conversão de fuso + matchState
-    matches.ts                 # helpers (nextBrazil, etc.)
+    time.ts                    # conversão de fuso + matchState (+ lang nas datas)
+    matches.ts                 # helpers (currentOrNextBrazil, etc.)
     ics.ts                     # gerador .ics
-    share-card.ts              # canvas 1080×1920 (dynamic import)
-    whatsapp.ts                # links wa.me
+    share-card.ts              # canvas 1080×1920 (dynamic import, bilíngue)
+    whatsapp.ts                # links wa.me (bilíngue)
     jersey.tsx                 # SVG das camisas
     storage.ts                 # localStorage SSR-safe
     utm.ts                     # UTM helper
   hooks/
     useNow.ts                  # tick global 1s
+    useScores.ts               # poll /api/scores (placar final + ao vivo)
     useFilters.ts              # canais + Brasil
     useTimezone.ts             # fuso BRT/AMT/ACT/FNT
   components/
     Nav, Hero, Countdown, GoalNet, RollingDivider, FieldBg,
     Ticker, FilterPanel, StageTabs, MatchGrid, MatchCard,
     ChannelBadge, ShareSection, StoryPreview, EmailCapture,
-    PromoSlot, Footer, PageShell
+    PromoSlot, Footer, SupportBlock, PageShell
   app/
     layout.tsx                 # fonts + metadata + JSON-LD
     page.tsx                   # = <PageShell />
     api/lembrete/route.ts      # edge — recebe email
+    api/scores/route.ts        # edge — placar ao vivo (ESPN, cache 60s)
     opengraph-image.tsx        # OG dinâmico
     icon.tsx                   # favicon
     not-found.tsx              # 404
     loading.tsx                # skeleton
     error.tsx                  # boundary
+    privacidade/               # política LGPD bilíngue (page + PrivacyDoc)
     sitemap.ts / robots.ts
 scripts/
   validate-matches.ts          # roda no prebuild
