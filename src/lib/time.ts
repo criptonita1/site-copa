@@ -5,22 +5,7 @@
 
 import type { TimezoneOffset } from "@/config";
 import type { Match, MatchState } from "@/types";
-
-const MONTH_ABBR = [
-  "JAN",
-  "FEV",
-  "MAR",
-  "ABR",
-  "MAI",
-  "JUN",
-  "JUL",
-  "AGO",
-  "SET",
-  "OUT",
-  "NOV",
-  "DEZ",
-];
-const WEEKDAY_ABBR = ["DOM", "SEG", "TER", "QUA", "QUI", "SEX", "SÁB"];
+import { MONTH_ABBR, WEEKDAY_ABBR, type Lang } from "@/i18n/dict";
 
 function asDate(iso: string): Date {
   return new Date(iso);
@@ -40,21 +25,29 @@ export function fmtTime(iso: string, offset: TimezoneOffset): string {
   );
 }
 
-export function fmtDay(iso: string, offset: TimezoneOffset): string {
+export function fmtDay(
+  iso: string,
+  offset: TimezoneOffset,
+  lang: Lang = "pt",
+): string {
   const d = shifted(iso, offset);
   return (
-    WEEKDAY_ABBR[d.getUTCDay()] +
+    WEEKDAY_ABBR[lang][d.getUTCDay()] +
     " " +
     String(d.getUTCDate()).padStart(2, "0") +
     " " +
-    MONTH_ABBR[d.getUTCMonth()]
+    MONTH_ABBR[lang][d.getUTCMonth()]
   );
 }
 
-export function fmtShortDay(iso: string, offset: TimezoneOffset): string {
+export function fmtShortDay(
+  iso: string,
+  offset: TimezoneOffset,
+  lang: Lang = "pt",
+): string {
   const d = shifted(iso, offset);
   return (
-    WEEKDAY_ABBR[d.getUTCDay()] +
+    WEEKDAY_ABBR[lang][d.getUTCDay()] +
     " " +
     String(d.getUTCDate()).padStart(2, "0")
   );

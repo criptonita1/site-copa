@@ -9,19 +9,44 @@ import { CHANNELS } from "@/data/channels";
 import type { Match, ChannelId } from "@/types";
 import { fmtTime, fmtDay, tzLabel } from "@/lib/time";
 import { selfUrlWithUtm } from "@/lib/utm";
+import { teamName, type Lang } from "@/i18n/dict";
 import type { TimezoneOffset } from "@/config";
 
 export interface RenderShareCardOptions {
   matches: Match[];
   userChannels: Set<ChannelId>;
   tzOffset: TimezoneOffset;
+  lang: Lang;
 }
 
 export async function renderShareCard({
   matches,
   userChannels,
   tzOffset,
+  lang,
 }: RenderShareCardOptions): Promise<Blob> {
+  const CARD =
+    lang === "en"
+      ? {
+          brandPre: "WHERE TO WATCH THE ",
+          brandCup: "CUP",
+          eyebrow: "★ MY SCHEDULE · 2026 CUP",
+          line1: "THE GAMES",
+          line2: "I'LL ",
+          italic: "WATCH",
+          watch: "WATCH",
+          madeBy: `made by ${APP.AUTHOR_NAME}`,
+        }
+      : {
+          brandPre: "ONDE VER A ",
+          brandCup: "COPA",
+          eyebrow: "★ MINHA AGENDA · COPA 2026",
+          line1: "OS JOGOS",
+          line2: "QUE ",
+          italic: "vou ver",
+          watch: "ASSISTIR",
+          madeBy: `feito por ${APP.AUTHOR_NAME}`,
+        };
   // Espera fontes carregarem
   if (typeof document !== "undefined" && "fonts" in document) {
     try {
@@ -67,11 +92,11 @@ export async function renderShareCard({
   ctx.fillStyle = "#0d0d0d";
   ctx.font = '400 38px "Bungee", sans-serif';
   ctx.textBaseline = "middle";
-  ctx.fillText("ONDE VER A ", 136, bandH + 90);
-  const w1 = ctx.measureText("ONDE VER A ").width;
+  ctx.fillText(CARD.brandPre, 136, bandH + 90);
+  const w1 = ctx.measureText(CARD.brandPre).width;
   ctx.fillStyle = "#00A045";
-  ctx.fillText("COPA", 136 + w1, bandH + 90);
-  const w2 = ctx.measureText("COPA").width;
+  ctx.fillText(CARD.brandCup, 136 + w1, bandH + 90);
+  const w2 = ctx.measureText(CARD.brandCup).width;
   ctx.fillStyle = "#1D3FA1";
   ctx.font = '700 44px "Caveat", cursive';
   ctx.fillText("!", 136 + w1 + w2 + 6, bandH + 90);
@@ -79,22 +104,22 @@ export async function renderShareCard({
   // ---- Eyebrow
   ctx.fillStyle = "#6b5a3e";
   ctx.font = '700 22px "Space Mono", monospace';
-  ctx.fillText("★ MINHA AGENDA · COPA 2026", 96, bandH + 200);
+  ctx.fillText(CARD.eyebrow, 96, bandH + 200);
 
   // ---- Headline
   ctx.fillStyle = "#0d0d0d";
   ctx.font = '400 140px "Anton", sans-serif';
   ctx.textBaseline = "alphabetic";
-  ctx.fillText("OS JOGOS", 96, bandH + 340);
-  ctx.fillText("QUE ", 96, bandH + 470);
-  const wQue = ctx.measureText("QUE ").width;
+  ctx.fillText(CARD.line1, 96, bandH + 340);
+  ctx.fillText(CARD.line2, 96, bandH + 470);
+  const wQue = ctx.measureText(CARD.line2).width;
   // "vou ver" — italic bold (Caveat foi removida do projeto)
   ctx.save();
   ctx.translate(96 + wQue + 30, bandH + 470);
   ctx.rotate(-0.06);
   ctx.fillStyle = "#1D3FA1";
   ctx.font = 'italic 900 110px "Archivo Black", "Archivo", sans-serif';
-  ctx.fillText("vou ver", 0, 0);
+  ctx.fillText(CARD.italic, 0, 0);
   ctx.restore();
 
   // underline amarelo (com lineCap round pra ponta limpa)
@@ -195,7 +220,7 @@ export async function renderShareCard({
     const time = fmtTime(g.kickoffUTC, tzOffset);
     // Mantém o mês — "DOM 19 JUL" em vez de "DOM 19" ambíguo
     // (dois dias 19 na Copa: 19/jun e 19/jul → mesma label sem o mês).
-    const day = fmtDay(g.kickoffUTC, tzOffset);
+    const day = fmtDay(g.kickoffUTC, tzOffset, lang);
     const userVisibleChannels = g.canais.filter((c) => userChannels.has(c));
     const chsLabel = userVisibleChannels
       .map((c) => CHANNELS[c]?.nome ?? c)
@@ -218,7 +243,11 @@ export async function renderShareCard({
 
     // TEAMS (protagonista, fonte maior)
     ctx.fillStyle = "#0d0d0d";
-    const teamsText = teamsLabel(ctx, g.mandante, g.visitante);
+    const teamsText = teamsLabel(
+      ctx,
+      teamName(g.mandante, lang),
+      teamName(g.visitante, lang),
+    );
     ctx.font = TEAMS_FONT;
     ctx.fillText(teamsText, TEAMS_X, y - 6);
 
@@ -259,7 +288,7 @@ export async function renderShareCard({
     ctx.font = '400 24px "Bungee", sans-serif';
     ctx.textBaseline = "middle";
     ctx.textAlign = "left";
-    ctx.fillText("ASSISTIR", TAG_X + 4, tagY + tagH / 2);
+    ctx.fillText(CARD.watch, TAG_X + 4, tagY + tagH / 2);
     ctx.restore();
     ctx.textAlign = "left";
     ctx.textBaseline = "alphabetic";
@@ -287,7 +316,7 @@ export async function renderShareCard({
   // assinatura de autoria (não é o promo)
   ctx.font = '400 18px "Space Mono", monospace';
   ctx.fillStyle = "#b8a780";
-  ctx.fillText(`feito por ${APP.AUTHOR_NAME}`, 96, H - 40);
+  ctx.fillText(CARD.madeBy, 96, H - 40);
   ctx.fillStyle = "#00A045";
   ctx.font = '400 54px "Bungee", sans-serif';
   ctx.textAlign = "right";
@@ -334,8 +363,14 @@ export async function shareCard(opts: RenderShareCardOptions): Promise<void> {
   const shareUrl = selfUrlWithUtm("png", "figurinha");
   const data = {
     files: [file],
-    title: "Minha agenda da Copa 2026",
-    text: `Os jogos que eu vou ver na Copa 2026 — ${shareUrl}`,
+    title:
+      opts.lang === "en"
+        ? "My 2026 World Cup schedule"
+        : "Minha agenda da Copa 2026",
+    text:
+      opts.lang === "en"
+        ? `The games I'm watching at the 2026 World Cup — ${shareUrl}`
+        : `Os jogos que eu vou ver na Copa 2026 — ${shareUrl}`,
   };
   if (nav.share && (!nav.canShare || nav.canShare(data))) {
     try {

@@ -1,19 +1,13 @@
 "use client";
 
+import { LangProvider, useT } from "@/i18n/LangProvider";
+
 /**
  * Error boundary do App Router. Pega exceções no render do client.
  * Mantém branding mínimo + botão pra tentar de novo.
  */
-export default function Error({
-  error,
-  reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) {
-  if (typeof console !== "undefined") {
-    console.error("[app-error]", error.message);
-  }
+function ErrorContent({ reset }: { reset: () => void }) {
+  const { t } = useT();
   return (
     <main
       style={{
@@ -36,7 +30,7 @@ export default function Error({
             textTransform: "uppercase",
           }}
         >
-          ★ Bola na trave
+          {t("err.kicker")}
         </div>
         <h1
           style={{
@@ -47,10 +41,10 @@ export default function Error({
             color: "var(--red-dark)",
           }}
         >
-          DEU RUIM
+          {t("err.h1")}
         </h1>
         <p style={{ maxWidth: 420, margin: "20px auto 28px", color: "var(--ink-soft)" }}>
-          Aconteceu um erro inesperado por aqui. Tenta de novo — se persistir, é com a gente.
+          {t("err.msg")}
         </p>
         <button
           onClick={reset}
@@ -69,9 +63,26 @@ export default function Error({
             cursor: "pointer",
           }}
         >
-          TENTAR DE NOVO
+          {t("err.retry")}
         </button>
       </div>
     </main>
+  );
+}
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  if (typeof console !== "undefined") {
+    console.error("[app-error]", error.message);
+  }
+  return (
+    <LangProvider>
+      <ErrorContent reset={reset} />
+    </LangProvider>
   );
 }

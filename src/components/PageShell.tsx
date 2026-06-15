@@ -18,6 +18,7 @@ import { ShareSection } from "@/components/ShareSection";
 import { EmailCapture } from "@/components/EmailCapture";
 import { PromoSlot } from "@/components/PromoSlot";
 import { Footer } from "@/components/Footer";
+import { LangProvider } from "@/i18n/LangProvider";
 
 /**
  * Wrapper único client-side. Mantém todos os estados num só lugar.
@@ -81,7 +82,7 @@ export function PageShell() {
   }, [filters.channels, filters.onlyBrazil, effectiveTab, hourKey]);
 
   return (
-    <>
+    <LangProvider>
       <div className="br-bg" aria-hidden="true" />
       <main>
         <Nav tzOffset={offset} onTzChange={setOffset} />
@@ -120,6 +121,6 @@ export function PageShell() {
         <PromoSlot variant="post-email" />
         <Footer />
       </main>
-    </>
+    </LangProvider>
   );
 }

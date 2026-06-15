@@ -1,6 +1,9 @@
+"use client";
+
 import { APP } from "@/config";
 import { ArrowDownSvg } from "@/components/icons";
 import { withUtm } from "@/lib/utm";
+import { useT } from "@/i18n/LangProvider";
 
 /**
  * Slot nativo (não banner) que divulga o app dono. Aparece em duas variantes:
@@ -13,23 +16,22 @@ interface PromoSlotProps {
   variant?: Variant;
 }
 
-const COPY: Record<Variant, { headline: string; body: string; cta: string; utm: string }> = {
-  default: {
-    headline: APP.PROMO_NAME,
-    body: APP.PROMO_TAGLINE,
-    cta: "CONHECER",
-    utm: "promo-default",
-  },
-  "post-email": {
-    headline: "TÁ AMARRADO COM A COPA?",
-    body: `Junta a galera pra viver a Copa no ${APP.PROMO_NAME}. Tudo onchain, sem complicação.`,
-    cta: "ABRIR O APP",
-    utm: "promo-post-email",
-  },
-};
-
 export function PromoSlot({ variant = "default" }: PromoSlotProps) {
-  const copy = COPY[variant];
+  const { t } = useT();
+  const copy =
+    variant === "post-email"
+      ? {
+          headline: t("promo.peHead"),
+          body: t("promo.peBody", { app: APP.PROMO_NAME }),
+          cta: t("promo.peCta"),
+          utm: "promo-post-email",
+        }
+      : {
+          headline: APP.PROMO_NAME,
+          body: t("promo.defaultTagline"),
+          cta: t("promo.cta"),
+          utm: "promo-default",
+        };
   return (
     <div className="wrap">
       <div className={`promo-slot promo-slot--${variant}`}>

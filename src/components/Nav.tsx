@@ -2,6 +2,7 @@
 
 import { APP, TIMEZONES, type TimezoneOffset } from "@/config";
 import { BallSvg, FlagBrSvg } from "@/components/icons";
+import { useT } from "@/i18n/LangProvider";
 
 interface NavProps {
   tzOffset: TimezoneOffset;
@@ -9,6 +10,7 @@ interface NavProps {
 }
 
 export function Nav({ tzOffset, onTzChange }: NavProps) {
+  const { t, lang, setLang } = useT();
   return (
     <nav className="nav">
       <a href="#" className="mark" aria-label={APP.SITE_NAME}>
@@ -16,15 +18,33 @@ export function Nav({ tzOffset, onTzChange }: NavProps) {
           <BallSvg />
         </span>
         <span className="word">
-          ONDE VER A <span>COPA</span>
+          {t("brand.pre")} <span>{t("brand.cup")}</span>
           <i>!</i>
         </span>
         <FlagBrSvg className="flag-pin" />
       </a>
       <div className="nav-right">
+        <div className="lang-toggle" role="group" aria-label={t("nav.lang")}>
+          <button
+            type="button"
+            className={lang === "pt" ? "active" : ""}
+            aria-pressed={lang === "pt"}
+            onClick={() => setLang("pt")}
+          >
+            PT
+          </button>
+          <button
+            type="button"
+            className={lang === "en" ? "active" : ""}
+            aria-pressed={lang === "en"}
+            onClick={() => setLang("en")}
+          >
+            EN
+          </button>
+        </div>
         <select
           className="tz-select"
-          aria-label="Fuso horário"
+          aria-label={t("nav.tz")}
           value={tzOffset}
           onChange={(e) => onTzChange(Number(e.target.value) as TimezoneOffset)}
         >

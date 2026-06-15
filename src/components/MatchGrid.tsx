@@ -8,6 +8,7 @@ import type { ChannelId, Match } from "@/types";
 import { MatchCard } from "@/components/MatchCard";
 import { FieldBg } from "@/components/FieldBg";
 import { TABS, type TabKey } from "@/components/StageTabs";
+import { useT } from "@/i18n/LangProvider";
 
 interface MatchGridProps {
   nowMs: number;
@@ -58,6 +59,7 @@ export function MatchGrid({
   tab,
   scores,
 }: MatchGridProps) {
+  const { t } = useT();
   // Granularidade de hora — evita refiltrar a cada segundo
   const hourKey = Math.floor(nowMs / (60 * 60 * 1000));
 
@@ -73,19 +75,19 @@ export function MatchGrid({
       <FieldBg />
       <div className="wrap">
         <div className="games-head">
-          <h3>O ÁLBUM DA COPA</h3>
+          <h3>{t("grid.title")}</h3>
           <div className="lgnd">
             <span>
               <span className="sw bra" />
-              BRASIL
+              {t("grid.legendBrazil")}
             </span>
             <span>
               <span className="sw free" />
-              GRÁTIS
+              {t("grid.legendFree")}
             </span>
             <span>
               <span className="sw paid" />
-              PAGO
+              {t("grid.legendPaid")}
             </span>
           </div>
         </div>
@@ -94,10 +96,10 @@ export function MatchGrid({
             <div className="games-empty">
               <p>
                 {onlyBrazil
-                  ? "Brasil não joga nessa fase ainda — confere as outras abas ou desativa o filtro 'só Brasil'."
+                  ? t("grid.emptyBrazil")
                   : channels.size === 0
-                    ? "Marque pelo menos um canal acima pra ver onde passa cada jogo."
-                    : "Nenhum jogo nessa fase passa nos canais que você tem. Tente outra aba ou ative mais canais."}
+                    ? t("grid.emptyNoChannels")
+                    : t("grid.emptyNoMatch")}
               </p>
             </div>
           ) : (

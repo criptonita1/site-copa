@@ -9,6 +9,7 @@ import { downloadIcs } from "@/lib/ics";
 import type { ChannelId } from "@/types";
 import { StoryPreview } from "@/components/StoryPreview";
 import { DownloadSvg, LinkSvg, WhatsappSvg } from "@/components/icons";
+import { useT } from "@/i18n/LangProvider";
 
 interface ShareSectionProps {
   tzOffset: TimezoneOffset;
@@ -23,6 +24,7 @@ export function ShareSection({
   onlyBrazil,
   nowMs,
 }: ShareSectionProps) {
+  const { t, lang } = useT();
   const [copyState, setCopyState] = useState<"idle" | "ok">("idle");
   const [downloading, setDownloading] = useState(false);
 
@@ -56,6 +58,7 @@ export function ShareSection({
         matches: watchableUpcoming,
         userChannels: channels,
         tzOffset,
+        lang,
       });
     } finally {
       setDownloading(false);
@@ -73,6 +76,7 @@ export function ShareSection({
         matches: watchableUpcoming,
         userChannels: channels,
         tzOffset,
+        lang,
       });
     } catch {
       /* ignore */
@@ -99,27 +103,23 @@ export function ShareSection({
               className="kicker"
               style={{ color: "var(--amarelo)", marginBottom: 14 }}
             >
-              ★ STORY · 1080 × 1920 · PRA POSTAR
+              {t("share.kicker")}
             </div>
             <h2>
-              JOGA NO <em>grupo do zap</em>.
+              {t("share.h2a")} <em>{t("share.h2em")}</em>.
             </h2>
-            <p>
-              Geramos uma figurinha-resumo dos jogos que você escolheu, no seu fuso, com
-              canal e tudo. Baixa, posta, manda no grupo da família — o tio que ainda
-              fala &ldquo;vai passar na Bandeirantes?&rdquo; agradece.
-            </p>
+            <p>{t("share.desc")}</p>
             <div className="share-actions">
               <button
                 className="btn-primary"
                 onClick={onDownload}
                 disabled={downloading}
               >
-                {downloading ? "GERANDO…" : "BAIXAR FIGURINHA"}
+                {downloading ? t("share.generating") : t("share.download")}
                 <DownloadSvg />
               </button>
               <button className="btn-ghost" onClick={onShare}>
-                MANDA NO ZAP
+                {t("share.whatsapp")}
                 <WhatsappSvg />
               </button>
               <button
@@ -131,13 +131,13 @@ export function ShareSection({
                   });
                   downloadIcs(watchableUpcoming, "copa-2026.ics");
                 }}
-                title="Baixa um .ics com seus jogos pra Google Agenda / Apple Calendário"
+                title={t("share.calTitle")}
               >
-                ADICIONAR AO CALENDÁRIO
+                {t("share.calendar")}
                 <DownloadSvg />
               </button>
               <button className="btn-ghost" onClick={onCopyLink}>
-                {copyState === "ok" ? "✓ COPIADO" : "COPIAR LINK"}
+                {copyState === "ok" ? t("share.copied") : t("share.copyLink")}
                 <LinkSvg />
               </button>
             </div>

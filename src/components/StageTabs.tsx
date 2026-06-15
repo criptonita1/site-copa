@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/i18n/LangProvider";
 import type { Stage } from "@/types";
 
 /**
@@ -39,8 +40,9 @@ interface StageTabsProps {
 }
 
 export function StageTabs({ active, onChange, counts }: StageTabsProps) {
+  const { t } = useT();
   return (
-    <div className="stage-tabs" role="tablist" aria-label="Filtrar por fase">
+    <div className="stage-tabs" role="tablist" aria-label={t("tab.aria")}>
       {TABS.map((tab) => {
         const isActive = active === tab.key;
         const count = counts[tab.key] ?? 0;
@@ -52,7 +54,7 @@ export function StageTabs({ active, onChange, counts }: StageTabsProps) {
             className={`stage-tab${isActive ? " active" : ""}`}
             onClick={() => onChange(tab.key)}
           >
-            <span className="stage-tab-label">{tab.label}</span>
+            <span className="stage-tab-label">{t(`tab.${tab.key}`)}</span>
             <span className="stage-tab-count">{count}</span>
           </button>
         );

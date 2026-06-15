@@ -204,6 +204,32 @@ main {
   box-shadow: 4px 4px 0 var(--ink);
 }
 
+/* Toggle de idioma PT/EN */
+.lang-toggle {
+  display: inline-flex;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.lang-toggle button {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 8px 9px;
+  background: var(--paper);
+  color: var(--ink);
+  border: none;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+.lang-toggle button + button {
+  border-left: 2px solid var(--ink);
+}
+.lang-toggle button.active {
+  background: var(--ink);
+  color: var(--amarelo);
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -388,8 +414,7 @@ main {
   box-shadow: 8px 8px 0 var(--verde);
   transform: rotate(-1.2deg);
 }
-.hero-match::before {
-  content: "PRÓXIMO JOGO";
+.hero-match-tag {
   position: absolute;
   top: -12px;
   left: 18px;
@@ -564,10 +589,6 @@ main {
 
 .hero-match.is-live {
   box-shadow: 8px 8px 0 var(--red);
-}
-.hero-match.is-live::before {
-  content: "AGORA · AO VIVO";
-  background: var(--red);
 }
 /* placar ao vivo entre as camisas do hero AGORA */
 .hero-match .hero-score {
@@ -2023,8 +2044,7 @@ main {
   box-shadow: 8px 8px 0 var(--verde);
   position: relative;
 }
-.email-inner::before {
-  content: "★ PRA NÃO PERDER";
+.email-tag {
   position: absolute;
   top: -14px;
   left: 24px;

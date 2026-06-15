@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { track } from "@vercel/analytics";
+import { useT } from "@/i18n/LangProvider";
 
 export function EmailCapture() {
+  const { t, lang } = useT();
   const [state, setState] = useState<"idle" | "loading" | "ok">("idle");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState(""); // honeypot — bot preenche
@@ -31,14 +33,12 @@ export function EmailCapture() {
     <section className="email-section">
       <div className="wrap">
         <div className="email-inner">
+          <span className="email-tag">{t("email.tag")}</span>
           <div className="email-copy">
             <h3>
-              UM LEMBRETE <em>antes</em> DE CADA JOGO DO BRASIL.
+              {t("email.h3a")} <em>{t("email.h3em")}</em> {t("email.h3b")}
             </h3>
-            <p>
-              Manda 2 horas antes, com canal e horário no seu fuso. Sem spam, só
-              lembrete antes do jogo. Sem firula.
-            </p>
+            <p>{t("email.desc")}</p>
             <p
               style={{
                 fontSize: 12,
@@ -47,14 +47,25 @@ export function EmailCapture() {
                 lineHeight: 1.4,
               }}
             >
-              Ao se inscrever, você concorda com a nossa{" "}
-              <a
-                href="/privacidade"
-                style={{ textDecoration: "underline", color: "inherit" }}
-              >
-                política de privacidade
-              </a>
-              . Cancela quando quiser.
+              {(() => {
+                const legal = t("email.legal");
+                const phrase =
+                  lang === "en" ? "privacy policy" : "política de privacidade";
+                const idx = legal.indexOf(phrase);
+                if (idx === -1) return legal;
+                return (
+                  <>
+                    {legal.slice(0, idx)}
+                    <a
+                      href="/privacidade"
+                      style={{ textDecoration: "underline", color: "inherit" }}
+                    >
+                      {phrase}
+                    </a>
+                    {legal.slice(idx + phrase.length)}
+                  </>
+                );
+              })()}
             </p>
           </div>
           <form
@@ -62,14 +73,14 @@ export function EmailCapture() {
             onSubmit={onSubmit}
           >
             {state === "ok" ? (
-              <span className="done">★ TÁ ANOTADO! CHEGA ANTES DO 1º TOQUE</span>
+              <span className="done">{t("email.success")}</span>
             ) : (
               <>
                 <input
                   type="email"
                   required
-                  placeholder="seu@email.com — sem zoeira"
-                  aria-label="Email"
+                  placeholder={t("email.placeholder")}
+                  aria-label={t("email.aria")}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   name="email"
@@ -88,7 +99,7 @@ export function EmailCapture() {
                   aria-hidden="true"
                 />
                 <button type="submit" disabled={state === "loading"}>
-                  {state === "loading" ? "..." : "ME AVISA"}
+                  {state === "loading" ? "..." : t("email.submit")}
                 </button>
               </>
             )}

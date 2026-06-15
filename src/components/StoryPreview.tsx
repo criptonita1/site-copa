@@ -5,6 +5,8 @@ import type { TimezoneOffset } from "@/config";
 import { CHANNELS } from "@/data/channels";
 import { fmtDay, fmtTime } from "@/lib/time";
 import type { ChannelId, Match } from "@/types";
+import { useT } from "@/i18n/LangProvider";
+import { teamName } from "@/i18n/dict";
 
 interface StoryPreviewProps {
   matches: Match[];
@@ -19,6 +21,7 @@ export function StoryPreview({
   userChannels,
   nowMs,
 }: StoryPreviewProps) {
+  const { t, lang } = useT();
   const list = matches
     .filter((m) => m.canais.some((c) => userChannels.has(c)))
     .filter((m) => new Date(m.kickoffUTC).getTime() > nowMs)
@@ -33,14 +36,14 @@ export function StoryPreview({
       <div className="sp-inner">
         <div className="sp-mark">
           <span className="b" />
-          ONDE VER A <span>COPA</span>!
+          {t("brand.pre")} <span>{t("brand.cup")}</span>!
         </div>
         <div className="sp-head">
-          <div className="sp-eyebrow">★ MINHA AGENDA · COPA 2026</div>
+          <div className="sp-eyebrow">{t("story.eyebrow")}</div>
           <div className="sp-title">
-            OS JOGOS
+            {t("story.title1")}
             <br />
-            QUE <em>vou ver</em>
+            {t("story.title2")} <em>{t("story.titleEm")}</em>
           </div>
         </div>
         <div className="sp-list">
@@ -54,12 +57,15 @@ export function StoryPreview({
                 fontSize: 16,
               }}
             >
-              marca os canais que você tem ☝
+              {t("story.empty")}
             </div>
           )}
           {list.map((m) => {
             const time = fmtTime(m.kickoffUTC, tzOffset);
-            const day = fmtDay(m.kickoffUTC, tzOffset).split(" ").slice(0, 2).join(" ");
+            const day = fmtDay(m.kickoffUTC, tzOffset, lang)
+              .split(" ")
+              .slice(0, 2)
+              .join(" ");
             const userVisible = m.canais.filter((c) => userChannels.has(c));
             const chs = userVisible.map((c) => CHANNELS[c]?.nome ?? c).join(" · ");
             const isFree = userVisible.some((c) => CHANNELS[c]?.kind === "free");
@@ -67,13 +73,13 @@ export function StoryPreview({
               <div key={m.id} className={`sp-row${m.brasil ? " brazil" : ""}`}>
                 <div className="sp-time">{time}</div>
                 <div className="sp-teams">
-                  {m.mandante} × {m.visitante}
+                  {teamName(m.mandante, lang)} × {teamName(m.visitante, lang)}
                   <span>
                     {day} · {chs}
                   </span>
                 </div>
                 <div className={`sp-ch ${isFree ? "free" : "paid"}`}>
-                  {isFree ? "GRÁTIS" : "PAGO"}
+                  {isFree ? t("ch.free") : t("ch.paid")}
                 </div>
               </div>
             );

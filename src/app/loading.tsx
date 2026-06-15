@@ -1,8 +1,13 @@
+"use client";
+
+import { LangProvider, useT } from "@/i18n/LangProvider";
+
 /**
  * Skeleton mínimo enquanto a página principal carrega.
  * Em SSG isso quase nunca aparece, mas é defensivo pro client navigation.
  */
-export default function Loading() {
+function LoadingContent() {
+  const { t } = useT();
   return (
     <main
       style={{
@@ -22,8 +27,16 @@ export default function Loading() {
           color: "var(--ink-dim)",
         }}
       >
-        ⚽ CARREGANDO A COPA…
+        {t("loading.text")}
       </div>
     </main>
+  );
+}
+
+export default function Loading() {
+  return (
+    <LangProvider>
+      <LoadingContent />
+    </LangProvider>
   );
 }

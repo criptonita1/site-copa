@@ -10,6 +10,8 @@ import type { MatchScore } from "@/hooks/useScores";
 import type { Match } from "@/types";
 import { ChannelBadge } from "@/components/ChannelBadge";
 import { FlagBrSvg, WhatsappSvg } from "@/components/icons";
+import { useT } from "@/i18n/LangProvider";
+import { teamName, cityName } from "@/i18n/dict";
 
 interface MatchCardProps {
   match: Match;
@@ -65,6 +67,7 @@ function MatchCardImpl({
   compact,
   score,
 }: MatchCardProps) {
+  const { t, lang } = useT();
   const state = matchState(match, nowMs);
   const watchable = match.canais.some((c) => userChannels.has(c));
   const cardRef = useRef<HTMLElement | null>(null);
@@ -103,12 +106,12 @@ function MatchCardImpl({
   }, [match.brasil]);
 
   const time = fmtTime(match.kickoffUTC, tzOffset);
-  const day = fmtDay(match.kickoffUTC, tzOffset);
+  const day = fmtDay(match.kickoffUTC, tzOffset, lang);
   const tz = tzLabel(tzOffset);
   const phaseLabel =
     match.stage === "grupos"
-      ? `GRUPO ${match.grupo ?? "—"}`
-      : match.stage.toUpperCase();
+      ? t("hero.group", { g: match.grupo ?? "—" })
+      : t(`stage.${match.stage}`);
 
   return (
     <article
@@ -116,21 +119,24 @@ function MatchCardImpl({
       className={classes.join(" ")}
       data-id={match.id}
       style={{ ["--rot" as string]: `${rot}deg` }}
-      aria-label={`${match.mandante} contra ${match.visitante}`}
+      aria-label={t("card.aria", {
+        home: teamName(match.mandante, lang),
+        away: teamName(match.visitante, lang),
+      })}
     >
       {match.brasil && (
         <>
           <div className="foil" aria-hidden="true" />
           <div className="stamp-bra">
             <FlagBrSvg width={20} height={14} className="stamp-flag" />
-            BRASIL EM CAMPO!
+            {t("card.brazilStamp")}
           </div>
         </>
       )}
       {live && (
         <div className="live-stamp">
           <span className="dot" />
-          AO VIVO
+          {t("card.live")}
         </div>
       )}
 
@@ -153,12 +159,12 @@ function MatchCardImpl({
             <span className="jersey">
               <Jersey team={match.mandante} size={54} />
             </span>
-            <span className="name">{match.mandante}</span>
+            <span className="name">{teamName(match.mandante, lang)}</span>
           </div>
           {result ? (
             <div
               className="score"
-              aria-label={`${match.mandante} ${result.golsMandante}, ${match.visitante} ${result.golsVisitante}${
+              aria-label={`${teamName(match.mandante, lang)} ${result.golsMandante}, ${teamName(match.visitante, lang)} ${result.golsVisitante}${
                 result.penaltis
                   ? ` (${result.penaltis.mandante} a ${result.penaltis.visitante} nos pênaltis)`
                   : ""
@@ -171,7 +177,7 @@ function MatchCardImpl({
               </span>
               {result.penaltis && (
                 <span className="pens">
-                  {result.penaltis.mandante}-{result.penaltis.visitante} pen.
+                  {result.penaltis.mandante}-{result.penaltis.visitante} {t("card.pens")}
                 </span>
               )}
             </div>
@@ -182,7 +188,7 @@ function MatchCardImpl({
             <span className="jersey">
               <Jersey team={match.visitante} size={54} />
             </span>
-            <span className="name">{match.visitante}</span>
+            <span className="name">{teamName(match.visitante, lang)}</span>
           </div>
         </div>
 
@@ -190,7 +196,7 @@ function MatchCardImpl({
           <div className="time-zone result">
             <div className="venue">
               <b>{match.estadio}</b>
-              {match.cidade}
+              {cityName(match.cidade, lang)}
             </div>
           </div>
         ) : (
@@ -201,24 +207,24 @@ function MatchCardImpl({
             </div>
             <div className="venue">
               <b>{match.estadio}</b>
-              {match.cidade}
+              {cityName(match.cidade, lang)}
             </div>
           </div>
         )}
 
         <div className="channels">
-          <span className="ch-lbl">{isFinal ? "passou em →" : "passa em →"}</span>
+          <span className="ch-lbl">{isFinal ? t("card.airedOn") : t("card.airsOn")}</span>
           {match.canais.map((id) => CHANNELS[id] && <ChannelBadge key={id} id={id} />)}
           <a
             className="badge paid"
             style={{ marginLeft: "auto" }}
-            href={whatsappLinkForMatch(match, tzOffset)}
+            href={whatsappLinkForMatch(match, tzOffset, lang)}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Compartilhar no WhatsApp"
-            title="Manda pro grupo"
+            aria-label={t("card.waLabel")}
+            title={t("card.waTitle")}
           >
-            <WhatsappSvg /> ZAP
+            <WhatsappSvg /> {t("card.zap")}
           </a>
         </div>
       </div>

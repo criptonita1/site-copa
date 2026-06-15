@@ -17,6 +17,8 @@ import { GoalNet } from "@/components/GoalNet";
 import { Countdown } from "@/components/Countdown";
 import { ChannelBadge } from "@/components/ChannelBadge";
 import type { MatchScore } from "@/hooks/useScores";
+import { useT } from "@/i18n/LangProvider";
+import { teamName, cityName } from "@/i18n/dict";
 
 interface HeroProps {
   nowMs: number;
@@ -25,20 +27,21 @@ interface HeroProps {
 }
 
 const COUNTDOWN_CELLS: Array<{ key: string; lab: string }> = [
-  { key: "d", lab: "dias" },
-  { key: "h", lab: "horas" },
-  { key: "m", lab: "min" },
-  { key: "s", lab: "seg" },
+  { key: "d", lab: "cd.days" },
+  { key: "h", lab: "cd.hours" },
+  { key: "m", lab: "cd.min" },
+  { key: "s", lab: "cd.sec" },
 ];
 
 /** Placeholder estável pré-hidratação (nowMs===0) — evita piscar número gigante. */
 function CountdownPlaceholder() {
+  const { t } = useT();
   return (
     <div className="cd" aria-hidden="true">
       {COUNTDOWN_CELLS.map((c, i) => (
         <div className={i === 3 ? "cell s" : "cell"} key={c.key}>
           <div className="num">00</div>
-          <div className="lab">{c.lab}</div>
+          <div className="lab">{t(c.lab)}</div>
         </div>
       ))}
     </div>
@@ -46,6 +49,7 @@ function CountdownPlaceholder() {
 }
 
 export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
+  const { t, lang } = useT();
   // nowMs===0 = ainda não hidratado (SSR e 1º render do client). Tratamos como
   // "carregando" pra não renderizar estado AO VIVO nem contagem com base em 1970.
   const hydrated = nowMs > 0;
@@ -66,7 +70,7 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
     };
   }, [minuteMs, hydrated]);
 
-  const subject = isBrazil ? "BRASIL" : "A COPA";
+  const subject = isBrazil ? t("hero.subject.brazil") : t("hero.subject.cup");
   const focusScore = focus ? scores?.[focus.id] : undefined;
   const calDays =
     focus && hydrated
@@ -106,11 +110,11 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
       <div className="wrap">
         <div className="hero-tagrow">
           <div className="left">
-            <span className="stamp">EDIÇÃO ESPECIAL</span>
-            <span>COPA DO MUNDO · 2026</span>
+            <span className="stamp">{t("hero.special")}</span>
+            <span>{t("hero.worldcup")}</span>
           </div>
           <div className="right">
-            <span className="ed">edição do torcedor — Nº 01</span>
+            <span className="ed">{t("hero.fanEdition")}</span>
           </div>
         </div>
 
@@ -120,30 +124,30 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
               /* FIM DE LINHA — nenhum jogo ao vivo nem agendado: a Copa acabou */
               <>
                 <h1 className="hero-row1" style={{ margin: 0 }}>
-                  ACABOU <span className="joga">a copa</span>
+                  {t("hero.over1")} <span className="joga">{t("hero.over2")}</span>
                 </h1>
                 <div className="hero-row2">
                   <span className="em-num word">2026</span>
                 </div>
                 <p className="hero-sub">
-                  Foi épico. Reveja os 104 jogos aqui embaixo.
+                  {t("hero.overSub")}
                 </p>
               </>
             ) : live ? (
               /* AO VIVO — o jogo está rolando AGORA: mostra onde assistir na hora */
               <>
                 <h1 className="hero-row1" style={{ margin: 0 }}>
-                  {subject} <span className="joga">joga</span>
+                  {subject} <span className="joga">{t("hero.plays")}</span>
                 </h1>
                 <div className="hero-row2 is-live">
-                  <span className="agora">AGORA</span>
-                  <span className="livebadge" aria-label="ao vivo agora">
+                  <span className="agora">{t("hero.now")}</span>
+                  <span className="livebadge" aria-label={t("hero.liveAria")}>
                     <span className="dot" aria-hidden="true" />
-                    AO VIVO
+                    {t("hero.live")}
                   </span>
                 </div>
                 <div className="hero-live-channels">
-                  <span className="lbl">ASSISTA AGORA EM</span>
+                  <span className="lbl">{t("hero.watchNowOn")}</span>
                   <div className="chips">
                     {focus.canais.map((c) => (
                       <ChannelBadge key={c} id={c} />
@@ -155,39 +159,49 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
               /* FALTANDO — contagem regressiva pro próximo jogo */
               <>
                 <h1 className="hero-row1" style={{ margin: 0 }}>
-                  {subject} <span className="joga">joga</span>
+                  {subject} <span className="joga">{t("hero.plays")}</span>
                 </h1>
 
                 {calDays === 0 ? (
                   <>
                     <div className="hero-row2">
-                      <span className="em-num word">HOJE</span>
+                      <span className="em-num word">{t("hero.today")}</span>
                     </div>
                     <p className="hero-sub">
-                      às {fmtTime(focus.kickoffUTC, tzOffset)} {tzLabel(tzOffset)}
-                      {opponent ? ` · contra ${opponent}` : ""}
+                      {t("hero.atTime", {
+                        time: fmtTime(focus.kickoffUTC, tzOffset),
+                        tz: tzLabel(tzOffset),
+                      })}
+                      {opponent
+                        ? ` · ${t("hero.vs", { team: teamName(opponent, lang) })}`
+                        : ""}
                     </p>
                   </>
                 ) : calDays === 1 ? (
                   <>
                     <div className="hero-row2">
-                      <span className="em-num word">AMANHÃ</span>
+                      <span className="em-num word">{t("hero.tomorrow")}</span>
                     </div>
                     <p className="hero-sub">
-                      às {fmtTime(focus.kickoffUTC, tzOffset)} {tzLabel(tzOffset)}
-                      {opponent ? ` · contra ${opponent}` : ""}
+                      {t("hero.atTime", {
+                        time: fmtTime(focus.kickoffUTC, tzOffset),
+                        tz: tzLabel(tzOffset),
+                      })}
+                      {opponent
+                        ? ` · ${t("hero.vs", { team: teamName(opponent, lang) })}`
+                        : ""}
                     </p>
                   </>
                 ) : (
                   <div
                     className="hero-row2"
-                    aria-label={`Faltam ${calDays ?? "—"} dias`}
+                    aria-label={t("hero.daysAria", { d: calDays ?? "—" })}
                   >
-                    EM{" "}
+                    {t("hero.in")}{" "}
                     <span className="em-num">
                       {calDays != null ? pad2(calDays) : "—"}
                     </span>
-                    <span className="d">DIAS</span>
+                    <span className="d">{t("hero.days")}</span>
                   </div>
                 )}
 
@@ -200,19 +214,24 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
             )}
 
             <a href="#grade" className="hero-cta">
-              VER ONDE PASSA
+              {t("hero.cta")}
               <ArrowDownSvg />
             </a>
           </div>
 
           {focus && (
             <aside className={live ? "hero-match is-live" : "hero-match"}>
+              <span className="hero-match-tag">
+                {live ? t("hero.liveTag") : t("hero.nextTag")}
+              </span>
               <div className="vs-row">
                 <div className="jersey-wrap">
                   <span className="jersey">
                     <Jersey team={focus.mandante} size={62} />
                   </span>
-                  <span className="country">{focus.mandante.toUpperCase()}</span>
+                  <span className="country">
+                    {teamName(focus.mandante, lang).toUpperCase()}
+                  </span>
                 </div>
                 {focusScore ? (
                   <span className="hero-score">
@@ -227,19 +246,21 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
                   <span className="jersey">
                     <Jersey team={focus.visitante} size={62} />
                   </span>
-                  <span className="country">{focus.visitante.toUpperCase()}</span>
+                  <span className="country">
+                    {teamName(focus.visitante, lang).toUpperCase()}
+                  </span>
                 </div>
               </div>
               <div>
                 <div className="meta-line">
-                  {focus.grupo ? `GRUPO ${focus.grupo} · ` : ""}
-                  {focus.stage.toUpperCase()} ·{" "}
-                  <span>{fmtDay(focus.kickoffUTC, tzOffset)}</span>
+                  {focus.grupo ? `${t("hero.group", { g: focus.grupo })} · ` : ""}
+                  {t(`stage.${focus.stage}`)} ·{" "}
+                  <span>{fmtDay(focus.kickoffUTC, tzOffset, lang)}</span>
                 </div>
                 <div className="stadium">{focus.estadio.toUpperCase()}</div>
                 <div className="when">
-                  {focus.cidade} · {fmtTime(focus.kickoffUTC, tzOffset)}{" "}
-                  {tzLabel(tzOffset)}
+                  {cityName(focus.cidade, lang)} ·{" "}
+                  {fmtTime(focus.kickoffUTC, tzOffset)} {tzLabel(tzOffset)}
                 </div>
               </div>
             </aside>

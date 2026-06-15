@@ -2,6 +2,7 @@
 
 import { track } from "@vercel/analytics";
 import { CHANNELS, FREE_CHANNELS, PAID_CHANNELS } from "@/data/channels";
+import { useT } from "@/i18n/LangProvider";
 import type { ChannelId } from "@/types";
 
 interface FilterPanelProps {
@@ -23,29 +24,27 @@ export function FilterPanel({
   visibleCount,
   freeCount,
 }: FilterPanelProps) {
+  const { t } = useT();
   return (
     <section className="filters-section" id="grade">
       <div className="wrap">
         <div className="filters-head">
           <h2 className="filters-title">
-            <span className="uw">Bora ver</span>
+            <span className="uw">{t("filter.title1")}</span>
             <br />
-            onde passa a <em>copa.</em>
+            {t("filter.title2")} <em>{t("filter.titleEm")}</em>
           </h2>
-          <p className="filters-sub">
-            Marca os canais que você tem. A grade reage — o que dá pra ver fica nítido, o
-            resto desbota. <b>Grátis em verde, pago em azul.</b>
-          </p>
+          <p className="filters-sub">{t("filter.sub")}</p>
         </div>
 
         <div className="filter-panel">
           <div className="filter-panel-head">
-            <span className="ctrl-label">★ MEU CONTROLE REMOTO</span>
-            <span className="note">o que você assina?</span>
+            <span className="ctrl-label">{t("filter.head")}</span>
+            <span className="note">{t("filter.note")}</span>
           </div>
           <div className="filter-panel-body">
-            <div className="filter-row" role="group" aria-label="Canais grátis">
-              <span className="row-label">DE GRAÇA — TV ABERTA + STREAMING</span>
+            <div className="filter-row" role="group" aria-label={t("filter.freeGroup")}>
+              <span className="row-label">{t("filter.freeRow")}</span>
               {FREE_CHANNELS.map((id) => {
                 const ch = CHANNELS[id];
                 const active = channels.has(id);
@@ -56,7 +55,10 @@ export function FilterPanel({
                     data-channel={id}
                     data-kind="free"
                     aria-pressed={active}
-                    aria-label={`${ch.nome} — canal grátis. ${active ? "marcado" : "não marcado"}`}
+                    aria-label={t("filter.chFree", {
+                      name: ch.nome,
+                      state: active ? t("filter.checked") : t("filter.unchecked"),
+                    })}
                     onClick={() => {
                       track("filter_channel_toggle", {
                         channel: id,
@@ -72,8 +74,8 @@ export function FilterPanel({
                 );
               })}
             </div>
-            <div className="filter-row" role="group" aria-label="Canais pagos">
-              <span className="row-label">PAGO — TV POR ASSINATURA</span>
+            <div className="filter-row" role="group" aria-label={t("filter.paidGroup")}>
+              <span className="row-label">{t("filter.paidRow")}</span>
               {PAID_CHANNELS.map((id) => {
                 const ch = CHANNELS[id];
                 const active = channels.has(id);
@@ -84,7 +86,10 @@ export function FilterPanel({
                     data-channel={id}
                     data-kind="paid"
                     aria-pressed={active}
-                    aria-label={`${ch.nome} — canal pago. ${active ? "marcado" : "não marcado"}`}
+                    aria-label={t("filter.chPaid", {
+                      name: ch.nome,
+                      state: active ? t("filter.checked") : t("filter.unchecked"),
+                    })}
                     onClick={() => {
                       track("filter_channel_toggle", {
                         channel: id,
@@ -101,7 +106,7 @@ export function FilterPanel({
               })}
             </div>
             <div className="filter-row">
-              <span className="row-label">FILTRO RÁPIDO</span>
+              <span className="row-label">{t("filter.quick")}</span>
               <button
                 className={`toggle-bra ${onlyBrazil ? "on" : ""}`}
                 aria-pressed={onlyBrazil}
@@ -112,7 +117,7 @@ export function FilterPanel({
               >
                 <span className="sw" />
                 <span className="lbl">
-                  SÓ JOGO DO <b>BRASIL!</b>
+                  {t("filter.onlyBrazil")} <b>{t("filter.onlyBrazilB")}</b>
                 </span>
               </button>
             </div>
@@ -121,21 +126,21 @@ export function FilterPanel({
             <div className="count">
               {channels.size === 0 ? (
                 <span style={{ fontFamily: "var(--font-archivo)", fontStyle: "italic" }}>
-                  Marque pelo menos um canal pra ver onde passa.
+                  {t("filter.noChannels")}
                 </span>
               ) : (
                 <>
-                  você vai ver
+                  {t("filter.countPre")}
                   <b>{visibleCount}</b>
-                  jogos ·{" "}
+                  {t("filter.countGames")} ·{" "}
                   <span className="free">
-                    <b>{freeCount}</b> de graça
+                    <b>{freeCount}</b> {t("filter.countFree")}
                   </span>
                 </>
               )}
             </div>
             <button className="clear" onClick={onClear}>
-              limpar tudo
+              {t("filter.clear")}
             </button>
           </div>
         </div>

@@ -1,11 +1,15 @@
+"use client";
+
 import { CHANNELS } from "@/data/channels";
 import type { ChannelId } from "@/types";
+import { useT } from "@/i18n/LangProvider";
 
 export function ChannelBadge({ id }: { id: ChannelId }) {
+  const { t } = useT();
   const ch = CHANNELS[id];
   if (!ch) return null;
   const cls = ch.kind === "free" ? "badge free" : "badge paid";
-  const tag = ch.kind === "free" ? "GRÁTIS" : "PAGO";
+  const tag = ch.kind === "free" ? t("ch.free") : t("ch.paid");
   const content = (
     <>
       {ch.nome}
@@ -23,8 +27,8 @@ export function ChannelBadge({ id }: { id: ChannelId }) {
         target="_blank"
         rel="noopener noreferrer"
         className={cls}
-        title={`${ch.comoAssistir} — clique pra abrir`}
-        aria-label={`${ch.nome} — ${tag} — abre em nova aba`}
+        title={t("ch.openTitle", { how: t(`chan.${ch.id}`) })}
+        aria-label={t("ch.openAria", { name: ch.nome, tag })}
         onClick={(e) => e.stopPropagation()}
       >
         {content}
@@ -35,8 +39,8 @@ export function ChannelBadge({ id }: { id: ChannelId }) {
   return (
     <span
       className={cls}
-      title={ch.comoAssistir}
-      aria-label={`${ch.nome} — ${tag}`}
+      title={t(`chan.${ch.id}`)}
+      aria-label={t("ch.aria", { name: ch.nome, tag })}
     >
       {content}
     </span>
