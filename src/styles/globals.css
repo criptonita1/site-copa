@@ -1496,6 +1496,23 @@ main {
   background: var(--paper);
   color: var(--ink);
 }
+/* Botão figurinha (gera o PNG do jogo) */
+.badge.fig {
+  background: var(--verde);
+  color: var(--paper);
+  cursor: pointer;
+  font-family: var(--font-bungee), Bungee;
+  font-size: 11px;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.badge.fig:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.badge.fig:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
 .badge .tag {
   font-family: var(--font-mono), "Space Mono", monospace;
   font-size: 8.5px;
@@ -2536,6 +2553,26 @@ a.support-qr-wrap:hover {
 .support-howto em {
   font-style: normal;
   color: var(--paper-2);
+}
+
+/* Pix em destaque no bloco de apoio (método nativo do público BR) */
+.support-item.featured {
+  border: 2px solid var(--verde);
+  background: rgba(0, 160, 69, 0.1);
+  padding: 12px 8px;
+  width: 156px;
+}
+.support-item-hint {
+  display: inline-block;
+  margin-left: 7px;
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--verde);
+  padding: 2px 6px;
+  vertical-align: middle;
 }
 
 /* Topo "próximo jogo": header compacto + 1-2 cards do mesmo horário */

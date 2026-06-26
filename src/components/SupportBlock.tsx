@@ -42,9 +42,20 @@ interface Item {
   href?: string; // tap em mobile abre wallet (silent fail em desktop)
   copyValue: string;
   displayValue: string;
+  featured?: boolean; // destaque visual (Pix — método nativo do público BR)
 }
 
+// Pix primeiro e em destaque: é o que o brasileiro usa e o que mais converte.
+// Cripto vem depois, pra quem prefere.
 const ITEMS: Item[] = [
+  {
+    id: "pix",
+    tag: "PIX",
+    qr: "/qr/pix.svg",
+    copyValue: PIX_PAYLOAD,
+    displayValue: "", // pix usa t("support.copyPaste") no render (i18n)
+    featured: true,
+  },
   {
     id: "eth",
     tag: "ETH",
@@ -60,13 +71,6 @@ const ITEMS: Item[] = [
     href: `solana:${SUPPORT.SOL.ADDRESS}`,
     copyValue: SUPPORT.SOL.ADDRESS,
     displayValue: shorten(SUPPORT.SOL.ADDRESS, 6, 4),
-  },
-  {
-    id: "pix",
-    tag: "PIX",
-    qr: "/qr/pix.svg",
-    copyValue: PIX_PAYLOAD,
-    displayValue: "", // pix usa t("support.copyPaste") no render (i18n)
   },
 ];
 
@@ -134,8 +138,18 @@ export function SupportBlock() {
             />
           );
           return (
-            <div className="support-item" key={item.id}>
-              <span className="support-item-tag">{item.tag}</span>
+            <div
+              className={`support-item${item.featured ? " featured" : ""}`}
+              key={item.id}
+            >
+              <span className="support-item-tag">
+                {item.tag}
+                {item.featured && (
+                  <span className="support-item-hint">
+                    {t("support.pixHint")}
+                  </span>
+                )}
+              </span>
               {item.href ? (
                 <a
                   href={item.href}

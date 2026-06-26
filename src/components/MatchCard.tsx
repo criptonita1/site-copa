@@ -1,15 +1,17 @@
 "use client";
 
 import { memo, useEffect, useRef } from "react";
+import { track } from "@vercel/analytics";
 import type { TimezoneOffset } from "@/config";
 import { CHANNELS } from "@/data/channels";
+import { TBD_TEAM } from "@/lib/matches";
 import { Jersey } from "@/lib/jersey";
 import { fmtDay, fmtTime, matchState, tzLabel } from "@/lib/time";
 import { whatsappLinkForMatch } from "@/lib/whatsapp";
 import type { MatchScore } from "@/hooks/useScores";
 import type { Match } from "@/types";
 import { ChannelBadge } from "@/components/ChannelBadge";
-import { FlagBrSvg, WhatsappSvg } from "@/components/icons";
+import { FlagBrSvg, WhatsappSvg, DownloadSvg } from "@/components/icons";
 import { useT } from "@/i18n/LangProvider";
 import { teamName, cityName } from "@/i18n/dict";
 
@@ -104,6 +106,21 @@ function MatchCardImpl({
     el.addEventListener("pointermove", move);
     return () => el.removeEventListener("pointermove", move);
   }, [match.brasil]);
+
+  // Figurinha (PNG) do jogo — gera a story 1080×1920 só deste jogo e
+  // compartilha (Web Share com arquivo no mobile, download no desktop).
+  // Não faz sentido em slot ainda indefinido (sem time).
+  const bothTbd =
+    match.mandante === TBD_TEAM && match.visitante === TBD_TEAM;
+  async function handleFigurinha() {
+    track("share_card_match", { brasil: match.brasil, live });
+    try {
+      const { shareCard } = await import("@/lib/share-card");
+      await shareCard({ matches: [match], userChannels, tzOffset, lang });
+    } catch {
+      /* usuário cancelou ou geração falhou — silencioso */
+    }
+  }
 
   const time = fmtTime(match.kickoffUTC, tzOffset);
   const day = fmtDay(match.kickoffUTC, tzOffset, lang);
@@ -215,9 +232,21 @@ function MatchCardImpl({
         <div className="channels">
           <span className="ch-lbl">{isFinal ? t("card.airedOn") : t("card.airsOn")}</span>
           {match.canais.map((id) => CHANNELS[id] && <ChannelBadge key={id} id={id} />)}
+          {!bothTbd && (
+            <button
+              type="button"
+              className="badge fig"
+              style={{ marginLeft: "auto" }}
+              onClick={handleFigurinha}
+              aria-label={t("card.figLabel")}
+              title={t("card.figTitle")}
+            >
+              <DownloadSvg /> {t("card.fig")}
+            </button>
+          )}
           <a
             className="badge paid"
-            style={{ marginLeft: "auto" }}
+            style={bothTbd ? { marginLeft: "auto" } : undefined}
             href={whatsappLinkForMatch(match, tzOffset, lang)}
             target="_blank"
             rel="noopener noreferrer"
