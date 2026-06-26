@@ -26,6 +26,16 @@ export const APP = {
 } as const;
 
 /**
+ * Status do Brasil na Copa. `classificado` acende o selo "Brasil classificado
+ * pro mata-mata" no hero. Assertivo de propósito: o site não tem tabela de
+ * classificação — quem sabe que o Brasil passou somos nós. O sync diário do
+ * mata-mata mantém isso coerente (vira false se o Brasil cair).
+ */
+export const BRAZIL = {
+  classificado: true,
+} as const;
+
+/**
  * Bloco de apoio voluntário (footer).
  * Cripto em destaque; Pix discreto como segunda opção.
  * Pra gerar QR estático no build: scripts/generate-qr.ts importa daqui.

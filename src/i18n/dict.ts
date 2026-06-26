@@ -15,6 +15,7 @@ export const STRINGS: Record<Lang, Dict> = {
     // nav
     "nav.tz": "Fuso horário",
     "nav.lang": "Idioma",
+    "nav.bracket": "Chaveamento",
     "brand.pre": "ONDE VER A",
     "brand.cup": "COPA",
     // hero
@@ -39,6 +40,9 @@ export const STRINGS: Record<Lang, Dict> = {
     "hero.cta": "VER ONDE PASSA",
     "hero.atTime": "às {time} {tz}",
     "hero.vs": "contra {team}",
+    "hero.vsTbd": "adversário a definir",
+    "hero.brQualified": "Brasil classificado pro mata-mata",
+    "hero.brPlaysOn": "joga {date}",
     "hero.group": "GRUPO {g}",
     "hero.nextTag": "PRÓXIMO JOGO",
     "hero.liveTag": "AGORA · AO VIVO",
@@ -194,6 +198,7 @@ export const STRINGS: Record<Lang, Dict> = {
   en: {
     "nav.tz": "Time zone",
     "nav.lang": "Language",
+    "nav.bracket": "Bracket",
     "brand.pre": "WHERE TO WATCH THE",
     "brand.cup": "CUP",
     "hero.subject.brazil": "BRAZIL",
@@ -217,6 +222,9 @@ export const STRINGS: Record<Lang, Dict> = {
     "hero.cta": "SEE WHERE IT AIRS",
     "hero.atTime": "at {time} {tz}",
     "hero.vs": "vs {team}",
+    "hero.vsTbd": "opponent TBD",
+    "hero.brQualified": "Brazil through to the knockouts",
+    "hero.brPlaysOn": "plays {date}",
     "hero.group": "GROUP {g}",
     "hero.nextTag": "NEXT MATCH",
     "hero.liveTag": "NOW · LIVE",

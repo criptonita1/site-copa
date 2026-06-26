@@ -57,3 +57,20 @@ export function currentOrNextMatch(
 export function currentOrNextBrazil(nowMs: number): Match | undefined {
   return currentOrNextMatch((m) => m.brasil, nowMs);
 }
+
+/** Um time ainda não definido (slot de mata-mata pré-sorteio). */
+export const TBD_TEAM = "A definir";
+
+const KNOCKOUT_STAGE_SET = new Set([
+  "32avos",
+  "oitavas",
+  "quartas",
+  "semi",
+  "terceiro",
+  "final",
+]);
+
+/** Jogos do Brasil nas fases eliminatórias (preenchidos pelo sync do mata-mata). */
+export function brazilKnockoutMatches(): Match[] {
+  return brazilMatches().filter((m) => KNOCKOUT_STAGE_SET.has(m.stage));
+}

@@ -133,8 +133,14 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  flex-wrap: wrap;
+  gap: 10px 12px;
   padding: 14px 22px;
+}
+/* Quando não couber numa linha (mobile), os controles descem em vez de
+   estourar a largura. No desktop cabe tudo numa linha — sem mudança. */
+.nav-right {
+  margin-left: auto;
 }
 .nav::after {
   content: "";
@@ -2528,4 +2534,473 @@ a.support-qr-wrap:hover {
 .support-howto em {
   font-style: normal;
   color: var(--paper-2);
+}
+
+/* Coluna do card "próximo jogo" + selo "Brasil classificado" acima dele */
+.hero-match-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: end;
+}
+.hero-br-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: var(--verde);
+  color: var(--paper);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 7px 12px;
+  transform: rotate(-1.2deg);
+}
+.hero-br-status .flag {
+  font-size: 15px;
+  line-height: 1;
+}
+.hero-br-status .txt {
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+@media (max-width: 480px) {
+  .hero-br-status .txt {
+    font-size: 10px;
+  }
+}
+
+/* ===========================================
+   /chaveamento — página + bracket mobile-first
+   Snap-scroll horizontal entre fases, vertical dentro de cada uma
+   =========================================== */
+
+.page-shell {
+  min-height: 100vh;
+  background: var(--paper);
+}
+
+/* Link "Chaveamento" no nav da home */
+.nav-bracket {
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--amarelo);
+  border: 1.5px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  padding: 7px 11px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: 0.13s;
+}
+.nav-bracket:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+@media (max-width: 480px) {
+  .nav-bracket {
+    font-size: 9.5px;
+    padding: 6px 9px;
+  }
+}
+.ko-back {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  border: 1.5px solid var(--ink-low);
+  padding: 7px 12px;
+  text-decoration: none;
+}
+.ko-back:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.ko-header {
+  background: var(--amarelo);
+  border-bottom: 3px solid var(--ink);
+  padding: 32px 0 28px;
+  position: relative;
+}
+.ko-eyebrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  padding-bottom: 10px;
+  border-bottom: 1.5px dashed var(--ink-soft);
+  display: inline-block;
+  margin-bottom: 12px;
+}
+.ko-title {
+  font-family: var(--font-anton), Anton, sans-serif;
+  font-size: clamp(44px, 10vw, 96px);
+  line-height: 0.86;
+  text-transform: uppercase;
+  color: var(--verde-deep);
+  margin: 0;
+}
+.ko-intro {
+  max-width: 560px;
+  color: var(--ink-soft);
+  font-size: 14.5px;
+  margin-top: 14px;
+  border-left: 3px solid var(--ink);
+  padding-left: 14px;
+  line-height: 1.5;
+}
+
+.bracket-wrap {
+  padding: 22px 0 60px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* Banner Campeão */
+.br-champion {
+  margin: 0 16px 18px;
+  padding: 22px 20px;
+  background: var(--verde);
+  color: var(--paper);
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  animation: brChampIn 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.br-champion-lab {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amarelo);
+}
+.br-champion-name {
+  font-family: var(--font-anton), Anton, sans-serif;
+  font-size: clamp(36px, 9vw, 72px);
+  line-height: 0.86;
+  text-transform: uppercase;
+  text-shadow: 3px 3px 0 rgba(13, 13, 13, 0.25);
+}
+@keyframes brChampIn {
+  0% {
+    transform: translateY(-12px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Overall progress + Brazil toggle */
+.br-overall {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1.5px dashed var(--ink-low);
+  flex-wrap: wrap;
+}
+.br-overall-row {
+  flex: 1 1 200px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.br-overall-lab {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ink-dim);
+}
+.br-overall-bar {
+  flex: 1;
+  height: 8px;
+  border: 1.5px solid var(--ink);
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+.br-overall-bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--amarelo);
+  transition: width 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.br-overall-pct {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+.br-follow-br {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: 2px solid var(--ink);
+  background: var(--paper);
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.13s;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.br-follow-br:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.br-follow-br.on {
+  background: var(--verde);
+  color: var(--paper);
+  border-color: var(--verde-deep);
+  box-shadow: 3px 3px 0 var(--verde-deep);
+}
+
+.br-hint {
+  padding: 10px 16px 16px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+@media (min-width: 900px) {
+  .br-hint {
+    display: none;
+  }
+}
+
+/* Track horizontal de fases — snap em mobile, lado a lado em desktop */
+.br-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 6px 16px 24px;
+  scrollbar-width: thin;
+}
+.br-track::-webkit-scrollbar {
+  height: 6px;
+}
+.br-track::-webkit-scrollbar-thumb {
+  background: var(--ink-low);
+  border-radius: 3px;
+}
+
+/* Coluna da fase */
+.br-round {
+  flex: 0 0 85%;
+  max-width: 320px;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media (min-width: 720px) {
+  .br-round {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+  }
+}
+
+.br-round-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 2px solid var(--ink);
+  position: sticky;
+  top: 60px;
+  z-index: 2;
+}
+.br-round-head h2 {
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.br-round-count {
+  margin-left: auto;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--amarelo);
+}
+.br-round-bar {
+  width: 56px;
+  height: 6px;
+  border: 1.5px solid var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.br-round-bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--verde);
+  transition: width 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.br-round-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Match card */
+.bm {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 8px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: 0.15s;
+  position: relative;
+}
+.bm.pending {
+  opacity: 0.92;
+}
+.bm.decided {
+  box-shadow: 3px 3px 0 var(--verde-deep);
+}
+.bm.br {
+  border-color: var(--amarelo-dark);
+  box-shadow: 3px 3px 0 var(--amarelo-dark);
+}
+.bm.br-path {
+  background: linear-gradient(180deg, var(--amarelo) 0%, var(--paper) 100%);
+  border-color: var(--ink);
+  box-shadow: 3px 3px 0 var(--verde);
+}
+.bm:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.bm.decided:hover {
+  box-shadow: 5px 5px 0 var(--verde-deep);
+}
+
+.bm-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+.bm-id {
+  font-weight: 700;
+}
+.bm-teams {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 6px;
+}
+.bm-vs {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  color: var(--ink-low);
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0 4px;
+  white-space: nowrap;
+}
+.bm.decided .bm-vs {
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 10px;
+  color: var(--verde-deep);
+  letter-spacing: 0.02em;
+}
+.bm-team {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 6px 8px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  min-height: 32px;
+}
+.bm-team.win {
+  background: var(--verde);
+  color: var(--paper);
+  border-color: var(--verde-deep);
+}
+.bm-team.lose {
+  opacity: 0.55;
+}
+.bm-name {
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bm-team.win .bm-name {
+  color: var(--paper);
+}
+.bm-score {
+  font-family: var(--font-anton), Anton, sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.bm-foot {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  border-top: 1.5px dashed var(--ink-low);
+  padding-top: 5px;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 3º Lugar — destacado fora do bracket */
+.br-third {
+  margin: 32px 16px 0;
+  padding: 22px 18px;
+  background: var(--paper-2);
+  border: 2px dashed var(--ink-soft);
+}
+.br-third h2 {
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+  color: var(--ink-soft);
+}
+.br-third-card {
+  max-width: 320px;
+}
+.br-third-note {
+  margin-top: 12px;
+  font-family: var(--font-archivo), system-ui, sans-serif;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
 }

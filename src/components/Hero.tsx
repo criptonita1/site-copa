@@ -1,8 +1,12 @@
 "use client";
 
 import { useMemo } from "react";
-import type { TimezoneOffset } from "@/config";
-import { currentOrNextBrazil, currentOrNextMatch } from "@/lib/matches";
+import { BRAZIL, type TimezoneOffset } from "@/config";
+import {
+  brazilKnockoutMatches,
+  currentOrNextMatch,
+  TBD_TEAM,
+} from "@/lib/matches";
 import { Jersey } from "@/lib/jersey";
 import {
   calendarDaysUntil,
@@ -59,16 +63,30 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
   const minuteMs = minuteKey * 60_000;
 
   const { focus, isBrazil, live } = useMemo(() => {
-    // Brasil tem prioridade; sem jogo do Brasil (eliminado/campeão/mata-mata
-    // com adversário indefinido), cai pro próximo jogo qualquer da Copa.
-    const br = currentOrNextBrazil(minuteMs);
-    const f = br ?? currentOrNextMatch(() => true, minuteMs);
+    // O topo mostra o PRÓXIMO JOGO da Copa (cronológico) — ao vivo tem
+    // prioridade sobre o agendado. Não força o jogo do Brasil pra frente: se o
+    // próximo é do Brasil, ele aparece naturalmente; senão, mostra o que vier.
+    const f = currentOrNextMatch(() => true, minuteMs);
     return {
       focus: f,
-      isBrazil: !!br,
+      isBrazil: !!f?.brasil,
       live: hydrated && f ? matchState(f, minuteMs) === "live" : false,
     };
   }, [minuteMs, hydrated]);
+
+  // Selo "Brasil classificado" — assertivo via config (o site não tem tabela).
+  // Quando o sync do mata-mata já tiver inserido o próximo jogo do Brasil,
+  // mostramos a data junto; senão, só o selo.
+  const brQualified = BRAZIL.classificado;
+  const brNextKO = useMemo(() => {
+    if (!brQualified || !hydrated) return undefined;
+    return brazilKnockoutMatches()
+      .filter((m) => new Date(m.kickoffUTC).getTime() > minuteMs)
+      .sort(
+        (a, b) =>
+          new Date(a.kickoffUTC).getTime() - new Date(b.kickoffUTC).getTime(),
+      )[0];
+  }, [brQualified, hydrated, minuteMs]);
 
   const subject = isBrazil ? t("hero.subject.brazil") : t("hero.subject.cup");
   const focusScore = focus ? scores?.[focus.id] : undefined;
@@ -82,6 +100,13 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
         ? focus.visitante
         : focus.mandante
       : null;
+  // "contra Alemanha" quando o adversário é conhecido; "adversário a definir"
+  // enquanto for um slot de mata-mata ainda sem sorteio.
+  const opponentLabel = opponent
+    ? opponent === TBD_TEAM
+      ? t("hero.vsTbd")
+      : t("hero.vs", { team: teamName(opponent, lang) })
+    : null;
 
   return (
     <section className="hero">
@@ -172,9 +197,7 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
                         time: fmtTime(focus.kickoffUTC, tzOffset),
                         tz: tzLabel(tzOffset),
                       })}
-                      {opponent
-                        ? ` · ${t("hero.vs", { team: teamName(opponent, lang) })}`
-                        : ""}
+                      {opponentLabel ? ` · ${opponentLabel}` : ""}
                     </p>
                   </>
                 ) : calDays === 1 ? (
@@ -187,9 +210,7 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
                         time: fmtTime(focus.kickoffUTC, tzOffset),
                         tz: tzLabel(tzOffset),
                       })}
-                      {opponent
-                        ? ` · ${t("hero.vs", { team: teamName(opponent, lang) })}`
-                        : ""}
+                      {opponentLabel ? ` · ${opponentLabel}` : ""}
                     </p>
                   </>
                 ) : (
@@ -220,10 +241,26 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
           </div>
 
           {focus && (
-            <aside className={live ? "hero-match is-live" : "hero-match"}>
-              <span className="hero-match-tag">
-                {live ? t("hero.liveTag") : t("hero.nextTag")}
-              </span>
+            <div className="hero-match-col">
+              {brQualified && (
+                <div className="hero-br-status" role="status">
+                  <span className="flag" aria-hidden="true">
+                    🇧🇷
+                  </span>
+                  <span className="txt">
+                    {t("hero.brQualified")}
+                    {brNextKO
+                      ? ` · ${t("hero.brPlaysOn", {
+                          date: fmtDay(brNextKO.kickoffUTC, tzOffset, lang),
+                        })}`
+                      : ""}
+                  </span>
+                </div>
+              )}
+              <aside className={live ? "hero-match is-live" : "hero-match"}>
+                <span className="hero-match-tag">
+                  {live ? t("hero.liveTag") : t("hero.nextTag")}
+                </span>
               <div className="vs-row">
                 <div className="jersey-wrap">
                   <span className="jersey">
@@ -263,7 +300,8 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
                   {fmtTime(focus.kickoffUTC, tzOffset)} {tzLabel(tzOffset)}
                 </div>
               </div>
-            </aside>
+              </aside>
+            </div>
           )}
         </div>
       </div>

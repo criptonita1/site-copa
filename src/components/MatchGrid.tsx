@@ -2,9 +2,9 @@
 
 import { useMemo } from "react";
 import type { TimezoneOffset } from "@/config";
-import { MATCHES } from "@/lib/matches";
+import { MATCHES, TBD_TEAM } from "@/lib/matches";
 import type { MatchScore } from "@/hooks/useScores";
-import type { ChannelId, Match } from "@/types";
+import type { ChannelId, Match, Stage } from "@/types";
 import { MatchCard } from "@/components/MatchCard";
 import { FieldBg } from "@/components/FieldBg";
 import { TABS, type TabKey } from "@/components/StageTabs";
@@ -31,13 +31,22 @@ const NEXT_N_FALLBACK = 10;
  * Tab "semana":
  *  - durante a Copa: jogos das próximas 7 dias
  *  - pré-Copa: próximos 10 jogos (pra não cair em 72 da fase de grupos)
+ *  - esconde jogos de mata-mata ainda sem sorteio ("A definir x A definir"),
+ *    que poluiriam a janela com cards sem time. Um slot meio conhecido
+ *    ("Brasil x A definir") continua aparecendo.
  */
+function bothTbd(m: Match): boolean {
+  return m.mandante === TBD_TEAM && m.visitante === TBD_TEAM;
+}
+
 export function filterByTab(tab: TabKey, nowMs: number): Match[] {
   if (tab === "todos") return MATCHES;
   if (tab === "semana") {
     const upcoming = MATCHES.filter((m) => {
       const t = new Date(m.kickoffUTC).getTime();
-      return t > nowMs - 12 * 60 * 60 * 1000 && t < nowMs + WEEK_MS;
+      return (
+        t > nowMs - 12 * 60 * 60 * 1000 && t < nowMs + WEEK_MS && !bothTbd(m)
+      );
     });
     if (upcoming.length > 0) return upcoming;
     // pré-Copa: próximos N jogos cronologicamente
@@ -49,6 +58,41 @@ export function filterByTab(tab: TabKey, nowMs: number): Match[] {
   const def = TABS.find((d) => d.key === tab);
   if (!def?.stages) return MATCHES;
   return MATCHES.filter((m) => def.stages!.includes(m.stage));
+}
+
+/**
+ * Aba que a grade deve abrir por padrão, conforme o momento da Copa:
+ *  - enquanto houver jogo de grupos por vir → "semana" (mistura o que importa)
+ *  - acabaram os grupos → primeira fase de mata-mata com jogos por vir
+ * Roda só no client (num efeito) pra não causar mismatch de hidratação.
+ */
+const KNOCKOUT_TAB: Array<[Stage, TabKey]> = [
+  ["32avos", "32avos"],
+  ["oitavas", "oitavas"],
+  ["quartas", "quartas"],
+  ["semi", "semifinal"],
+  ["terceiro", "semifinal"],
+  ["final", "semifinal"],
+];
+
+export function currentPhaseTab(nowMs: number): TabKey {
+  const hasUpcomingGroup = MATCHES.some(
+    (m) =>
+      (m.stage === "grupos" || m.stage === "abertura") &&
+      new Date(m.kickoffUTC).getTime() > nowMs,
+  );
+  if (hasUpcomingGroup) return "semana";
+  const cutoff = nowMs - 12 * 60 * 60 * 1000;
+  for (const [stage, key] of KNOCKOUT_TAB) {
+    if (
+      MATCHES.some(
+        (m) => m.stage === stage && new Date(m.kickoffUTC).getTime() > cutoff,
+      )
+    ) {
+      return key;
+    }
+  }
+  return "semana";
 }
 
 export function MatchGrid({

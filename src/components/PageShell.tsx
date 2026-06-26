@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useFilters } from "@/hooks/useFilters";
 import { useNow } from "@/hooks/useNow";
 import { useScores } from "@/hooks/useScores";
@@ -12,7 +12,7 @@ import { Hero } from "@/components/Hero";
 import { RollingDivider } from "@/components/RollingDivider";
 import { Ticker } from "@/components/Ticker";
 import { FilterPanel } from "@/components/FilterPanel";
-import { MatchGrid, filterByTab } from "@/components/MatchGrid";
+import { MatchGrid, filterByTab, currentPhaseTab } from "@/components/MatchGrid";
 import { StageTabs, TABS, type TabKey } from "@/components/StageTabs";
 import { ShareSection } from "@/components/ShareSection";
 import { EmailCapture } from "@/components/EmailCapture";
@@ -30,6 +30,22 @@ export function PageShell() {
   const filters = useFilters();
   const scores = useScores();
   const [tab, setTab] = useState<TabKey>("semana");
+  const [tabTouched, setTabTouched] = useState(false);
+
+  // Na carga, se a fase de grupos já acabou, abre a grade já na fase corrente
+  // do mata-mata (32-avos → oitavas → …). Só no client (efeito) pra não
+  // divergir do SSR. Não mexe se o usuário já trocou de aba manualmente.
+  useEffect(() => {
+    if (tabTouched) return;
+    const phase = currentPhaseTab(Date.now());
+    if (phase !== "semana") setTab(phase);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const onTabChange = (key: TabKey) => {
+    setTabTouched(true);
+    setTab(key);
+  };
 
   // Counts por tab — granularidade de hora pra não recalcular toda hora
   const hourKey = Math.floor(now / (60 * 60 * 1000));
@@ -100,7 +116,7 @@ export function PageShell() {
         />
         <PromoSlot variant="default" />
         <div className="wrap" style={{ marginTop: 28 }}>
-          <StageTabs active={effectiveTab} onChange={setTab} counts={tabCounts} />
+          <StageTabs active={effectiveTab} onChange={onTabChange} counts={tabCounts} />
         </div>
         <MatchGrid
           nowMs={now}

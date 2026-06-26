@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { APP, TIMEZONES, type TimezoneOffset } from "@/config";
 import { BallSvg, FlagBrSvg } from "@/components/icons";
 import { useT } from "@/i18n/LangProvider";
@@ -24,6 +25,9 @@ export function Nav({ tzOffset, onTzChange }: NavProps) {
         <FlagBrSvg className="flag-pin" />
       </a>
       <div className="nav-right">
+        <Link href="/chaveamento" className="nav-bracket">
+          {t("nav.bracket")}
+        </Link>
         <div className="lang-toggle" role="group" aria-label={t("nav.lang")}>
           <button
             type="button"
