@@ -2536,13 +2536,107 @@ a.support-qr-wrap:hover {
   color: var(--paper-2);
 }
 
-/* Coluna do card "próximo jogo" + selo "Brasil classificado" acima dele */
-.hero-match-col {
+/* Topo "próximo jogo": header compacto + 1-2 cards do mesmo horário */
+.hero-next {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  align-self: end;
+  gap: 16px;
+  padding: 8px 0 30px;
 }
+.hero-next-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+.hero-next-kicker {
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 8px 14px;
+  box-shadow: 4px 4px 0 var(--verde);
+}
+.hero-next-kicker.live {
+  background: #d11e2a;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.hero-next-when {
+  font-family: var(--font-anton), Anton, sans-serif;
+  font-size: clamp(28px, 5vw, 46px);
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--verde-deep);
+}
+.hero-next-cd {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+.hero-next-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: stretch;
+}
+.hero-next-cards .hero-match {
+  flex: 1 1 320px;
+  max-width: 520px;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+}
+.hero-match-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  background: #d11e2a;
+  color: #fff;
+  font-family: var(--font-bungee), Bungee, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 4px 9px;
+  margin-bottom: 10px;
+}
+.hero-match-live .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  animation: livePulse 1.4s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.hero-card-channels {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1.5px dashed var(--ink-low);
+}
+.hero-card-channels .lbl {
+  display: block;
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 8px;
+}
+.hero-card-channels .chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.hero-over {
+  padding: 18px 0 40px;
+}
+
 .hero-br-status {
   display: inline-flex;
   align-items: center;

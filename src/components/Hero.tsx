@@ -1,15 +1,13 @@
 "use client";
 
 import { useMemo } from "react";
+import type { Match } from "@/types";
 import { BRAZIL, type TimezoneOffset } from "@/config";
-import {
-  brazilKnockoutMatches,
-  currentOrNextMatch,
-  TBD_TEAM,
-} from "@/lib/matches";
+import { brazilKnockoutMatches, currentOrNextSlot } from "@/lib/matches";
 import { Jersey } from "@/lib/jersey";
 import {
   calendarDaysUntil,
+  countdownTo,
   fmtDay,
   fmtTime,
   matchState,
@@ -18,11 +16,10 @@ import {
 } from "@/lib/time";
 import { ArrowDownSvg } from "@/components/icons";
 import { GoalNet } from "@/components/GoalNet";
-import { Countdown } from "@/components/Countdown";
 import { ChannelBadge } from "@/components/ChannelBadge";
 import type { MatchScore } from "@/hooks/useScores";
 import { useT } from "@/i18n/LangProvider";
-import { teamName, cityName } from "@/i18n/dict";
+import { teamName, cityName, type Lang } from "@/i18n/dict";
 
 interface HeroProps {
   nowMs: number;
@@ -30,53 +27,103 @@ interface HeroProps {
   scores?: Record<string, MatchScore>;
 }
 
-const COUNTDOWN_CELLS: Array<{ key: string; lab: string }> = [
-  { key: "d", lab: "cd.days" },
-  { key: "h", lab: "cd.hours" },
-  { key: "m", lab: "cd.min" },
-  { key: "s", lab: "cd.sec" },
-];
+/** Countdown compacto em texto: "2d 4h", "4h 12min" ou "12min 30s". */
+function compactCountdown(kickoffUTC: string, nowMs: number): string {
+  const c = countdownTo(kickoffUTC, nowMs);
+  if (c.d > 0) return `${c.d}d ${c.h}h`;
+  if (c.h > 0) return `${c.h}h ${pad2(c.m)}min`;
+  return `${c.m}min ${pad2(c.s)}s`;
+}
 
-/** Placeholder estável pré-hidratação (nowMs===0) — evita piscar número gigante. */
-function CountdownPlaceholder() {
+/** Card de um jogo no topo: times, placar (se ao vivo), local e onde ver. */
+function HeroMatchCard({
+  match,
+  live,
+  score,
+  tzOffset,
+  lang,
+}: {
+  match: Match;
+  live: boolean;
+  score?: MatchScore;
+  tzOffset: TimezoneOffset;
+  lang: Lang;
+}) {
   const { t } = useT();
   return (
-    <div className="cd" aria-hidden="true">
-      {COUNTDOWN_CELLS.map((c, i) => (
-        <div className={i === 3 ? "cell s" : "cell"} key={c.key}>
-          <div className="num">00</div>
-          <div className="lab">{t(c.lab)}</div>
+    <aside className={live ? "hero-match is-live" : "hero-match"}>
+      {live && (
+        <span className="hero-match-live" aria-label={t("hero.liveAria")}>
+          <span className="dot" aria-hidden="true" />
+          {t("hero.live")}
+        </span>
+      )}
+      <div className="vs-row">
+        <div className="jersey-wrap">
+          <span className="jersey">
+            <Jersey team={match.mandante} size={54} />
+          </span>
+          <span className="country">
+            {teamName(match.mandante, lang).toUpperCase()}
+          </span>
         </div>
-      ))}
-    </div>
+        {score ? (
+          <span className="hero-score">
+            {score.golsMandante}
+            <i>×</i>
+            {score.golsVisitante}
+          </span>
+        ) : (
+          <span className="x">×</span>
+        )}
+        <div className="jersey-wrap right">
+          <span className="jersey">
+            <Jersey team={match.visitante} size={54} />
+          </span>
+          <span className="country">
+            {teamName(match.visitante, lang).toUpperCase()}
+          </span>
+        </div>
+      </div>
+      <div className="meta-line">
+        {match.grupo ? `${t("hero.group", { g: match.grupo })} · ` : ""}
+        {t(`stage.${match.stage}`)} · {fmtTime(match.kickoffUTC, tzOffset)}{" "}
+        {tzLabel(tzOffset)}
+      </div>
+      <div className="stadium">{match.estadio.toUpperCase()}</div>
+      <div className="when">{cityName(match.cidade, lang)}</div>
+      <div className="hero-card-channels">
+        <span className="lbl">{t("hero.watchOn")}</span>
+        <div className="chips">
+          {match.canais.map((c) => (
+            <ChannelBadge key={c} id={c} />
+          ))}
+        </div>
+      </div>
+    </aside>
   );
 }
 
 export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
   const { t, lang } = useT();
-  // nowMs===0 = ainda não hidratado (SSR e 1º render do client). Tratamos como
-  // "carregando" pra não renderizar estado AO VIVO nem contagem com base em 1970.
+  // nowMs===0 = ainda não hidratado (SSR e 1º render do client).
   const hydrated = nowMs > 0;
 
-  // O foco é estável em escala de minutos — só muda quando um jogo começa/acaba.
-  const minuteKey = Math.floor(nowMs / 60_000);
-  const minuteMs = minuteKey * 60_000;
+  // Foco estável em escala de minutos — só muda quando um jogo começa/acaba.
+  const minuteMs = Math.floor(nowMs / 60_000) * 60_000;
 
-  const { focus, isBrazil, live } = useMemo(() => {
-    // O topo mostra o PRÓXIMO JOGO da Copa (cronológico) — ao vivo tem
-    // prioridade sobre o agendado. Não força o jogo do Brasil pra frente: se o
-    // próximo é do Brasil, ele aparece naturalmente; senão, mostra o que vier.
-    const f = currentOrNextMatch(() => true, minuteMs);
+  const { slot, live } = useMemo(() => {
+    const s = currentOrNextSlot(minuteMs);
+    const f = s[0];
     return {
-      focus: f,
-      isBrazil: !!f?.brasil,
+      slot: s,
       live: hydrated && f ? matchState(f, minuteMs) === "live" : false,
     };
   }, [minuteMs, hydrated]);
 
+  const focus = slot[0];
+
   // Selo "Brasil classificado" — assertivo via config (o site não tem tabela).
-  // Quando o sync do mata-mata já tiver inserido o próximo jogo do Brasil,
-  // mostramos a data junto; senão, só o selo.
   const brQualified = BRAZIL.classificado;
   const brNextKO = useMemo(() => {
     if (!brQualified || !hydrated) return undefined;
@@ -88,25 +135,27 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
       )[0];
   }, [brQualified, hydrated, minuteMs]);
 
-  const subject = isBrazil ? t("hero.subject.brazil") : t("hero.subject.cup");
-  const focusScore = focus ? scores?.[focus.id] : undefined;
   const calDays =
     focus && hydrated
       ? calendarDaysUntil(focus.kickoffUTC, minuteMs, tzOffset)
       : null;
-  const opponent =
-    focus && isBrazil
-      ? focus.mandante === "Brasil"
-        ? focus.visitante
-        : focus.mandante
-      : null;
-  // "contra Alemanha" quando o adversário é conhecido; "adversário a definir"
-  // enquanto for um slot de mata-mata ainda sem sorteio.
-  const opponentLabel = opponent
-    ? opponent === TBD_TEAM
-      ? t("hero.vsTbd")
-      : t("hero.vs", { team: teamName(opponent, lang) })
-    : null;
+
+  const kicker = live
+    ? t("hero.liveTag")
+    : slot.length > 1
+      ? t("hero.nextGames")
+      : t("hero.nextTag");
+
+  // "HOJE · 16:00 BRT" / "AMANHÃ · …" / "QUI 26 JUN · …"
+  const whenLabel = focus
+    ? `${
+        calDays === 0
+          ? t("hero.today")
+          : calDays === 1
+            ? t("hero.tomorrow")
+            : fmtDay(focus.kickoffUTC, tzOffset, lang).toUpperCase()
+      } · ${fmtTime(focus.kickoffUTC, tzOffset)} ${tzLabel(tzOffset)}`
+    : "";
 
   return (
     <section className="hero">
@@ -143,167 +192,74 @@ export function Hero({ nowMs, tzOffset, scores }: HeroProps) {
           </div>
         </div>
 
-        <div className="hero-cover">
-          <div className="hero-headline">
-            {!focus ? (
-              /* FIM DE LINHA — nenhum jogo ao vivo nem agendado: a Copa acabou */
-              <>
-                <h1 className="hero-row1" style={{ margin: 0 }}>
-                  {t("hero.over1")} <span className="joga">{t("hero.over2")}</span>
-                </h1>
-                <div className="hero-row2">
-                  <span className="em-num word">2026</span>
-                </div>
-                <p className="hero-sub">
-                  {t("hero.overSub")}
-                </p>
-              </>
-            ) : live ? (
-              /* AO VIVO — o jogo está rolando AGORA: mostra onde assistir na hora */
-              <>
-                <h1 className="hero-row1" style={{ margin: 0 }}>
-                  {subject} <span className="joga">{t("hero.plays")}</span>
-                </h1>
-                <div className="hero-row2 is-live">
-                  <span className="agora">{t("hero.now")}</span>
-                  <span className="livebadge" aria-label={t("hero.liveAria")}>
-                    <span className="dot" aria-hidden="true" />
-                    {t("hero.live")}
-                  </span>
-                </div>
-                <div className="hero-live-channels">
-                  <span className="lbl">{t("hero.watchNowOn")}</span>
-                  <div className="chips">
-                    {focus.canais.map((c) => (
-                      <ChannelBadge key={c} id={c} />
-                    ))}
-                  </div>
-                </div>
-              </>
-            ) : (
-              /* FALTANDO — contagem regressiva pro próximo jogo */
-              <>
-                <h1 className="hero-row1" style={{ margin: 0 }}>
-                  {subject} <span className="joga">{t("hero.plays")}</span>
-                </h1>
-
-                {calDays === 0 ? (
-                  <>
-                    <div className="hero-row2">
-                      <span className="em-num word">{t("hero.today")}</span>
-                    </div>
-                    <p className="hero-sub">
-                      {t("hero.atTime", {
-                        time: fmtTime(focus.kickoffUTC, tzOffset),
-                        tz: tzLabel(tzOffset),
+        {!focus ? (
+          /* FIM DE LINHA — nenhum jogo ao vivo nem agendado: a Copa acabou */
+          <div className="hero-over">
+            <h1 className="hero-row1" style={{ margin: 0 }}>
+              {t("hero.over1")} <span className="joga">{t("hero.over2")}</span>{" "}
+              <span className="em-num word">2026</span>
+            </h1>
+            <p className="hero-sub">{t("hero.overSub")}</p>
+            <a href="#grade" className="hero-cta">
+              {t("hero.cta")}
+              <ArrowDownSvg />
+            </a>
+          </div>
+        ) : (
+          <div className="hero-next">
+            <div className="hero-next-head">
+              <span className={live ? "hero-next-kicker live" : "hero-next-kicker"}>
+                {kicker}
+              </span>
+              {!live && (
+                <>
+                  <span className="hero-next-when">{whenLabel}</span>
+                  {hydrated && (
+                    <span className="hero-next-cd">
+                      {t("hero.startsIn", {
+                        x: compactCountdown(focus.kickoffUTC, nowMs),
                       })}
-                      {opponentLabel ? ` · ${opponentLabel}` : ""}
-                    </p>
-                  </>
-                ) : calDays === 1 ? (
-                  <>
-                    <div className="hero-row2">
-                      <span className="em-num word">{t("hero.tomorrow")}</span>
-                    </div>
-                    <p className="hero-sub">
-                      {t("hero.atTime", {
-                        time: fmtTime(focus.kickoffUTC, tzOffset),
-                        tz: tzLabel(tzOffset),
-                      })}
-                      {opponentLabel ? ` · ${opponentLabel}` : ""}
-                    </p>
-                  </>
-                ) : (
-                  <div
-                    className="hero-row2"
-                    aria-label={t("hero.daysAria", { d: calDays ?? "—" })}
-                  >
-                    {t("hero.in")}{" "}
-                    <span className="em-num">
-                      {calDays != null ? pad2(calDays) : "—"}
                     </span>
-                    <span className="d">{t("hero.days")}</span>
-                  </div>
-                )}
+                  )}
+                </>
+              )}
+            </div>
 
-                {hydrated ? (
-                  <Countdown kickoffUTC={focus.kickoffUTC} nowMs={nowMs} />
-                ) : (
-                  <CountdownPlaceholder />
-                )}
-              </>
+            {brQualified && (
+              <div className="hero-br-status" role="status">
+                <span className="flag" aria-hidden="true">
+                  🇧🇷
+                </span>
+                <span className="txt">
+                  {t("hero.brQualified")}
+                  {brNextKO
+                    ? ` · ${t("hero.brPlaysOn", {
+                        date: fmtDay(brNextKO.kickoffUTC, tzOffset, lang),
+                      })}`
+                    : ""}
+                </span>
+              </div>
             )}
+
+            <div className="hero-next-cards">
+              {slot.map((m) => (
+                <HeroMatchCard
+                  key={m.id}
+                  match={m}
+                  live={live}
+                  score={scores?.[m.id]}
+                  tzOffset={tzOffset}
+                  lang={lang}
+                />
+              ))}
+            </div>
 
             <a href="#grade" className="hero-cta">
               {t("hero.cta")}
               <ArrowDownSvg />
             </a>
           </div>
-
-          {focus && (
-            <div className="hero-match-col">
-              {brQualified && (
-                <div className="hero-br-status" role="status">
-                  <span className="flag" aria-hidden="true">
-                    🇧🇷
-                  </span>
-                  <span className="txt">
-                    {t("hero.brQualified")}
-                    {brNextKO
-                      ? ` · ${t("hero.brPlaysOn", {
-                          date: fmtDay(brNextKO.kickoffUTC, tzOffset, lang),
-                        })}`
-                      : ""}
-                  </span>
-                </div>
-              )}
-              <aside className={live ? "hero-match is-live" : "hero-match"}>
-                <span className="hero-match-tag">
-                  {live ? t("hero.liveTag") : t("hero.nextTag")}
-                </span>
-              <div className="vs-row">
-                <div className="jersey-wrap">
-                  <span className="jersey">
-                    <Jersey team={focus.mandante} size={62} />
-                  </span>
-                  <span className="country">
-                    {teamName(focus.mandante, lang).toUpperCase()}
-                  </span>
-                </div>
-                {focusScore ? (
-                  <span className="hero-score">
-                    {focusScore.golsMandante}
-                    <i>×</i>
-                    {focusScore.golsVisitante}
-                  </span>
-                ) : (
-                  <span className="x">×</span>
-                )}
-                <div className="jersey-wrap right">
-                  <span className="jersey">
-                    <Jersey team={focus.visitante} size={62} />
-                  </span>
-                  <span className="country">
-                    {teamName(focus.visitante, lang).toUpperCase()}
-                  </span>
-                </div>
-              </div>
-              <div>
-                <div className="meta-line">
-                  {focus.grupo ? `${t("hero.group", { g: focus.grupo })} · ` : ""}
-                  {t(`stage.${focus.stage}`)} ·{" "}
-                  <span>{fmtDay(focus.kickoffUTC, tzOffset, lang)}</span>
-                </div>
-                <div className="stadium">{focus.estadio.toUpperCase()}</div>
-                <div className="when">
-                  {cityName(focus.cidade, lang)} ·{" "}
-                  {fmtTime(focus.kickoffUTC, tzOffset)} {tzLabel(tzOffset)}
-                </div>
-              </div>
-              </aside>
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </section>
   );

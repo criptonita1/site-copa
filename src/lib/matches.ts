@@ -58,6 +58,17 @@ export function currentOrNextBrazil(nowMs: number): Match | undefined {
   return currentOrNextMatch((m) => m.brasil, nowMs);
 }
 
+/**
+ * O "slot" em foco: todos os jogos que dividem o mesmo kickoff do próximo jogo
+ * (ou do que está ao vivo). Na reta final dos grupos a FIFA joga 2 partidas no
+ * mesmo horário — então o topo precisa mostrar todas, não uma só.
+ */
+export function currentOrNextSlot(nowMs: number): Match[] {
+  const f = currentOrNextMatch(() => true, nowMs);
+  if (!f) return [];
+  return MATCHES.filter((m) => m.kickoffUTC === f.kickoffUTC);
+}
+
 /** Um time ainda não definido (slot de mata-mata pré-sorteio). */
 export const TBD_TEAM = "A definir";
 
