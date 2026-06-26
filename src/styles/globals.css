@@ -1095,13 +1095,13 @@ main {
 .goal-net {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 64%;
   transform: translate(-50%, -50%);
-  width: min(900px, 95%);
+  width: min(760px, 70%);
   height: auto;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.48;
+  opacity: 0.28;
   display: block;
 }
 @media (max-width: 880px) {
@@ -1111,7 +1111,9 @@ main {
 }
 .hero .hero-headline,
 .hero .hero-match,
-.hero .hero-tagrow {
+.hero .hero-tagrow,
+.hero .hero-next,
+.hero .hero-over {
   position: relative;
   z-index: 1;
 }
