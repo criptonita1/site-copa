@@ -21,19 +21,28 @@ export function BracketRound({ stage, matches, brazilPathIds }: Props) {
     >
       <header className="br-round-head">
         <h2 id={`round-${stage}`}>{STAGE_LABEL[stage]}</h2>
-        <span className="br-round-count">
-          {decided}/{total}
-        </span>
-        <span
-          className="br-round-bar"
-          aria-label={`${pct}% decidido`}
-          role="progressbar"
-          aria-valuenow={pct}
-          aria-valuemin={0}
-          aria-valuemax={100}
-        >
-          <i style={{ width: `${pct}%` }} />
-        </span>
+        {decided > 0 ? (
+          <>
+            <span className="br-round-count">
+              {decided}/{total}
+            </span>
+            <span
+              className="br-round-bar"
+              aria-label={`${pct}% decidido`}
+              role="progressbar"
+              aria-valuenow={pct}
+              aria-valuemin={0}
+              aria-valuemax={100}
+            >
+              <i style={{ width: `${pct}%` }} />
+            </span>
+          </>
+        ) : (
+          /* Fase ainda sem resultado: contagem neutra em vez de "0/N · 0%". */
+          <span className="br-round-count soon">
+            {total} {total === 1 ? "jogo" : "jogos"}
+          </span>
+        )}
       </header>
 
       <div className="br-round-list">

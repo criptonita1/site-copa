@@ -2873,6 +2873,18 @@ a.support-qr-wrap:hover {
   color: var(--ink-soft);
   white-space: nowrap;
 }
+/* Antes do mata-mata começar: "Mata-mata começa 28/06" no lugar de 0%. */
+.br-overall-soon {
+  font-family: var(--font-mono), "Space Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--verde);
+  border: 1.5px solid var(--ink);
+  padding: 5px 10px;
+  white-space: nowrap;
+}
 .br-follow-br {
   display: inline-flex;
   align-items: center;
@@ -2972,6 +2984,11 @@ a.support-qr-wrap:hover {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   color: var(--amarelo);
+}
+/* Fase ainda sem jogo decidido: "16 jogos" neutro em vez de "0/16". */
+.br-round-count.soon {
+  color: var(--paper-2);
+  letter-spacing: 0.04em;
 }
 .br-round-bar {
   width: 56px;

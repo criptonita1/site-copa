@@ -12,10 +12,18 @@ import {
 import { BracketRound } from "@/components/BracketRound";
 import { BracketMatch } from "@/components/BracketMatch";
 
+/** DD/MM no fuso de Brasília (-3) — o bracket não tem seletor de fuso. */
+function ddmmBR(iso: string): string {
+  const d = new Date(new Date(iso).getTime() - 3 * 3600 * 1000);
+  return `${String(d.getUTCDate()).padStart(2, "0")}/${String(
+    d.getUTCMonth() + 1,
+  ).padStart(2, "0")}`;
+}
+
 export function Bracket() {
   const [followBrazil, setFollowBrazil] = useState(false);
 
-  const { bracket, third, champion, brazilIds, progress, hasBrazilPath } =
+  const { bracket, third, champion, brazilIds, progress, hasBrazilPath, koStart } =
     useMemo(() => {
       const b = getBracket();
       const path = brazilKnockoutPath();
@@ -26,8 +34,13 @@ export function Bracket() {
         brazilIds: new Set(path.map((m) => m.id)),
         progress: overallProgress(),
         hasBrazilPath: path.length > 0,
+        koStart: matchesByStage("32avos")[0],
       };
     }, []);
+
+  // Antes do 1º jogo do mata-mata, "0/32 · 0%" parece morto — então mostramos
+  // quando o mata-mata começa. A barra só aparece quando há jogo decidido.
+  const started = progress.decided > 0;
 
   return (
     <div className="bracket-wrap">
@@ -43,12 +56,22 @@ export function Bracket() {
       <div className="br-overall">
         <div className="br-overall-row">
           <span className="br-overall-lab">CAMINHADA</span>
-          <span className="br-overall-bar" aria-hidden="true">
-            <i style={{ width: `${progress.pct}%` }} />
-          </span>
-          <span className="br-overall-pct">
-            {progress.decided}/{progress.total} · {progress.pct}%
-          </span>
+          {started ? (
+            <>
+              <span className="br-overall-bar" aria-hidden="true">
+                <i style={{ width: `${progress.pct}%` }} />
+              </span>
+              <span className="br-overall-pct">
+                {progress.decided}/{progress.total} · {progress.pct}%
+              </span>
+            </>
+          ) : (
+            <span className="br-overall-soon">
+              {koStart
+                ? `Mata-mata começa ${ddmmBR(koStart.kickoffUTC)}`
+                : "Em breve"}
+            </span>
+          )}
         </div>
         {hasBrazilPath && (
           <button
