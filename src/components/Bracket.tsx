@@ -11,6 +11,8 @@ import {
 } from "@/lib/bracket";
 import { BracketRound } from "@/components/BracketRound";
 import { BracketMatch } from "@/components/BracketMatch";
+import { useT } from "@/i18n/LangProvider";
+import { teamName } from "@/i18n/dict";
 
 /** DD/MM no fuso de Brasília (-3) — o bracket não tem seletor de fuso. */
 function ddmmBR(iso: string): string {
@@ -21,6 +23,7 @@ function ddmmBR(iso: string): string {
 }
 
 export function Bracket() {
+  const { t, lang } = useT();
   const [followBrazil, setFollowBrazil] = useState(false);
 
   const { bracket, third, champion, brazilIds, progress, hasBrazilPath, koStart } =
@@ -38,8 +41,6 @@ export function Bracket() {
       };
     }, []);
 
-  // Antes do 1º jogo do mata-mata, "0/32 · 0%" parece morto — então mostramos
-  // quando o mata-mata começa. A barra só aparece quando há jogo decidido.
   const started = progress.decided > 0;
 
   return (
@@ -47,15 +48,15 @@ export function Bracket() {
       {/* Banner Campeão (só aparece quando final decidida) */}
       {champion && (
         <div className="br-champion" role="status">
-          <span className="br-champion-lab">★ Campeão · 2026</span>
-          <span className="br-champion-name">{champion}</span>
+          <span className="br-champion-lab">{t("bracket.champion")}</span>
+          <span className="br-champion-name">{teamName(champion, lang)}</span>
         </div>
       )}
 
       {/* Progress overall */}
       <div className="br-overall">
         <div className="br-overall-row">
-          <span className="br-overall-lab">CAMINHADA</span>
+          <span className="br-overall-lab">{t("bracket.caminhada")}</span>
           {started ? (
             <>
               <span className="br-overall-bar" aria-hidden="true">
@@ -68,8 +69,8 @@ export function Bracket() {
           ) : (
             <span className="br-overall-soon">
               {koStart
-                ? `Mata-mata começa ${ddmmBR(koStart.kickoffUTC)}`
-                : "Em breve"}
+                ? t("bracket.koStart", { date: ddmmBR(koStart.kickoffUTC) })
+                : "—"}
             </span>
           )}
         </div>
@@ -79,18 +80,16 @@ export function Bracket() {
             aria-pressed={followBrazil}
             onClick={() => setFollowBrazil((v) => !v)}
           >
-            🇧🇷 {followBrazil ? "Desmarcar Brasil" : "Seguir o Brasil"}
+            🇧🇷 {followBrazil ? t("bracket.unfollowBr") : t("bracket.followBr")}
           </button>
         )}
       </div>
 
       {/* Hint mobile */}
-      <p className="br-hint">
-        Arrasta lateralmente entre as fases. Toca num card pra ver detalhes.
-      </p>
+      <p className="br-hint">{t("bracket.hint")}</p>
 
       {/* Snap-scroll horizontal das fases */}
-      <div className="br-track" role="region" aria-label="Chaveamento">
+      <div className="br-track" role="region" aria-label={t("bracket.title")}>
         {BRACKET_COLUMNS.map((stage) => (
           <BracketRound
             key={stage}
@@ -104,13 +103,11 @@ export function Bracket() {
       {/* 3º Lugar — destacado fora do bracket principal */}
       {third && (
         <section className="br-third">
-          <h2>3º Lugar</h2>
+          <h2>{t("bracket.stage.terceiro")}</h2>
           <div className="br-third-card">
             <BracketMatch match={third} />
           </div>
-          <p className="br-third-note">
-            Disputado pelos perdedores das semifinais, antes da grande final.
-          </p>
+          <p className="br-third-note">{t("bracket.thirdNote")}</p>
         </section>
       )}
     </div>

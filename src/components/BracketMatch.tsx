@@ -1,6 +1,11 @@
+"use client";
+
 import type { Match } from "@/types";
-import { formatScore, getWinner, isPlaceholder } from "@/lib/bracket";
-import { TBD_TEAM } from "@/lib/matches";
+import { getWinner, isPlaceholder } from "@/lib/bracket";
+import { Jersey } from "@/lib/jersey";
+import { TEAMS, TEAM_TBD } from "@/data/teams";
+import { useT } from "@/i18n/LangProvider";
+import { teamName, type Lang } from "@/i18n/dict";
 
 interface Props {
   match: Match;
@@ -18,10 +23,31 @@ function ddmm(kickoffUTC: string): string {
   ).padStart(2, "0")}`;
 }
 
+/** Cor identitária da seleção (camisa). Branca usa o accent; slot vazio = neutro. */
+function teamColor(team: string): string {
+  const j = TEAMS[team];
+  if (!j) return TEAM_TBD.accent;
+  const body = j.body.toLowerCase();
+  return body === "#fff" || body === "#ffffff" ? j.accent : j.body;
+}
+
+/** Nome pra exibir: traduz seleções e também os rótulos de slot ("3º colocado"). */
+function displayTeam(team: string, lang: Lang): string {
+  const named = teamName(team, lang);
+  if (named !== team) return named; // estava no mapa de nomes (seleção ou "A definir")
+  if (lang !== "en") return team; // rótulos de slot já estão em PT
+  const g = team.match(/^([12])º do Grupo ([A-L])$/);
+  if (g) return `${g[1] === "1" ? "1st" : "2nd"} of Group ${g[2]}`;
+  if (team === "3º colocado") return "3rd place";
+  return team;
+}
+
 export function BracketMatch({ match, brazilPath, highlight }: Props) {
+  const { t, lang } = useT();
   const winner = getWinner(match);
   const decided = winner !== undefined;
   const isBR = match.brasil;
+  const pens = match.resultado?.penaltis;
 
   const classes = [
     "bm",
@@ -33,13 +59,19 @@ export function BracketMatch({ match, brazilPath, highlight }: Props) {
     .filter(Boolean)
     .join(" ");
 
+  const aria = decided
+    ? t("bracket.winnerAria", {
+        home: displayTeam(match.mandante, lang),
+        away: displayTeam(match.visitante, lang),
+        winner: displayTeam(winner, lang),
+      })
+    : t("bracket.pendingAria", {
+        home: displayTeam(match.mandante, lang),
+        away: displayTeam(match.visitante, lang),
+      });
+
   return (
-    <article
-      className={classes}
-      aria-label={`${match.mandante} contra ${match.visitante}${
-        decided ? `, vencedor ${winner}` : ", aguardando"
-      }`}
-    >
+    <article className={classes} aria-label={aria}>
       <header className="bm-head">
         <span className="bm-id">{match.id}</span>
         <span className="bm-when">{ddmm(match.kickoffUTC)}</span>
@@ -47,55 +79,59 @@ export function BracketMatch({ match, brazilPath, highlight }: Props) {
 
       <div className="bm-teams">
         <TeamRow
-          name={match.mandante}
-          score={match.resultado?.golsMandante}
+          team={match.mandante}
+          score={decided ? match.resultado?.golsMandante : undefined}
           isWinner={decided && winner === match.mandante}
           loserDimmed={decided && winner !== match.mandante}
+          lang={lang}
         />
         <div className="bm-vs" aria-hidden="true">
-          {decided ? formatScoreCompact(match) : "vs"}
+          {decided ? "×" : t("bracket.vs")}
         </div>
         <TeamRow
-          name={match.visitante}
-          score={match.resultado?.golsVisitante}
+          team={match.visitante}
+          score={decided ? match.resultado?.golsVisitante : undefined}
           isWinner={decided && winner === match.visitante}
           loserDimmed={decided && winner !== match.visitante}
+          lang={lang}
         />
       </div>
 
       <footer className="bm-foot">
         <span className="bm-stadium">{match.estadio}</span>
+        {pens && (
+          <span className="bm-pens">
+            {pens.mandante}-{pens.visitante} pên
+          </span>
+        )}
       </footer>
     </article>
   );
 }
 
-function formatScoreCompact(m: Match) {
-  if (!m.resultado) return "vs";
-  if (m.resultado.penaltis) {
-    return `${m.resultado.penaltis.mandante}-${m.resultado.penaltis.visitante} pen`;
-  }
-  return formatScore(m.resultado);
-}
-
 function TeamRow({
-  name,
+  team,
   score,
   isWinner,
   loserDimmed,
+  lang,
 }: {
-  name: string;
+  team: string;
   score?: number;
   isWinner: boolean;
   loserDimmed: boolean;
+  lang: Lang;
 }) {
   const cls = ["bm-team", isWinner ? "win" : "", loserDimmed ? "lose" : ""]
     .filter(Boolean)
     .join(" ");
-  const display = isPlaceholder(name) ? TBD_TEAM : name;
+  const tbd = isPlaceholder(team) || !TEAMS[team];
   return (
-    <div className={cls}>
-      <span className="bm-name">{display}</span>
+    <div className={cls} style={{ borderLeftColor: teamColor(team) }}>
+      <span className={tbd ? "bm-jersey tbd" : "bm-jersey"}>
+        <Jersey team={team} size={22} />
+      </span>
+      <span className="bm-name">{displayTeam(team, lang)}</span>
       {score !== undefined && <span className="bm-score">{score}</span>}
     </div>
   );

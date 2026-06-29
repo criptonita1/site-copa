@@ -2792,6 +2792,12 @@ a.support-qr-wrap:hover {
   padding: 22px 0 60px;
   max-width: 1280px;
   margin: 0 auto;
+  /* textura sutil (mesma pegada do resto do site) */
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0 22px,
+    rgba(13, 13, 13, 0.022) 22px 23px
+  );
 }
 
 /* Banner Campeão */
@@ -2964,13 +2970,11 @@ a.support-qr-wrap:hover {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
+  padding: 11px 13px;
   background: var(--ink);
   color: var(--paper);
   border: 2px solid var(--ink);
-  position: sticky;
-  top: 60px;
-  z-index: 2;
+  border-bottom: 4px solid var(--verde); /* acento de cor (não-sticky: não corta o 1º card) */
 }
 .br-round-head h2 {
   font-family: var(--font-bungee), Bungee, sans-serif;
@@ -3022,7 +3026,7 @@ a.support-qr-wrap:hover {
   position: relative;
 }
 .bm.pending {
-  opacity: 0.92;
+  opacity: 0.97;
 }
 .bm.decided {
   box-shadow: 3px 3px 0 var(--verde-deep);
@@ -3057,47 +3061,57 @@ a.support-qr-wrap:hover {
 .bm-id {
   font-weight: 700;
 }
+/* Times empilhados (2 linhas), cada um com camisa + barra da cor da seleção */
 .bm-teams {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 .bm-vs {
+  align-self: center;
   font-family: var(--font-mono), monospace;
-  font-size: 9.5px;
+  font-size: 9px;
   color: var(--ink-low);
-  text-align: center;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  padding: 0 4px;
-  white-space: nowrap;
+  letter-spacing: 0.08em;
+  margin: -1px 0;
 }
 .bm.decided .bm-vs {
-  font-family: var(--font-bungee), Bungee, sans-serif;
-  font-size: 10px;
   color: var(--verde-deep);
-  letter-spacing: 0.02em;
+  font-weight: 700;
 }
 .bm-team {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  padding: 6px 8px;
+  gap: 8px;
+  padding: 5px 8px;
   border: 1.5px solid var(--ink);
-  background: var(--paper);
-  min-height: 32px;
+  border-left-width: 6px; /* barra da cor da seleção (cor via inline style) */
+  background: var(--paper-2);
+  min-height: 34px;
 }
 .bm-team.win {
   background: var(--verde);
-  color: var(--paper);
   border-color: var(--verde-deep);
 }
+.bm-team.win .bm-name,
+.bm-team.win .bm-score {
+  color: var(--paper);
+}
 .bm-team.lose {
-  opacity: 0.55;
+  opacity: 0.62;
+}
+.bm-jersey {
+  flex: none;
+  display: inline-flex;
+  line-height: 0;
+}
+.bm-jersey.tbd {
+  opacity: 0.7;
 }
 .bm-name {
+  flex: 1;
+  min-width: 0;
   font-family: var(--font-bungee), Bungee, sans-serif;
   font-size: 11px;
   letter-spacing: 0.02em;
@@ -3106,16 +3120,18 @@ a.support-qr-wrap:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.bm-team.win .bm-name {
-  color: var(--paper);
-}
 .bm-score {
+  flex: none;
   font-family: var(--font-anton), Anton, sans-serif;
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
 .bm-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
   font-family: var(--font-mono), monospace;
   font-size: 9.5px;
   letter-spacing: 0.04em;
@@ -3124,33 +3140,50 @@ a.support-qr-wrap:hover {
   border-top: 1.5px dashed var(--ink-low);
   padding-top: 5px;
   margin-top: 2px;
+}
+.bm-stadium {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.bm-pens {
+  flex: none;
+  color: var(--verde-deep);
+  font-weight: 700;
+}
 
-/* 3º Lugar — destacado fora do bracket */
+/* 3º Lugar — painel próprio, limpo e centralizado */
 .br-third {
-  margin: 32px 16px 0;
-  padding: 22px 18px;
+  max-width: 420px;
+  margin: 40px auto 8px;
+  padding: 18px 18px 22px;
   background: var(--paper-2);
-  border: 2px dashed var(--ink-soft);
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 var(--ink);
+  text-align: center;
 }
 .br-third h2 {
+  display: inline-block;
   font-family: var(--font-bungee), Bungee, sans-serif;
-  font-size: 14px;
-  letter-spacing: 0.05em;
+  font-size: 12px;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin: 0 0 14px;
-  color: var(--ink-soft);
+  margin: 0 0 16px;
+  color: var(--ink);
+  background: var(--amarelo);
+  border: 2px solid var(--ink);
+  padding: 5px 12px;
 }
 .br-third-card {
   max-width: 320px;
+  margin: 0 auto;
+  text-align: left;
 }
 .br-third-note {
-  margin-top: 12px;
+  margin: 14px auto 0;
+  max-width: 340px;
   font-family: var(--font-archivo), system-ui, sans-serif;
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--ink-soft);
   line-height: 1.5;
 }
