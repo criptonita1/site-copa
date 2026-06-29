@@ -8,7 +8,7 @@ import { LangProvider } from "@/i18n/LangProvider";
 export const metadata: Metadata = {
   title: "Chaveamento da Copa 2026 — Caminho até a final",
   description:
-    "O chaveamento do mata-mata da Copa 2026 — 32-avos, oitavas, quartas, semifinais e final. A chave se completa a cada jogo, com a trilha do Brasil em destaque.",
+    "O chaveamento do mata-mata da Copa 2026 — 16-avos de final, oitavas, quartas, semifinais e final. A chave se completa a cada jogo, com a trilha do Brasil em destaque.",
   alternates: { canonical: `${APP.SITE_URL}/chaveamento` },
   openGraph: {
     title: "Chaveamento da Copa 2026",
@@ -45,7 +45,7 @@ export default function ChaveamentoPage() {
             <span className="ko-eyebrow">Copa 2026 · Mata-mata · 32 seleções</span>
             <h1 className="ko-title">O Chaveamento</h1>
             <p className="ko-intro">
-              Dos 32-avos até a final. A chave se completa sozinha conforme os
+              Dos 16-avos de final até a decisão. A chave se completa sozinha conforme os
               jogos vão rolando. Arrasta lateralmente entre as fases e segue a
               trilha do Brasil até o hexa.
             </p>

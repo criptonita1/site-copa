@@ -61,8 +61,8 @@ export default function Image() {
             lineHeight: 1.3,
           }}
         >
-          Do 32-avos à final. A chave se completa a cada jogo — com a trilha do
-          Brasil em destaque.
+          Dos 16-avos de final à decisão. A chave se completa a cada jogo — com
+          a trilha do Brasil em destaque.
         </div>
 
         <div

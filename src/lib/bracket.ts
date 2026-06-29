@@ -2,7 +2,7 @@
  * Bracket — derivação do chaveamento a partir do matches.json.
  *
  * Estrutura da Copa 2026 mata-mata (32 seleções classificadas):
- *  - 32-avos:  16 jogos (M073..M088)
+ *  - 16-avos (Round of 32):  16 jogos (M073..M088)  [key interna: "32avos"]
  *  - oitavas:   8 jogos (M089..M096)
  *  - quartas:   4 jogos (M097..M100)
  *  - semis:     2 jogos (M101..M102)
@@ -30,7 +30,7 @@ export const KNOCKOUT_STAGES: ReadonlyArray<Stage> = [
 export const STAGE_LABEL: Record<Stage, string> = {
   abertura: "Abertura",
   grupos: "Fase de Grupos",
-  "32avos": "32-avos",
+  "32avos": "16-avos", // Round of 32 = 16-avos de final (termo oficial FIFA)
   oitavas: "Oitavas",
   quartas: "Quartas",
   semi: "Semifinais",

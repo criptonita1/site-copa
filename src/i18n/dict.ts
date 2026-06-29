@@ -80,7 +80,7 @@ export const STRINGS: Record<Lang, Dict> = {
     // tabs
     "tab.semana": "Esta semana",
     "tab.grupos": "Fase de grupos",
-    "tab.32avos": "32-avos",
+    "tab.32avos": "16-avos",
     "tab.oitavas": "Oitavas",
     "tab.quartas": "Quartas",
     "tab.semifinal": "Semi & Final",
@@ -89,7 +89,7 @@ export const STRINGS: Record<Lang, Dict> = {
     // stages (rótulo de fase no card/meta)
     "stage.abertura": "ABERTURA",
     "stage.grupos": "GRUPOS",
-    "stage.32avos": "32-AVOS",
+    "stage.32avos": "16-AVOS",
     "stage.oitavas": "OITAVAS",
     "stage.quartas": "QUARTAS",
     "stage.semi": "SEMI",

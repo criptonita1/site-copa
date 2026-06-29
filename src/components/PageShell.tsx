@@ -33,7 +33,7 @@ export function PageShell() {
   const [tabTouched, setTabTouched] = useState(false);
 
   // Na carga, se a fase de grupos já acabou, abre a grade já na fase corrente
-  // do mata-mata (32-avos → oitavas → …). Só no client (efeito) pra não
+  // do mata-mata (16-avos → oitavas → …). Só no client (efeito) pra não
   // divergir do SSR. Não mexe se o usuário já trocou de aba manualmente.
   useEffect(() => {
     if (tabTouched) return;

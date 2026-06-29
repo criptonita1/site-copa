@@ -26,7 +26,9 @@ export interface TabDef {
 export const TABS: TabDef[] = [
   { key: "semana", label: "Esta semana" },
   { key: "grupos", label: "Fase de grupos", stages: ["abertura", "grupos"] },
-  { key: "32avos", label: "32-avos", stages: ["32avos"] },
+  // key interna "32avos" mantida; rótulo correto é "16-avos de final"
+  // (Round of 32 = 32 seleções = 16 jogos = 16-avos, termo oficial da FIFA).
+  { key: "32avos", label: "16-avos", stages: ["32avos"] },
   { key: "oitavas", label: "Oitavas", stages: ["oitavas"] },
   { key: "quartas", label: "Quartas", stages: ["quartas"] },
   { key: "semifinal", label: "Semi & Final", stages: ["semi", "terceiro", "final"] },
