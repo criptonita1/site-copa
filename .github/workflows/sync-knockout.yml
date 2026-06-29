@@ -1,0 +1,50 @@
+name: Sync mata-mata (ESPN)
+
+# Cron de verdade, na nuvem (independe de qualquer app aberto): puxa os
+# confrontos/resultados oficiais do mata-mata da ESPN e atualiza o matches.json.
+# Roda 2x/dia (manhã e noite BRT) pra pegar tanto novos confrontos quanto
+# resultados do dia. O push na main dispara o deploy na Vercel.
+
+on:
+  schedule:
+    - cron: "17 11 * * *" # 08:17 BRT (11:17 UTC)
+    - cron: "17 23 * * *" # 20:17 BRT (23:17 UTC)
+  workflow_dispatch: {} # permite rodar manualmente pelo botão "Run workflow"
+
+permissions:
+  contents: write # necessário pra commitar/pushar o matches.json
+
+concurrency:
+  group: sync-knockout
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Sincroniza com a ESPN
+        run: npx tsx scripts/sync-knockout.ts --apply
+
+      - name: Valida o matches.json
+        run: npm run validate
+
+      - name: Commita e publica se mudou
+        run: |
+          if [[ -z "$(git status --porcelain src/data/matches.json)" ]]; then
+            echo "Nada novo pra sincronizar hoje."
+            exit 0
+          fi
+          git config user.name "ovc-sync-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add src/data/matches.json
+          git commit -m "data: sync mata-mata via ESPN (GitHub Actions)"
+          git push
