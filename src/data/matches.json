@@ -1400,7 +1400,11 @@
         "getv"
       ],
       "canaisConfirmados": true,
-      "brasil": true
+      "brasil": true,
+      "resultado": {
+        "golsMandante": 2,
+        "golsVisitante": 1
+      }
     },
     {
       "id": "M075",
@@ -1417,7 +1421,15 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 1,
+        "golsVisitante": 1,
+        "penaltis": {
+          "mandante": 3,
+          "visitante": 4
+        }
+      }
     },
     {
       "id": "M076",
@@ -1663,7 +1675,7 @@
       "horarioBrasilia": "04/07 18:00",
       "stage": "oitavas",
       "grupo": null,
-      "mandante": "A definir",
+      "mandante": "Paraguai",
       "visitante": "A definir",
       "cidade": "Filadélfia",
       "pais": "EUA",
@@ -1680,16 +1692,22 @@
       "horarioBrasilia": "05/07 17:00",
       "stage": "oitavas",
       "grupo": null,
-      "mandante": "A definir",
+      "mandante": "Brasil",
       "visitante": "A definir",
       "cidade": "Nova York/Nova Jersey",
       "pais": "EUA",
       "estadio": "MetLife Stadium",
       "canais": [
-        "cazetv"
+        "globo",
+        "sbt",
+        "cazetv",
+        "sportv",
+        "nsports",
+        "globoplay",
+        "getv"
       ],
-      "canaisConfirmados": false,
-      "brasil": false
+      "canaisConfirmados": true,
+      "brasil": true
     },
     {
       "id": "M092",
