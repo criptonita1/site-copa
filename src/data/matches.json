@@ -1446,7 +1446,15 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 1,
+        "golsVisitante": 1,
+        "penaltis": {
+          "mandante": 2,
+          "visitante": 3
+        }
+      }
     },
     {
       "id": "M077",
@@ -1659,7 +1667,7 @@
       "stage": "oitavas",
       "grupo": null,
       "mandante": "Canadá",
-      "visitante": "A definir",
+      "visitante": "Marrocos",
       "cidade": "Houston",
       "pais": "EUA",
       "estadio": "NRG Stadium",
