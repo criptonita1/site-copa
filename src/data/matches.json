@@ -1555,7 +1555,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 3,
+        "golsVisitante": 2
+      }
     },
     {
       "id": "M082",
@@ -1774,7 +1778,7 @@
       "stage": "oitavas",
       "grupo": null,
       "mandante": "A definir",
-      "visitante": "A definir",
+      "visitante": "Bélgica",
       "cidade": "Seattle",
       "pais": "EUA",
       "estadio": "Lumen Field",
