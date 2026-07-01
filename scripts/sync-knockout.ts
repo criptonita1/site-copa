@@ -128,11 +128,24 @@ async function main() {
   const json = (await res.json()) as { events?: EspnEvent[] };
   const events = json.events ?? [];
 
-  // Indexa eventos da ESPN por timestamp de kickoff (ms).
+  // Casamento robusto: por PAR de seleções (independe do horário, que a ESPN
+  // às vezes ajusta — e isso quebrava o casamento por kickoff exato). O kickoff
+  // fica só de fallback pra resolver slots ainda "A definir".
+  const pairKey = (a: string, b: string) => [a, b].sort().join("-");
+  const byPair = new Map<string, EspnEvent>();
   const byKickoff = new Map<number, EspnEvent>();
   for (const ev of events) {
     if (ev.date) byKickoff.set(new Date(ev.date).getTime(), ev);
+    const cs = ev.competitions?.[0]?.competitors ?? [];
+    const codes = cs
+      .map((c) => c.team?.abbreviation)
+      .filter((c): c is string => !!c && !!CODE_TO_PT[c]);
+    if (codes.length === 2) byPair.set(pairKey(codes[0], codes[1]), ev);
   }
+
+  // Nome PT (como no matches.json) → código FIFA (inverso de CODE_TO_PT).
+  const PT_TO_CODE: Record<string, string> = {};
+  for (const [code, pt] of Object.entries(CODE_TO_PT)) PT_TO_CODE[pt] = code;
 
   const file = JSON.parse(readFileSync(MATCHES_PATH, "utf8"));
   const changes: string[] = [];
@@ -148,30 +161,61 @@ async function main() {
     ? [...brazilRef.canais]
     : ["globo"];
 
+  // Assinatura do jogo (times + resultado) pra detectar QUALQUER mudança,
+  // inclusive placar novo em jogo cujos times já estavam definidos.
+  const sig = (x: {
+    mandante: string;
+    visitante: string;
+    resultado?: unknown;
+  }) => JSON.stringify([x.mandante, x.visitante, x.resultado ?? null]);
+  const scoreStr = (x: {
+    resultado?: {
+      golsMandante: number;
+      golsVisitante: number;
+      penaltis?: { mandante: number; visitante: number };
+    };
+  }) =>
+    x.resultado
+      ? ` [${x.resultado.golsMandante}x${x.resultado.golsVisitante}${
+          x.resultado.penaltis
+            ? ` pen ${x.resultado.penaltis.mandante}-${x.resultado.penaltis.visitante}`
+            : ""
+        }]`
+      : "";
+
   for (const m of file.matches) {
     if (!KNOCKOUT.has(m.stage)) continue;
-    const ev = byKickoff.get(new Date(m.kickoffUTC).getTime());
+    const before = sig(m);
+
+    // Casa por par de seleções (quando os 2 já são conhecidos); senão, por
+    // kickoff (pra resolver slots ainda "A definir").
+    const hc0 = PT_TO_CODE[m.mandante];
+    const ac0 = PT_TO_CODE[m.visitante];
+    const ev =
+      (hc0 && ac0 ? byPair.get(pairKey(hc0, ac0)) : undefined) ??
+      byKickoff.get(new Date(m.kickoffUTC).getTime());
     if (!ev) continue;
     const comp = ev.competitions?.[0];
     const competitors = comp?.competitors ?? [];
     if (competitors.length !== 2) continue;
 
-    // Ordem: respeita home/away da ESPN quando houver; senão, ordem da lista.
     const home =
       competitors.find((c) => c.homeAway === "home") ?? competitors[0];
     const away =
       competitors.find((c) => c.homeAway === "away") ?? competitors[1];
 
-    const newMandante = resolveSlot(home.team?.abbreviation);
-    const newVisitante = resolveSlot(away.team?.abbreviation);
-    const before = `${m.mandante} x ${m.visitante}`;
-
-    if (newMandante && newMandante !== m.mandante) m.mandante = newMandante;
-    if (newVisitante && newVisitante !== m.visitante) m.visitante = newVisitante;
+    // Preenche o time só no lado ainda indefinido (não sobrescreve seleção certa).
+    if (!hc0) {
+      const nm = resolveSlot(home.team?.abbreviation);
+      if (nm && nm !== m.mandante) m.mandante = nm;
+    }
+    if (!ac0) {
+      const nv = resolveSlot(away.team?.abbreviation);
+      if (nv && nv !== m.visitante) m.visitante = nv;
+    }
 
     // Jogo do Brasil: marca a flag e garante canais confirmados.
-    const isBR = m.mandante === "Brasil" || m.visitante === "Brasil";
-    if (isBR && !m.brasil) {
+    if ((m.mandante === "Brasil" || m.visitante === "Brasil") && !m.brasil) {
       m.brasil = true;
       if (!m.canaisConfirmados) {
         m.canais = brazilKoChannels;
@@ -179,27 +223,40 @@ async function main() {
       }
     }
 
-    // Resultado final (só quando o jogo encerrou na ESPN).
+    // Resultado final — mapeado por CÓDIGO da seleção (não pela ordem da ESPN),
+    // pra o placar cair no mandante/visitante certos.
     if (comp?.status?.type?.state === "post") {
-      const gh = Number(home.score ?? NaN);
-      const ga = Number(away.score ?? NaN);
-      if (Number.isFinite(gh) && Number.isFinite(ga)) {
-        const resultado: Record<string, unknown> = {
-          golsMandante: gh,
-          golsVisitante: ga,
+      const byCode: Record<string, { score: number; so?: number }> = {};
+      for (const c of competitors) {
+        const code = c.team?.abbreviation;
+        if (!code) continue;
+        byCode[code] = {
+          score: Number(c.score ?? NaN),
+          so:
+            c.shootoutScore != null && c.shootoutScore !== ""
+              ? Number(c.shootoutScore)
+              : undefined,
         };
-        if (home.shootoutScore != null && away.shootoutScore != null) {
-          resultado.penaltis = {
-            mandante: Number(home.shootoutScore),
-            visitante: Number(away.shootoutScore),
-          };
+      }
+      const h = PT_TO_CODE[m.mandante] ? byCode[PT_TO_CODE[m.mandante]] : undefined;
+      const a = PT_TO_CODE[m.visitante] ? byCode[PT_TO_CODE[m.visitante]] : undefined;
+      if (h && a && Number.isFinite(h.score) && Number.isFinite(a.score)) {
+        const resultado: Record<string, unknown> = {
+          golsMandante: h.score,
+          golsVisitante: a.score,
+        };
+        if (h.so != null && a.so != null) {
+          resultado.penaltis = { mandante: h.so, visitante: a.so };
         }
         m.resultado = resultado;
       }
     }
 
-    const after = `${m.mandante} x ${m.visitante}`;
-    if (before !== after) changes.push(`  ${m.id} (${m.stage}): ${before}  →  ${after}`);
+    if (sig(m) !== before) {
+      changes.push(
+        `  ${m.id} (${m.stage}): ${m.mandante} x ${m.visitante}${scoreStr(m)}`,
+      );
+    }
   }
 
   if (changes.length === 0) {
