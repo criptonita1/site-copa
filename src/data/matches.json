@@ -1471,7 +1471,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 1,
+        "golsVisitante": 2
+      }
     },
     {
       "id": "M078",
@@ -1488,7 +1492,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 3,
+        "golsVisitante": 0
+      }
     },
     {
       "id": "M079",
@@ -1684,7 +1692,7 @@
       "stage": "oitavas",
       "grupo": null,
       "mandante": "Paraguai",
-      "visitante": "A definir",
+      "visitante": "França",
       "cidade": "Filadélfia",
       "pais": "EUA",
       "estadio": "Lincoln Financial Field",
@@ -1701,7 +1709,7 @@
       "stage": "oitavas",
       "grupo": null,
       "mandante": "Brasil",
-      "visitante": "A definir",
+      "visitante": "Noruega",
       "cidade": "Nova York/Nova Jersey",
       "pais": "EUA",
       "estadio": "MetLife Stadium",
