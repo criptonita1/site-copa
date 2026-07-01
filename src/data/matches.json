@@ -1534,7 +1534,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 2,
+        "golsVisitante": 1
+      }
     },
     {
       "id": "M081",
@@ -1736,7 +1740,7 @@
       "stage": "oitavas",
       "grupo": null,
       "mandante": "México",
-      "visitante": "A definir",
+      "visitante": "Inglaterra",
       "cidade": "Cidade do México",
       "pais": "México",
       "estadio": "Estádio Azteca",
