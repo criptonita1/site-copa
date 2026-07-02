@@ -1576,7 +1576,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 2,
+        "golsVisitante": 0
+      }
     },
     {
       "id": "M083",
@@ -1777,7 +1781,7 @@
       "horarioBrasilia": "06/07 21:00",
       "stage": "oitavas",
       "grupo": null,
-      "mandante": "A definir",
+      "mandante": "EUA",
       "visitante": "Bélgica",
       "cidade": "Seattle",
       "pais": "EUA",
