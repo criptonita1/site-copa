@@ -1597,7 +1597,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 3,
+        "golsVisitante": 0
+      }
     },
     {
       "id": "M084",
@@ -1765,7 +1769,7 @@
       "stage": "oitavas",
       "grupo": null,
       "mandante": "A definir",
-      "visitante": "A definir",
+      "visitante": "Espanha",
       "cidade": "Dallas (Arlington)",
       "pais": "EUA",
       "estadio": "AT&T Stadium",
