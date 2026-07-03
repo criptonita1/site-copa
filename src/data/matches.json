@@ -1618,7 +1618,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 2,
+        "golsVisitante": 1
+      }
     },
     {
       "id": "M085",
@@ -1768,7 +1772,7 @@
       "horarioBrasilia": "06/07 16:00",
       "stage": "oitavas",
       "grupo": null,
-      "mandante": "A definir",
+      "mandante": "Portugal",
       "visitante": "Espanha",
       "cidade": "Dallas (Arlington)",
       "pais": "EUA",
