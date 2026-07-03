@@ -1639,7 +1639,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 2,
+        "golsVisitante": 0
+      }
     },
     {
       "id": "M086",
@@ -1823,7 +1827,7 @@
       "horarioBrasilia": "07/07 17:00",
       "stage": "oitavas",
       "grupo": null,
-      "mandante": "A definir",
+      "mandante": "Suíça",
       "visitante": "A definir",
       "cidade": "Vancouver",
       "pais": "Canadá",
