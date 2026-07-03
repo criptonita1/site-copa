@@ -1660,7 +1660,15 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 1,
+        "golsVisitante": 1,
+        "penaltis": {
+          "mandante": 2,
+          "visitante": 4
+        }
+      }
     },
     {
       "id": "M087",
@@ -1811,7 +1819,7 @@
       "stage": "oitavas",
       "grupo": null,
       "mandante": "A definir",
-      "visitante": "A definir",
+      "visitante": "Egito",
       "cidade": "Atlanta",
       "pais": "EUA",
       "estadio": "Mercedes-Benz Stadium",
