@@ -1748,7 +1748,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 0,
+        "golsVisitante": 1
+      }
     },
     {
       "id": "M091",
@@ -1864,7 +1868,7 @@
       "horarioBrasilia": "09/07 17:00",
       "stage": "quartas",
       "grupo": null,
-      "mandante": "A definir",
+      "mandante": "França",
       "visitante": "Marrocos",
       "cidade": "Boston (Foxborough)",
       "pais": "EUA",
