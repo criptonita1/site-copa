@@ -1727,7 +1727,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 0,
+        "golsVisitante": 3
+      }
     },
     {
       "id": "M090",
@@ -1861,7 +1865,7 @@
       "stage": "quartas",
       "grupo": null,
       "mandante": "A definir",
-      "visitante": "A definir",
+      "visitante": "Marrocos",
       "cidade": "Boston (Foxborough)",
       "pais": "EUA",
       "estadio": "Gillette Stadium",
