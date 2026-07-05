@@ -1775,7 +1775,11 @@
         "getv"
       ],
       "canaisConfirmados": true,
-      "brasil": true
+      "brasil": true,
+      "resultado": {
+        "golsMandante": 1,
+        "golsVisitante": 2
+      }
     },
     {
       "id": "M092",
@@ -1902,7 +1906,7 @@
       "horarioBrasilia": "11/07 18:00",
       "stage": "quartas",
       "grupo": null,
-      "mandante": "A definir",
+      "mandante": "Noruega",
       "visitante": "A definir",
       "cidade": "Miami",
       "pais": "EUA",
