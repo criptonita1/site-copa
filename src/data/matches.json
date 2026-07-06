@@ -1796,7 +1796,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 2,
+        "golsVisitante": 3
+      }
     },
     {
       "id": "M093",
@@ -1907,7 +1911,7 @@
       "stage": "quartas",
       "grupo": null,
       "mandante": "Noruega",
-      "visitante": "A definir",
+      "visitante": "Inglaterra",
       "cidade": "Miami",
       "pais": "EUA",
       "estadio": "Hard Rock Stadium",
