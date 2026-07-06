@@ -1817,7 +1817,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 0,
+        "golsVisitante": 1
+      }
     },
     {
       "id": "M094",
@@ -1893,7 +1897,7 @@
       "horarioBrasilia": "10/07 16:00",
       "stage": "quartas",
       "grupo": null,
-      "mandante": "A definir",
+      "mandante": "Espanha",
       "visitante": "A definir",
       "cidade": "Los Angeles",
       "pais": "EUA",
