@@ -1859,7 +1859,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 3,
+        "golsVisitante": 2
+      }
     },
     {
       "id": "M096",
@@ -1935,7 +1939,7 @@
       "horarioBrasilia": "11/07 22:00",
       "stage": "quartas",
       "grupo": null,
-      "mandante": "A definir",
+      "mandante": "Argentina",
       "visitante": "A definir",
       "cidade": "Kansas City",
       "pais": "EUA",
