@@ -1838,7 +1838,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 1,
+        "golsVisitante": 4
+      }
     },
     {
       "id": "M095",
@@ -1898,7 +1902,7 @@
       "stage": "quartas",
       "grupo": null,
       "mandante": "Espanha",
-      "visitante": "A definir",
+      "visitante": "Bélgica",
       "cidade": "Los Angeles",
       "pais": "EUA",
       "estadio": "SoFi Stadium",
