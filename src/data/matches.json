@@ -1880,7 +1880,15 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 0,
+        "golsVisitante": 0,
+        "penaltis": {
+          "mandante": 4,
+          "visitante": 3
+        }
+      }
     },
     {
       "id": "M097",
@@ -1940,7 +1948,7 @@
       "stage": "quartas",
       "grupo": null,
       "mandante": "Argentina",
-      "visitante": "A definir",
+      "visitante": "Suíça",
       "cidade": "Kansas City",
       "pais": "EUA",
       "estadio": "Arrowhead Stadium",
