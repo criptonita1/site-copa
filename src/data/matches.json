@@ -1926,7 +1926,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 2,
+        "golsVisitante": 1
+      }
     },
     {
       "id": "M099",
@@ -1969,7 +1973,7 @@
       "stage": "semi",
       "grupo": null,
       "mandante": "França",
-      "visitante": "A definir",
+      "visitante": "Espanha",
       "cidade": "Dallas (Arlington)",
       "pais": "EUA",
       "estadio": "AT&T Stadium",
