@@ -1968,7 +1968,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 3,
+        "golsVisitante": 1
+      }
     },
     {
       "id": "M101",
@@ -1994,7 +1998,7 @@
       "stage": "semi",
       "grupo": null,
       "mandante": "Inglaterra",
-      "visitante": "A definir",
+      "visitante": "Argentina",
       "cidade": "Atlanta",
       "pais": "EUA",
       "estadio": "Mercedes-Benz Stadium",
