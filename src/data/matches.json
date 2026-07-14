@@ -1989,7 +1989,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 0,
+        "golsVisitante": 2
+      }
     },
     {
       "id": "M102",
