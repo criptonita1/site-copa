@@ -2010,7 +2010,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 1,
+        "golsVisitante": 2
+      }
     },
     {
       "id": "M103",
@@ -2019,7 +2023,7 @@
       "stage": "terceiro",
       "grupo": null,
       "mandante": "França",
-      "visitante": "A definir",
+      "visitante": "Inglaterra",
       "cidade": "Miami",
       "pais": "EUA",
       "estadio": "Hard Rock Stadium",
@@ -2036,7 +2040,7 @@
       "stage": "final",
       "grupo": null,
       "mandante": "Espanha",
-      "visitante": "A definir",
+      "visitante": "Argentina",
       "cidade": "Nova York/Nova Jersey",
       "pais": "EUA",
       "estadio": "MetLife Stadium",
