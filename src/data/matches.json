@@ -2031,7 +2031,11 @@
         "cazetv"
       ],
       "canaisConfirmados": false,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 4,
+        "golsVisitante": 6
+      }
     },
     {
       "id": "M104",
