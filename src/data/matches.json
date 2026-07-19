@@ -2058,7 +2058,11 @@
         "getv"
       ],
       "canaisConfirmados": true,
-      "brasil": false
+      "brasil": false,
+      "resultado": {
+        "golsMandante": 1,
+        "golsVisitante": 0
+      }
     }
   ]
 }
